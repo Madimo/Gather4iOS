@@ -10,10 +10,10 @@
 
 @interface TopicCell : UITableViewCell
 
-@property (strong, nonatomic) UIImage *avatar;
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *content;
 @property (strong, nonatomic) NSString *author;
+@property (strong, nonatomic) NSString *avatar;
+@property (strong, nonatomic) NSString *content;
 @property (strong, nonatomic) NSString *node;
 @property (strong, nonatomic) NSString *time;
 

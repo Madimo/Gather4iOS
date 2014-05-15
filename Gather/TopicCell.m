@@ -7,11 +7,13 @@
 //
 
 #import "TopicCell.h"
+#import <UIImageView+WebCache.h>
 
 @interface TopicCell ()
-@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarView;
 @end
 
 @implementation TopicCell
@@ -40,6 +42,13 @@
 {
     _author = author;
     self.authorLabel.text = author;
+}
+
+- (void)setAvatar:(NSString *)avatar
+{
+    _avatar = avatar;
+    [self.avatarView setImageWithURL:[NSURL URLWithString:self.avatar]
+                    placeholderImage:nil];
 }
 
 @end
