@@ -16,6 +16,7 @@
 @property (nonatomic) NSInteger totalPage;
 @property (nonatomic) NSInteger currentPage;
 @property (nonatomic) BOOL loading;
+@property (nonatomic) NSInteger currentMaxDisplayedCell;
 @end
 
 @implementation TopicViewController
@@ -34,6 +35,7 @@
                  success:^(NSArray *topics, NSInteger totalPage, NSInteger totalTopics) {
                      self.totalPage = totalPage;
                      self.topics = [topics mutableCopy];
+                     self.currentMaxDisplayedCell = -1;
                      [self.tableView reloadData];
                      [self.refreshControl endRefreshing];
                  }
@@ -106,6 +108,32 @@
 {
     if (scrollView.contentOffset.y > scrollView.contentSize.height * 2.0 / 3.0) {
         [self loadNext];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row > self.currentMaxDisplayedCell) {
+        cell.contentView.alpha = 0.3;
+        
+        CGAffineTransform transformScale = CGAffineTransformMakeScale(1.15, 1.15);
+        CGAffineTransform transformTranslate;
+        if (indexPath.row % 2)
+            transformTranslate = CGAffineTransformMakeTranslation(-10, 5);
+        else
+            transformTranslate = CGAffineTransformMakeTranslation(10, 5);
+        
+        cell.contentView.transform = CGAffineTransformConcat(transformScale, transformTranslate);
+        
+        [self.tableView bringSubviewToFront:cell.contentView];
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.65];
+        cell.contentView.alpha = 1;
+        cell.contentView.transform = CGAffineTransformIdentity;
+        [UIView commitAnimations];
+        
+        self.currentMaxDisplayedCell = indexPath.row;
     }
 }
 
