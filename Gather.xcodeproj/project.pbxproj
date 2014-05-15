@@ -20,6 +20,12 @@
 		D8A47C2E1923B4FB00448690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C101923B4FB00448690 /* UIKit.framework */; };
 		D8A47C361923B4FB00448690 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8A47C341923B4FB00448690 /* InfoPlist.strings */; };
 		D8A47C381923B4FB00448690 /* GatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C371923B4FB00448690 /* GatherTests.m */; };
+		D8A47C461923B61600448690 /* GatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C451923B61600448690 /* GatherAPI.m */; };
+		D8A47C491923BA4C00448690 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C481923BA4C00448690 /* Topic.m */; };
+		D8A47C501923BE4600448690 /* Reply.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C4F1923BE4600448690 /* Reply.m */; };
+		D8A47C531923C73900448690 /* TopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C521923C73900448690 /* TopicCell.m */; };
+		D8A47C561923C92900448690 /* TopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C551923C92900448690 /* TopicViewController.m */; };
+		D8A47C59192444AE00448690 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C58192444AE00448690 /* User.m */; };
 		E4EB49B9B0E341B1B4E4F8FD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 993D7F85A6C942C384DD6F39 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +59,18 @@
 		D8A47C331923B4FB00448690 /* GatherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GatherTests-Info.plist"; sourceTree = "<group>"; };
 		D8A47C351923B4FB00448690 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8A47C371923B4FB00448690 /* GatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GatherTests.m; sourceTree = "<group>"; };
+		D8A47C441923B61600448690 /* GatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatherAPI.h; sourceTree = "<group>"; };
+		D8A47C451923B61600448690 /* GatherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatherAPI.m; sourceTree = "<group>"; };
+		D8A47C471923BA4C00448690 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
+		D8A47C481923BA4C00448690 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
+		D8A47C4E1923BE4600448690 /* Reply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reply.h; sourceTree = "<group>"; };
+		D8A47C4F1923BE4600448690 /* Reply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reply.m; sourceTree = "<group>"; };
+		D8A47C511923C73900448690 /* TopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicCell.h; sourceTree = "<group>"; };
+		D8A47C521923C73900448690 /* TopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicCell.m; sourceTree = "<group>"; };
+		D8A47C541923C92900448690 /* TopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicViewController.h; sourceTree = "<group>"; };
+		D8A47C551923C92900448690 /* TopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicViewController.m; sourceTree = "<group>"; };
+		D8A47C57192444AE00448690 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D8A47C58192444AE00448690 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,9 +133,16 @@
 		D8A47C121923B4FB00448690 /* Gather */ = {
 			isa = PBXGroup;
 			children = (
+				D8A47C4A1923BE1300448690 /* Models */,
+				D8A47C441923B61600448690 /* GatherAPI.h */,
+				D8A47C451923B61600448690 /* GatherAPI.m */,
 				D8A47C1B1923B4FB00448690 /* AppDelegate.h */,
 				D8A47C1C1923B4FB00448690 /* AppDelegate.m */,
 				D8A47C1E1923B4FB00448690 /* Main.storyboard */,
+				D8A47C541923C92900448690 /* TopicViewController.h */,
+				D8A47C551923C92900448690 /* TopicViewController.m */,
+				D8A47C511923C73900448690 /* TopicCell.h */,
+				D8A47C521923C73900448690 /* TopicCell.m */,
 				D8A47C241923B4FB00448690 /* Images.xcassets */,
 				D8A47C131923B4FB00448690 /* Supporting Files */,
 			);
@@ -151,6 +176,19 @@
 				D8A47C341923B4FB00448690 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8A47C4A1923BE1300448690 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D8A47C471923BA4C00448690 /* Topic.h */,
+				D8A47C481923BA4C00448690 /* Topic.m */,
+				D8A47C4E1923BE4600448690 /* Reply.h */,
+				D8A47C4F1923BE4600448690 /* Reply.m */,
+				D8A47C57192444AE00448690 /* User.h */,
+				D8A47C58192444AE00448690 /* User.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,8 +323,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A47C59192444AE00448690 /* User.m in Sources */,
+				D8A47C501923BE4600448690 /* Reply.m in Sources */,
 				D8A47C1D1923B4FB00448690 /* AppDelegate.m in Sources */,
+				D8A47C491923BA4C00448690 /* Topic.m in Sources */,
+				D8A47C561923C92900448690 /* TopicViewController.m in Sources */,
 				D8A47C191923B4FB00448690 /* main.m in Sources */,
+				D8A47C461923B61600448690 /* GatherAPI.m in Sources */,
+				D8A47C531923C73900448690 /* TopicCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
