@@ -8,6 +8,7 @@
 
 #import "TopicViewController.h"
 #import "TopicCell.h"
+#import "ReplyViewController.h"
 #import "GatherAPI.h"
 
 @interface TopicViewController ()
@@ -96,6 +97,7 @@
     cell.title = topic.title;
     cell.author = topic.author.username;
     cell.avatar = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=100", topic.author.emailMD5];
+    cell.replyCount = topic.replyCount;
     cell.created = topic.created;
     return cell;
 }
@@ -112,8 +114,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@""]) {
-        
+    if ([segue.identifier isEqualToString:@"Reply"]) {
+        if ([segue.destinationViewController isKindOfClass:[ReplyViewController class]]) {
+            ReplyViewController *dest = segue.destinationViewController;
+            NSInteger index = [self.tableView indexPathForCell:sender].row;
+            [dest setTopicId:index];
+        }
     }
 }
 

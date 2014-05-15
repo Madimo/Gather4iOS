@@ -132,23 +132,6 @@
                                               };
                                               
                                               blk();
-                                              
-//                                              for (Topic *topic in topics) {
-//                                                  [self getUserById:topic.authorId
-//                                                            success:^(User *user) {
-//                                                                topic.author = user;
-//                                                                finishCount++;
-//                                                                if (finishCount == topics.count)
-//                                                                    success(topics, totalPage, totalTopics);
-//                                                            }
-//                                                            failure:^(NSException *exception) {
-//                                                                topic.author = [User blankUser];
-//                                                                finishCount++;
-//                                                                if (finishCount == topics.count)
-//                                                                    success(topics, totalPage, totalTopics);
-//                                                            }
-//                                                  ];
-//                                              }
                                           }
                                           @catch (NSException *exception) {
                                               if (failure)

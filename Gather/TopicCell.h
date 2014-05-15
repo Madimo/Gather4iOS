@@ -13,9 +13,8 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *author;
 @property (strong, nonatomic) NSString *avatar;
-@property (strong, nonatomic) NSString *content;
 @property (strong, nonatomic) NSString *node;
-@property (strong, nonatomic) NSString *time;
+@property (nonatomic) NSInteger replyCount;
 @property (strong, nonatomic) NSDate *created;
 
 @end

@@ -10,6 +10,7 @@
 #import <UIImageView+WebCache.h>
 
 @interface TopicCell ()
+@property (weak, nonatomic) IBOutlet UILabel *replyCountLabel;
 @property (weak, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
@@ -24,6 +25,9 @@
     // Initialization code
     
     self.view.layer.cornerRadius = 6.0;
+    self.replyCountLabel.textColor = [UIColor whiteColor];
+    self.replyCountLabel.backgroundColor = [UIColor grayColor];
+    self.replyCountLabel.layer.cornerRadius = 10.0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -50,6 +54,12 @@
     _avatar = avatar;
     [self.avatarView setImageWithURL:[NSURL URLWithString:self.avatar]
                     placeholderImage:nil];
+}
+
+- (void)setReplyCount:(NSInteger)replyCount
+{
+    _replyCount = replyCount;
+    self.replyCountLabel.text = [NSString stringWithFormat:@"%ld", (long)replyCount];
 }
 
 - (void)setCreated:(NSDate *)created
