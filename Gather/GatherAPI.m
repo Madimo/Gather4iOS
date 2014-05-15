@@ -181,18 +181,24 @@
                                                                           success:^(User *user) {
                                                                               ((Reply *)topic.replies[finishCount]).author = user;
                                                                               finishCount++;
-                                                                              if (finishCount == topic.replies.count)
+                                                                              if (finishCount == topic.replies.count) {
                                                                                   success(topic);
-                                                                              else
+                                                                                  blk = nil;
+                                                                              }
+                                                                              else {
                                                                                   blk();
+                                                                              }
                                                                           }
                                                                           failure:^(NSException *exception) {
                                                                               ((Reply *)topic.replies[finishCount]).author = [User unknownUser];
                                                                               finishCount++;
-                                                                              if (finishCount == topic.replies.count)
+                                                                              if (finishCount == topic.replies.count) {
                                                                                   success(topic);
-                                                                              else
+                                                                                  blk = nil;
+                                                                              }
+                                                                              else {
                                                                                   blk();
+                                                                              }
                                                                           }
                                                                 ];
                                                             };
@@ -203,8 +209,6 @@
                                                             topic.author = [User unknownUser];
                                                         }
                                                ];
-                                              
-                                              success(topic);
                                           }
                                           @catch (NSException *exception) {
                                               if (failure)

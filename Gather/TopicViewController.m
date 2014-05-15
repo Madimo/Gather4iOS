@@ -24,6 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self refresh];
 }
 
 - (IBAction)refresh
