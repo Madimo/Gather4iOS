@@ -64,7 +64,7 @@
                      [self.topics addObjectsFromArray:topics];
                      self.totalPage = totalPage;
                      NSMutableArray *indexPaths = [NSMutableArray new];
-                     for (int i = self.topics.count - topics.count; i < self.topics.count; ++i) {
+                     for (NSInteger i = self.topics.count - topics.count; i < self.topics.count; ++i) {
                          NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                          [indexPaths addObject:indexPath];
                      }
@@ -96,9 +96,10 @@
     
     // Configure the cell...
     Topic *topic = self.topics[indexPath.row];
+    cell.topicId = topic.topicId;
     cell.title = topic.title;
     cell.author = topic.author.username;
-    cell.avatar = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=100", topic.author.emailMD5];
+    cell.avatar = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=200", topic.author.emailMD5];
     cell.replyCount = topic.replyCount;
     cell.created = topic.created;
     return cell;
@@ -145,8 +146,7 @@
     if ([segue.identifier isEqualToString:@"Reply"]) {
         if ([segue.destinationViewController isKindOfClass:[ReplyViewController class]]) {
             ReplyViewController *dest = segue.destinationViewController;
-            NSInteger index = [self.tableView indexPathForCell:sender].row;
-            [dest setTopicId:index];
+            [dest setTopicId:((TopicCell *)sender).topicId];
         }
     }
 }

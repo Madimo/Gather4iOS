@@ -155,6 +155,7 @@
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSString *url = [NSString stringWithFormat:@"%@%ld", GATHER_API_TOPIC, (long)topicId];
+    debugLog(@"%@", url);
     NSURLSessionDataTask *task = [manager GET:url
                                    parameters:nil
                                       success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -164,7 +165,45 @@
                                           
                                           @try {
                                               NSDictionary *result = (NSDictionary *)responseObject;
-                                              Topic *topic = [[Topic alloc] initWithTopicDict:result];
+                                              Topic *topic = [[Topic alloc] initWithTopicDict:result[@"topic"]];
+                                              [self getUserById:topic.authorId
+                                                        success:^(User *user) {
+                                                            topic.author = user;
+                                                            
+                                                            if (topic.replies.count <= 0) {
+                                                                success(topic);
+                                                                return;
+                                                            }
+                                                            
+                                                            __block NSInteger finishCount = 0;
+                                                            __block void (^blk)() = ^{
+                                                                [self getUserById:((Reply *)topic.replies[finishCount]).authorId
+                                                                          success:^(User *user) {
+                                                                              ((Reply *)topic.replies[finishCount]).author = user;
+                                                                              finishCount++;
+                                                                              if (finishCount == topic.replies.count)
+                                                                                  success(topic);
+                                                                              else
+                                                                                  blk();
+                                                                          }
+                                                                          failure:^(NSException *exception) {
+                                                                              ((Reply *)topic.replies[finishCount]).author = [User unknownUser];
+                                                                              finishCount++;
+                                                                              if (finishCount == topic.replies.count)
+                                                                                  success(topic);
+                                                                              else
+                                                                                  blk();
+                                                                          }
+                                                                ];
+                                                            };
+                                                            
+                                                            blk();
+                                                        }
+                                                        failure:^(NSException *exception) {
+                                                            topic.author = [User unknownUser];
+                                                        }
+                                               ];
+                                              
                                               success(topic);
                                           }
                                           @catch (NSException *exception) {

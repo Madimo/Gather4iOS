@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        self.topicId = [dict[@"topic"] integerValue];
+        self.topicId = [dict[@"id"] integerValue];
         self.authorId = [dict[@"author"] integerValue];
         self.nodeId = [dict[@"node"] integerValue];
         

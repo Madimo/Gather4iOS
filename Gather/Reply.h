@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface Reply : NSObject
 
@@ -15,6 +16,8 @@
 @property (nonatomic) NSInteger topicId;
 
 @property (nonatomic, strong) NSString *content;
+
+@property (nonatomic, strong) User *author;
 
 - (instancetype)initWithReplyDict:(NSDictionary *)dict;
 

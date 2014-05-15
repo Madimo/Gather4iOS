@@ -10,6 +10,7 @@
 
 @interface TopicCell : UITableViewCell
 
+@property (nonatomic) NSInteger topicId;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *author;
 @property (strong, nonatomic) NSString *avatar;
