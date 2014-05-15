@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarView;
+@property (weak, nonatomic) IBOutlet UILabel *createdLabel;
 @end
 
 @implementation TopicCell
@@ -49,6 +50,30 @@
     _avatar = avatar;
     [self.avatarView setImageWithURL:[NSURL URLWithString:self.avatar]
                     placeholderImage:nil];
+}
+
+- (void)setCreated:(NSDate *)created
+{
+    _created = created;
+    self.createdLabel.text = [self convertStringFromDate:created];
+}
+
+- (NSString *)convertStringFromDate:(NSDate *)date
+{
+    NSTimeInterval interval = abs([date timeIntervalSinceNow]);
+    if (interval < 60)
+        return @"less than a minute";
+    if (interval < 3600)
+        return  [NSString stringWithFormat:@"%d minutes ago", (int)(interval / 60 + 0.5)];
+    if (interval < 3600 * 24)
+        return  [NSString stringWithFormat:@"%d hours ago", (int)(interval / 3600 + 0.5)];
+    if (interval < 3600 * 24 * 7)
+        return  [NSString stringWithFormat:@"%d days ago", (int)(interval / 3600 / 24 + 0.5)];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"d/M/yy HH:mm:ss"];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
+    return [formatter stringFromDate:date];
 }
 
 @end

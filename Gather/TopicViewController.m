@@ -96,6 +96,7 @@
     cell.title = topic.title;
     cell.author = topic.author.username;
     cell.avatar = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=100", topic.author.emailMD5];
+    cell.created = topic.created;
     return cell;
 }
 

@@ -18,6 +18,11 @@
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *content;
 @property (strong, nonatomic) NSArray *replies;
+@property (nonatomic) NSInteger replyCount;
+
+@property (strong, nonatomic) NSDate *created;
+@property (strong, nonatomic) NSDate *updated;
+@property (strong, nonatomic) NSDate *changed;
 
 @property (strong, nonatomic) User *author;
 

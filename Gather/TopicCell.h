@@ -16,5 +16,6 @@
 @property (strong, nonatomic) NSString *content;
 @property (strong, nonatomic) NSString *node;
 @property (strong, nonatomic) NSString *time;
+@property (strong, nonatomic) NSDate *created;
 
 @end
