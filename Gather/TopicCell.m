@@ -25,9 +25,15 @@
     // Initialization code
     
     self.view.layer.cornerRadius = 6.0;
+    self.view.layer.masksToBounds = YES;
+    
     self.replyCountLabel.textColor = [UIColor whiteColor];
     self.replyCountLabel.backgroundColor = [UIColor grayColor];
     self.replyCountLabel.layer.cornerRadius = 10.0;
+    self.replyCountLabel.layer.masksToBounds = YES;
+    
+    self.avatarView.layer.cornerRadius = self.avatarView.layer.frame.size.height / 2.0;
+    self.avatarView.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
