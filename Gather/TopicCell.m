@@ -78,7 +78,7 @@
 {
     NSTimeInterval interval = abs([date timeIntervalSinceNow]);
     if (interval < 60)
-        return @"less than a minute";
+        return @"just now";
     if (interval < 3600)
         return  [NSString stringWithFormat:@"%d minutes ago", (int)(interval / 60 + 0.5)];
     if (interval < 3600 * 24)
