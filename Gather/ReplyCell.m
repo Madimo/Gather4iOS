@@ -9,6 +9,7 @@
 #import "ReplyCell.h"
 
 @interface ReplyCell () <UIWebViewDelegate>
+@property (nonatomic) CGFloat calculatedHeight;
 @property (weak, nonatomic) IBOutlet UIWebView *contentWebView;
 @end
 
@@ -20,30 +21,43 @@
     self.contentWebView.scrollView.scrollEnabled = NO;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)setContentHTML:(NSString *)contentHTML
 {
     _contentHTML = contentHTML;
     [self.contentWebView loadHTMLString:contentHTML baseURL:nil];
 }
 
+- (void)setTag:(NSInteger)tag
+{
+    [super setTag:tag];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    
+    self.calculatedHeight = webView.scrollView.contentSize.height;
+
     CGRect frame = webView.frame;
-    frame.origin = CGPointMake(0, 0);
-    frame.size = webView.scrollView.contentSize;
+    frame.size.height = self.calculatedHeight;
     webView.frame = frame;
-    NSLog(@"%lf %lf %lf %lf", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+    
+    if ([self.delegate respondsToSelector:@selector(replyCellDidFinishLoad:)]) {
+        [self.delegate replyCellDidFinishLoad:self];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        self.calculatedHeight = self.contentWebView.scrollView.contentSize.height;
+    }
 }
 
 - (void)prepareForReuse
 {
+    [super prepareForReuse];
+    
+    self.calculatedHeight = 0;
     [self.contentWebView stopLoading];
 }
 

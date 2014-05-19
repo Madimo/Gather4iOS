@@ -8,8 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class ReplyCell;
+
+@protocol ReplyCellDelegate <NSObject>
+
+@optional
+- (void)replyCellDidFinishLoad:(ReplyCell *)cell;
+
+@end
+
 @interface ReplyCell : UITableViewCell
 
+@property (weak, nonatomic) id<ReplyCellDelegate> delegate;
 @property (strong, nonatomic) NSString *contentHTML;
+@property (nonatomic, readonly) CGFloat calculatedHeight;
 
 @end

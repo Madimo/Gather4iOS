@@ -12,7 +12,7 @@
 #import "WebContentMatcher.h"
 #import <UIImageView+WebCache.h>
 
-@interface ReplyViewController () <UIWebViewDelegate>
+@interface ReplyViewController () <UIWebViewDelegate, ReplyCellDelegate>
 @property (strong, nonatomic) Topic *topic;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarView;
 @property (weak, nonatomic) IBOutlet UIWebView *headContentView;
@@ -40,10 +40,13 @@
     GatherAPI *api = [GatherAPI sharedAPI];
     [api getTopicById:self.topicId
               success:^(Topic *topic) {
-                  self.topic = topic;
-                  [self reloadHeaderView];
-                  [self reloadHTMLsAndRowHeight];
-                  [self.refreshControl endRefreshing];
+                  dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                      self.topic = topic;
+                      [self reloadHeaderView];
+                      [self reloadHTMLsAndRowHeight];
+                      [self.tableView reloadData];
+                      [self.refreshControl endRefreshing];
+                  });
               }
               failure:^(NSException *exception) {
                   [self.refreshControl endRefreshing];
@@ -63,27 +66,13 @@
 {
     self.replyHTMLs = [NSMutableArray new];
     self.rowHeight = [NSMutableArray new];
-    self.webviews = [NSMutableArray new];
     
-    CGRect frame = CGRectMake(0, 0, self.tableView.frame.size.width, 10);
-    
-    NSInteger count = 0;
     for (Reply *reply in self.topic.replies) {
         NSNumber *number = [[NSNumber alloc] initWithInt:0];
         [self.rowHeight addObject:number];
 
         NSString *contentHTML = [[WebContentMatcher matcher] ConvertToHTMLUsingContent:reply.content];
         [self.replyHTMLs addObject:contentHTML];
-        
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
-        webView.hidden = NO;
-        webView.tag = count;
-        webView.delegate = self;
-        [self.webviews addObject:webView];
-        [self.tableView addSubview:webView];
-        [webView loadHTMLString:contentHTML baseURL:nil];
-        
-        count++;
     }
 }
 
@@ -99,54 +88,43 @@
     return self.topic.replies.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 20;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%lf", [self.rowHeight[indexPath.row] floatValue]);
     return [self.rowHeight[indexPath.row] floatValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ReplyCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
+
+    cell.delegate = self;
     cell.contentHTML = self.replyHTMLs[indexPath.row];
+    cell.tag = indexPath.row;
     
     return cell;
+}
+
+- (void)replyCellDidFinishLoad:(ReplyCell *)cell
+{
+    NSNumber *height = self.rowHeight[cell.tag];
+    if (height.floatValue != cell.calculatedHeight) {
+        height = [NSNumber numberWithFloat:cell.calculatedHeight];
+        self.rowHeight[cell.tag] = height;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:cell.tag inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     CGRect frame = webView.frame;
-    frame.size = webView.scrollView.contentSize;
+    frame.size.height = webView.scrollView.contentSize.height;
     webView.frame = frame;
-    
-    if (webView == self.headContentView) {
-        UIView *view = self.tableView.tableHeaderView;
-        frame = view.frame;
-        frame.size.height += webView.scrollView.contentSize.height;
-        view.frame = frame;
-        self.tableView.tableHeaderView = view;
-    } else {
-        NSNumber *number = [NSNumber numberWithFloat:webView.scrollView.contentSize.height];
-        self.rowHeight[webView.tag] = number;
-        [webView removeFromSuperview];
-        [self.webviews removeObject:webView];
-        if (self.webviews.count == 0) {
-            [self.tableView reloadData];
-        }
-    }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
