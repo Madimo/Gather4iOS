@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80DAB94192F96D600B2B57C /* ContentTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = D80DAB93192F96D600B2B57C /* ContentTranslator.m */; };
+		D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80DAB96192F9D2700B2B57C /* RepliesViewController.m */; };
+		D80DAB9B192FB17A00B2B57C /* reply.html in Resources */ = {isa = PBXBuildFile; fileRef = D80DAB9A192FB17A00B2B57C /* reply.html */; };
 		D8A47C0D1923B4FB00448690 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0C1923B4FB00448690 /* Foundation.framework */; };
 		D8A47C0F1923B4FB00448690 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */; };
 		D8A47C111923B4FB00448690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C101923B4FB00448690 /* UIKit.framework */; };
@@ -26,8 +29,6 @@
 		D8A47C531923C73900448690 /* TopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C521923C73900448690 /* TopicCell.m */; };
 		D8A47C561923C92900448690 /* TopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C551923C92900448690 /* TopicViewController.m */; };
 		D8A47C59192444AE00448690 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C58192444AE00448690 /* User.m */; };
-		D8DB7BFC192491A400096CBA /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DB7BFB192491A400096CBA /* ReplyViewController.m */; };
-		D8DB7C3119250B2D00096CBA /* WebContentMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DB7C3019250B2D00096CBA /* WebContentMatcher.m */; };
 		D8DB7C331925174600096CBA /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C321925174600096CBA /* style.css */; };
 		D8DB7C35192518A800096CBA /* content.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C34192518A800096CBA /* content.html */; };
 		D8DB7C3B19251EF400096CBA /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DB7C3A19251EF400096CBA /* ReplyCell.m */; };
@@ -47,6 +48,11 @@
 /* Begin PBXFileReference section */
 		2AC2FEE7D32043CF8C00433E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		993D7F85A6C942C384DD6F39 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D80DAB92192F96D600B2B57C /* ContentTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTranslator.h; sourceTree = "<group>"; };
+		D80DAB93192F96D600B2B57C /* ContentTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTranslator.m; sourceTree = "<group>"; };
+		D80DAB95192F9D2700B2B57C /* RepliesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepliesViewController.h; sourceTree = "<group>"; };
+		D80DAB96192F9D2700B2B57C /* RepliesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepliesViewController.m; sourceTree = "<group>"; };
+		D80DAB9A192FB17A00B2B57C /* reply.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = reply.html; sourceTree = "<group>"; };
 		D8A47C091923B4FB00448690 /* Gather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A47C0C1923B4FB00448690 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -76,10 +82,6 @@
 		D8A47C551923C92900448690 /* TopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicViewController.m; sourceTree = "<group>"; };
 		D8A47C57192444AE00448690 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		D8A47C58192444AE00448690 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		D8DB7BFA192491A400096CBA /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
-		D8DB7BFB192491A400096CBA /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
-		D8DB7C2F19250B2D00096CBA /* WebContentMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebContentMatcher.h; sourceTree = "<group>"; };
-		D8DB7C3019250B2D00096CBA /* WebContentMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebContentMatcher.m; sourceTree = "<group>"; };
 		D8DB7C321925174600096CBA /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		D8DB7C34192518A800096CBA /* content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = content.html; sourceTree = "<group>"; };
 		D8DB7C3919251EF400096CBA /* ReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
@@ -111,6 +113,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D80DAB9C192FBCAB00B2B57C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D8A47C441923B61600448690 /* GatherAPI.h */,
+				D8A47C451923B61600448690 /* GatherAPI.m */,
+				D80DAB92192F96D600B2B57C /* ContentTranslator.h */,
+				D80DAB93192F96D600B2B57C /* ContentTranslator.m */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		D80DAB9D192FBCB600B2B57C /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				D8DB7C321925174600096CBA /* style.css */,
+				D8DB7C34192518A800096CBA /* content.html */,
+				D80DAB9A192FB17A00B2B57C /* reply.html */,
+			);
+			name = Web;
+			sourceTree = "<group>";
+		};
 		D8A47C001923B4FB00448690 = {
 			isa = PBXGroup;
 			children = (
@@ -146,19 +169,15 @@
 		D8A47C121923B4FB00448690 /* Gather */ = {
 			isa = PBXGroup;
 			children = (
-				D8A47C441923B61600448690 /* GatherAPI.h */,
-				D8A47C451923B61600448690 /* GatherAPI.m */,
-				D8DB7C2F19250B2D00096CBA /* WebContentMatcher.h */,
-				D8DB7C3019250B2D00096CBA /* WebContentMatcher.m */,
+				D80DAB9C192FBCAB00B2B57C /* Library */,
 				D8A47C4A1923BE1300448690 /* Models */,
 				D8DB7BFD1924948600096CBA /* Views */,
 				D8DB7BFE1924949500096CBA /* Controllers */,
 				D8A47C1E1923B4FB00448690 /* Main.storyboard */,
 				D8A47C1B1923B4FB00448690 /* AppDelegate.h */,
 				D8A47C1C1923B4FB00448690 /* AppDelegate.m */,
-				D8DB7C321925174600096CBA /* style.css */,
-				D8DB7C34192518A800096CBA /* content.html */,
 				D8A47C241923B4FB00448690 /* Images.xcassets */,
+				D80DAB9D192FBCB600B2B57C /* Web */,
 				D8A47C131923B4FB00448690 /* Supporting Files */,
 			);
 			path = Gather;
@@ -222,8 +241,8 @@
 			children = (
 				D8A47C541923C92900448690 /* TopicViewController.h */,
 				D8A47C551923C92900448690 /* TopicViewController.m */,
-				D8DB7BFA192491A400096CBA /* ReplyViewController.h */,
-				D8DB7BFB192491A400096CBA /* ReplyViewController.m */,
+				D80DAB95192F9D2700B2B57C /* RepliesViewController.h */,
+				D80DAB96192F9D2700B2B57C /* RepliesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -307,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A47C251923B4FB00448690 /* Images.xcassets in Resources */,
+				D80DAB9B192FB17A00B2B57C /* reply.html in Resources */,
 				D8DB7C331925174600096CBA /* style.css in Resources */,
 				D8A47C171923B4FB00448690 /* InfoPlist.strings in Resources */,
 				D8A47C201923B4FB00448690 /* Main.storyboard in Resources */,
@@ -362,15 +382,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8DB7BFC192491A400096CBA /* ReplyViewController.m in Sources */,
 				D8A47C59192444AE00448690 /* User.m in Sources */,
 				D8A47C501923BE4600448690 /* Reply.m in Sources */,
 				D8DB7C3B19251EF400096CBA /* ReplyCell.m in Sources */,
 				D8A47C1D1923B4FB00448690 /* AppDelegate.m in Sources */,
+				D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */,
 				D8A47C491923BA4C00448690 /* Topic.m in Sources */,
 				D8A47C561923C92900448690 /* TopicViewController.m in Sources */,
+				D80DAB94192F96D600B2B57C /* ContentTranslator.m in Sources */,
 				D8A47C191923B4FB00448690 /* main.m in Sources */,
-				D8DB7C3119250B2D00096CBA /* WebContentMatcher.m in Sources */,
 				D8A47C461923B61600448690 /* GatherAPI.m in Sources */,
 				D8A47C531923C73900448690 /* TopicCell.m in Sources */,
 			);

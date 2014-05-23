@@ -4,83 +4,33 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Reply View Controller - Reply-->
-        <scene sceneID="y5g-IC-FdD">
+        <!--Replies View Controller - Reply-->
+        <scene sceneID="hfy-2J-Ute">
             <objects>
-                <tableViewController id="wYP-xh-h7Y" customClass="ReplyViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="129" sectionHeaderHeight="22" sectionFooterHeight="22" id="rC2-OW-us2">
+                <viewController id="xWe-ki-sFQ" customClass="RepliesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sbc-DR-H1v"/>
+                        <viewControllerLayoutGuide type="bottom" id="31G-ZF-j9t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qqt-hS-kIX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="7ad-in-zzr">
-                            <rect key="frame" x="0.0" y="64" width="320" height="280"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUG-GX-y6i">
-                                    <rect key="frame" x="0.0" y="63" width="320" height="197"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m9e-Qd-Nn6">
-                                            <rect key="frame" x="0.0" y="55" width="320" height="142"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="wYP-xh-h7Y" id="gjK-ic-bkm"/>
-                                            </connections>
-                                        </webView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                </view>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccJ-Aj-vaF">
-                                    <rect key="frame" x="110" y="9" width="100" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </view>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReplyCell" rowHeight="129" id="tTx-Oi-XVF" customClass="ReplyCell">
-                                <rect key="frame" x="0.0" y="366" width="320" height="129"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tTx-Oi-XVF" id="g0M-Cg-sJa">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NGU-HC-0nf">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="tTx-Oi-XVF" id="YMa-PF-dTg"/>
-                                            </connections>
-                                        </webView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="contentWebView" destination="NGU-HC-0nf" id="snK-so-Xf0"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="wYP-xh-h7Y" id="Ud0-8M-Fvn"/>
-                            <outlet property="delegate" destination="wYP-xh-h7Y" id="BEo-TA-L8c"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Reply" id="XIf-y4-BGD"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="YXh-UO-l7u">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <action selector="refresh" destination="wYP-xh-h7Y" eventType="valueChanged" id="dw2-Od-lHy"/>
-                        </connections>
-                    </refreshControl>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-Yj-rXt">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reply" id="87J-lF-5sG"/>
                     <connections>
-                        <outlet property="HeadContentView" destination="m9e-Qd-Nn6" id="T3o-rL-uFO"/>
-                        <outlet property="avatarView" destination="ccJ-Aj-vaF" id="UlY-Aa-ZQJ"/>
+                        <outlet property="contentScrollView" destination="fcW-Yj-rXt" id="RFM-6M-JWC"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y08-Ys-dbH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mBh-Fz-eSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="-24"/>
+            <point key="canvasLocation" x="1439" y="-24"/>
         </scene>
         <!--Topic View Controller - Topics-->
         <scene sceneID="cjA-kF-nsy">
@@ -145,7 +95,7 @@
                                     <outlet property="replyCountLabel" destination="c4h-ro-UOo" id="qTp-hW-lz8"/>
                                     <outlet property="titleLabel" destination="rpd-BH-5IA" id="f6H-l1-Q6p"/>
                                     <outlet property="view" destination="cEL-Pu-d9n" id="4Rb-L9-gep"/>
-                                    <segue destination="wYP-xh-h7Y" kind="push" identifier="Reply" id="w0q-4d-9SD"/>
+                                    <segue destination="xWe-ki-sFQ" kind="push" identifier="Reply" id="cd3-Jm-m1Q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -1,14 +1,14 @@
 //
-//  ReplyViewController.h
+//  RepliesViewController.h
 //  Gather
 //
-//  Created by Madimo on 14-5-15.
+//  Created by Madimo on 14-5-23.
 //  Copyright (c) 2014年 Madimo. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ReplyViewController : UITableViewController
+@interface RepliesViewController : UIViewController
 
 @property (nonatomic) NSInteger topicId;
 

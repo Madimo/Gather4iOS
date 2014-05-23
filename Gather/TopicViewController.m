@@ -8,7 +8,7 @@
 
 #import "TopicViewController.h"
 #import "TopicCell.h"
-#import "ReplyViewController.h"
+#import "RepliesViewController.h"
 #import "GatherAPI.h"
 
 @interface TopicViewController ()
@@ -146,8 +146,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Reply"]) {
-        if ([segue.destinationViewController isKindOfClass:[ReplyViewController class]]) {
-            ReplyViewController *dest = segue.destinationViewController;
+        if ([segue.destinationViewController isKindOfClass:[RepliesViewController class]]) {
+            RepliesViewController *dest = segue.destinationViewController;
             [dest setTopicId:((TopicCell *)sender).topicId];
         }
     }

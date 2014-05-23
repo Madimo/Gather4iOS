@@ -1,3 +1,43 @@
-.content-img {
-    max-width:100%
+/*
+ *  style.css
+ *  Gather
+ *
+ *  Created by Madimo on 14-5-24.
+ *  Copyright (c) 2014年 Madimo. All rights reserved.
+ */
+
+.reply_list {
+    max-width:100%;
+}
+
+.reply {
+    max-width:100%;
+}
+
+.avatar {
+    max-width:100%;
+}
+
+.reply_info {
+    max-width:100%;
+}
+
+.reply_author {
+    max-width:100%;
+}
+
+.reply_time {
+    max-width:100%;
+}
+
+.reply_body {
+    max-width:100%;
+}
+
+.reply_body_img {
+    max-width:100%;
+}
+
+.reply_body_a {
+    max-width:100%;
 }

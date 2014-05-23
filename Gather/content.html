@@ -1,11 +1,60 @@
+<!--
+  content.html
+  Gather
+
+  Created by Madimo on 14-5-24.
+  Copyright (c) 2014年 Madimo. All rights reserved.
+-->
+
 <html>
 	<head>
 		<meta name="viewport" content="width=decice-width,uer-scalable=no">
+        <meta http-equiv="charset" content="utf-8">
         <style type="text/css">
             {{ style }}
         </style>
+        <script>
+            function replyClicked(replyId) {
+                sendCommandToObjc("reply", replyId);
+            }
+        
+            function userClicked(userID) {
+                sendCommandToObjc("user", userID);
+            }
+        
+            function sendCommandToObjc(cmd, param) {
+                var url = "Gather:" + cmd + ":" + param;
+                document.location = url;
+            }
+        </script>
 	</head>
 	<body>
-		{{ content }}
+        <div class="topic">
+        
+        </div>
+        
+		{{ body }}
+        
+        <!--
+         
+         <div class="reply_list">
+            <div class="reply" onclick="replyClicked(0)">
+                <img class="avatar" onclick="userClicked(73)" src='..'/>
+                <div class="reply_info">
+                    <span class="reply_author">Madimo</span>
+                    <span class="reply_time">3 hours ago</span>
+                </div>
+                <div class="reply_body"/>
+                    ...
+                </div>
+            </div>
+         
+            <div class="reply">
+                ...
+            </div>
+         <div>
+         
+         -->
+        
 	</body>
 </html>
