@@ -223,7 +223,7 @@
                                options:NSLiteralSearch
                                  range:NSMakeRange(0, result.length)];
     
-    NSLog(@"%@", result);
+    // NSLog(@"%@", result);
     return result;
 }
 

@@ -13,6 +13,7 @@
 @interface RepliesViewController () <UIWebViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
 @property (strong, nonatomic) UIWebView *contentWebView;
+@property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) Topic *topic;
 @end
 
@@ -28,6 +29,22 @@
     self.contentWebView.scrollView.scrollEnabled = NO;
     self.contentWebView.alpha = 0.0;
     [self.contentScrollView addSubview:self.contentWebView];
+    
+    self.titleLabel = [UILabel new];
+
+    CGRect rect = [self.title boundingRectWithSize:CGSizeMake(self.view.frame.size.width, 200)
+                                           options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{ NSFontAttributeName : self.titleLabel.font }
+                                           context:nil];
+    rect.size.width = self.view.frame.size.width;
+    rect.origin.y = -rect.size.height - 20;
+    self.titleLabel.frame = rect;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.titleLabel.text = self.title;
+    self.titleLabel.textColor = [UIColor grayColor];
+    [self.contentScrollView addSubview:self.titleLabel];
 
     [self.contentWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
@@ -71,6 +88,7 @@
         webView.frame = frame;
         
         CGFloat height = self.contentScrollView.frame.size.height - self.contentScrollView.contentInset.top;
+        
         size.height = scrollView.contentSize.height > height ? scrollView.contentSize.height : height;
         
         self.contentScrollView.contentSize = size;
@@ -84,7 +102,7 @@
     if (components.count == 3 && [[components objectAtIndex:0] isEqualToString:@"gather"]) {
         NSInteger index = [components[2] integerValue];
         if ([components[1] isEqualToString:@"reply"]) {
-            NSString *title = [NSString stringWithFormat:@"#%ld by %@", index + 1, [self.topic.replies[index] author].username];
+            NSString *title = [NSString stringWithFormat:@"#%ld by %@", (long)index + 1, [self.topic.replies[index] author].username];
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
                                                                      delegate:self
                                                             cancelButtonTitle:@"Cancel"
