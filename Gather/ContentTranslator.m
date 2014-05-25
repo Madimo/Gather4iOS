@@ -77,26 +77,39 @@
     NSMutableString *result = [self.contentHTML mutableCopy];
     
     NSMutableString *body = [NSMutableString new];
+    NSInteger count = 0;
     for (Reply *reply in replies) {
+        count++;
+        
         NSMutableString *replyTemplate = [self.replyTemplate mutableCopy];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_id }}"
-                                       withString:[NSString stringWithFormat:@"%ld", (long)reply.replyId]
+                                       withString:[NSString stringWithFormat:@"%ld", (long)count - 1]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ user_id }}"
-                                       withString:[NSString stringWithFormat:@"%ld", (long)reply.author.userId ]
+                                       withString:[NSString stringWithFormat:@"%ld", (long)reply.author.userId]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ avatar }}"
-                                       withString:[NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=200", reply.author.emailMD5]
+                                       withString:[NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=100", reply.author.emailMD5]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_time }}"
-                                       withString:@"reply_time"
+                                       withString:@"posted 2 days ago"
+                                          options:NSLiteralSearch
+                                            range:NSMakeRange(0, replyTemplate.length)];
+        
+        [replyTemplate replaceOccurrencesOfString:@"{{ reply_number }}"
+                                       withString:[NSString stringWithFormat:@"# %ld", (long)count]
+                                          options:NSLiteralSearch
+                                            range:NSMakeRange(0, replyTemplate.length)];
+        
+        [replyTemplate replaceOccurrencesOfString:@"{{ reply_author }}"
+                                       withString:reply.author.username
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
@@ -106,8 +119,8 @@
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
-        [replyTemplate replaceOccurrencesOfString:@"{{ reply_author }}"
-                                       withString:reply.author.username
+        [replyTemplate replaceOccurrencesOfString:@"\r\n"
+                                       withString:@"<br>"
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
@@ -115,7 +128,7 @@
     }
     
     
-    [result replaceOccurrencesOfString:@"{{ body }}"
+    [result replaceOccurrencesOfString:@"{{ reply_list }}"
                             withString:body
                                options:NSLiteralSearch
                                  range:NSMakeRange(0, result.length)];

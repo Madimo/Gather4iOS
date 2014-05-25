@@ -6,38 +6,70 @@
  *  Copyright (c) 2014年 Madimo. All rights reserved.
  */
 
+* {
+    max-width: 100%;
+    overflow: hidden;
+    font-family: Helvetica Neue;
+}
+
+body {
+    width: 100%;
+    margin: 0px;
+}
+
 .reply_list {
-    max-width:100%;
+    position: relative;
+    width: 100%;
 }
 
 .reply {
-    max-width:100%;
+    position: relative;
+    width: 100%;
 }
 
-.avatar {
-    max-width:100%;
+.reply_head {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: rgb(242, 242, 246);
 }
 
-.reply_info {
-    max-width:100%;
+.author_avatar {
+    position: relative;
+    margin: 5px auto 5px 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    float: left;
 }
 
-.reply_author {
-    max-width:100%;
+.author {
+    position: absolute;
+    margin: 8px auto 0px 55px;
+    font-size: 20px;
+    float: left;
 }
 
 .reply_time {
-    max-width:100%;
+    position: absolute;
+    margin: 30px auto auto 55px;
+    font-size: 10px;
+    float: left;
+}
+
+.reply_number {
+    position: relative;
+    float: right;
+    font-size: 20px;
+    margin: 15px 10px auto auto;
 }
 
 .reply_body {
-    max-width:100%;
+    position: relative;
+    min-height: 50px;
+    margin: 10px 10px 10px 10px;
 }
 
 .reply_body_img {
-    max-width:100%;
-}
-
-.reply_body_a {
-    max-width:100%;
+    position: relative;
 }

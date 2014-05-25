@@ -1,10 +1,17 @@
 <div class="reply">
-    <img class="avatar" onclick="userClicked({{ user_id }})" src='{{ avatar }}'/>
-    <div class="reply_info">
-        <span class="reply_author" onclick="userClicked({{ user_id }})">{{ reply_author }}</span>
-        <span class="reply_time">{{ reply_time }}</span>
+    <div class="reply_head">
+        <img class="author_avatar" onclick="userClicked({{ user_id }})" src='{{ avatar }}'/>
+        <div class="author">
+            <span onclick="userClicked({{ user_id }})">{{ reply_author }}</span>
+        </div>
+        <div class="reply_time">
+            <span>{{ reply_time }}</span>
+        </div>
+        <div class="reply_number">
+            <span>{{ reply_number }}</span>
+        </div>
     </div>
-    <div class="reply_body" onclick="replyClicked({{ reply_id }})"/>
+    <div class="reply_body" onclick="replyClicked({{ reply_id }})">
         {{ reply_body }}
     </div>
 </div>

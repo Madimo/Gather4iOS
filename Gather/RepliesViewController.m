@@ -22,8 +22,9 @@
     [super viewDidLoad];
     
     CGRect frame = CGRectMake(0, 0, self.contentScrollView.frame.size.width, 1);
-    self.RepliesWebView = [[UIWebView alloc] initWithFrame:frame];
+    self.repliesWebView = [[UIWebView alloc] initWithFrame:frame];
     self.repliesWebView.delegate = self;
+    self.repliesWebView.scrollView.scrollEnabled = NO;
     [self.contentScrollView addSubview:self.repliesWebView];
 
     [self.repliesWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
@@ -55,12 +56,14 @@
         UIScrollView *scrollView = (UIScrollView *)object;
         UIWebView *webView = (UIWebView *)scrollView.superview;
 
-        CGSize size = scrollView.contentSize;
-        CGRect frame = webView.frame;
-        frame.size = size;
+        CGSize size = self.contentScrollView.frame.size;
+        size.height = scrollView.contentSize.height;
+        CGRect frame = CGRectMake(0, 0, size.width, size.height);
         webView.frame = frame;
         
-        size.height += 100;
+        CGFloat height = self.contentScrollView.frame.size.height - self.contentScrollView.contentInset.top;
+        size.height = scrollView.contentSize.height > height ? scrollView.contentSize.height : height;
+        
         self.contentScrollView.contentSize = size;
     }
 }

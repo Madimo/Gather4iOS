@@ -8,8 +8,8 @@
 
 <html>
 	<head>
-		<meta name="viewport" content="width=decice-width,uer-scalable=no">
-        <meta http-equiv="charset" content="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <style type="text/css">
             {{ style }}
         </style>
@@ -23,38 +23,16 @@
             }
         
             function sendCommandToObjc(cmd, param) {
-                var url = "Gather:" + cmd + ":" + param;
+                var url = "gather:" + cmd + ":" + param;
                 document.location = url;
             }
         </script>
 	</head>
 	<body>
-        <div class="topic">
-        
+
+        <div class="reply_list">
+            {{ reply_list }}
         </div>
-        
-		{{ body }}
-        
-        <!--
-         
-         <div class="reply_list">
-            <div class="reply" onclick="replyClicked(0)">
-                <img class="avatar" onclick="userClicked(73)" src='..'/>
-                <div class="reply_info">
-                    <span class="reply_author">Madimo</span>
-                    <span class="reply_time">3 hours ago</span>
-                </div>
-                <div class="reply_body"/>
-                    ...
-                </div>
-            </div>
-         
-            <div class="reply">
-                ...
-            </div>
-         <div>
-         
-         -->
         
 	</body>
 </html>

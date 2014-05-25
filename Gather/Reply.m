@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        self.replyId = [dict[@"reply"] integerValue];
+        self.replyId = [dict[@"id"] integerValue];
         self.authorId = [dict[@"author"] integerValue];
         self.topicId = [dict[@"topic"] integerValue];
         
