@@ -84,10 +84,10 @@
     
     NSMutableString *topicTemplate = [self.topicTemplate mutableCopy];
     
-    [topicTemplate replaceOccurrencesOfString:@"{{ topic_title }}"
-                                   withString:topic.title
-                                      options:NSLiteralSearch
-                                        range:NSMakeRange(0, topicTemplate.length)];
+//    [topicTemplate replaceOccurrencesOfString:@"{{ topic_title }}"
+//                                   withString:topic.title
+//                                      options:NSLiteralSearch
+//                                        range:NSMakeRange(0, topicTemplate.length)];
     
     [topicTemplate replaceOccurrencesOfString:@"{{ topic_author }}"
                                    withString:topic.author.username

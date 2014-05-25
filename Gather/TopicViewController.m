@@ -149,6 +149,10 @@
         if ([segue.destinationViewController isKindOfClass:[RepliesViewController class]]) {
             RepliesViewController *dest = segue.destinationViewController;
             [dest setTopicId:((TopicCell *)sender).topicId];
+            [dest setTitle:((TopicCell *)sender).title];
+            UIBarButtonItem *item = [UIBarButtonItem new];
+            item.title = @"";
+            self.navigationItem.backBarButtonItem = item;
         }
     }
 }
