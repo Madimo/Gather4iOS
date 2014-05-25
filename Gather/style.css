@@ -105,3 +105,8 @@ body {
 .reply_body_img {
     position: relative;
 }
+
+a {
+    text-decoration: none;
+    color: rgb(0, 136, 255);
+}

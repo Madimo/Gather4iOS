@@ -10,9 +10,10 @@
 #import "GatherAPI.h"
 #import "ContentTranslator.h"
 
-@interface RepliesViewController () <UIWebViewDelegate>
+@interface RepliesViewController () <UIWebViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
 @property (strong, nonatomic) UIWebView *contentWebView;
+@property (strong, nonatomic) Topic *topic;
 @end
 
 @implementation RepliesViewController
@@ -42,6 +43,7 @@
 {
     [[GatherAPI sharedAPI] getTopicById:self.topicId
                                 success:^(Topic *topic) {
+                                    self.topic = topic;
                                     NSString *repliesHTML = [[ContentTranslator sharedTranslator] convertToWebUsingTopic:topic];
                                     [self.contentWebView loadHTMLString:repliesHTML baseURL:nil];
                                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -80,15 +82,30 @@
     NSString *requestString = request.URL.absoluteString;
     NSArray *components = [requestString componentsSeparatedByString:@":"];
     if (components.count == 3 && [[components objectAtIndex:0] isEqualToString:@"gather"]) {
+        NSInteger index = [components[2] integerValue];
+        if ([components[1] isEqualToString:@"reply"]) {
+            NSString *title = [NSString stringWithFormat:@"#%ld by %@", index + 1, [self.topic.replies[index] author].username];
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                       destructiveButtonTitle:@"Reply"
+                                                            otherButtonTitles:@"Rank", nil];
+            actionSheet.tag = index;
+            [actionSheet showInView:self.view];
+        }
         NSString *title = [NSString stringWithFormat:@"recv command: %@\nwith paramter: %@", components[1], components[2]];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                        message:@""
-                                                       delegate:nil
-                                              cancelButtonTitle:@"ok"
-                                              otherButtonTitles:nil];
-        [alert show];
+        NSLog(@"%@", title);
     }
-    return YES;
+    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked)
+        return NO;
+    else
+        return YES;
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
 }
 
 /*

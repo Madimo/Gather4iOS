@@ -74,7 +74,55 @@
                                                  range:NSMakeRange(checkResult.range.location + converted.length,
                                                                    result.length - checkResult.range.location - converted.length)];
     }
-
+    
+    NSRegularExpression *atRegex = [NSRegularExpression regularExpressionWithPattern:@"@\\w+"
+                                                                             options:NSRegularExpressionCaseInsensitive
+                                                                               error:nil];
+    checkResult = [atRegex firstMatchInString:result
+                                      options:kNilOptions
+                                        range:NSMakeRange(0, result.length)];
+    
+    while (checkResult.range.location != NSNotFound && checkResult.range.length != 0) {
+        
+        NSString *converted = @"";
+        NSRange range = checkResult.range;
+        range.location += 1;
+        range.length -= 1;
+        NSString *string = [result substringWithRange:range];
+        converted = [NSString stringWithFormat:@"<a class=\"reply_body_a\" href=\"gather:at:%@\">@%@</a>", string, string];
+        [result replaceCharactersInRange:checkResult.range withString:converted];
+        
+        checkResult = [atRegex firstMatchInString:result
+                                          options:kNilOptions
+                                            range:NSMakeRange(checkResult.range.location + converted.length,
+                                                                   result.length - checkResult.range.location - converted.length)];
+    }
+    
+    
+    NSRegularExpression *numberRegex = [NSRegularExpression regularExpressionWithPattern:@"#[1-9]\\d*"
+                                                                                 options:NSRegularExpressionCaseInsensitive
+                                                                                   error:nil];
+    
+    checkResult = [numberRegex firstMatchInString:result
+                                          options:kNilOptions
+                                            range:NSMakeRange(0, result.length)];
+    
+    while (checkResult.range.location != NSNotFound && checkResult.range.length != 0) {
+        
+        NSString *converted = @"";
+        NSRange range = checkResult.range;
+        range.location += 1;
+        range.length -= 1;
+        NSString *string = [result substringWithRange:range];
+        converted = [NSString stringWithFormat:@"<a class=\"reply_body_a\" href=\"gather:reply:%@\">#%@</a>", string, string];
+        [result replaceCharactersInRange:checkResult.range withString:converted];
+        
+        checkResult = [numberRegex firstMatchInString:result
+                                              options:kNilOptions
+                                                range:NSMakeRange(checkResult.range.location + converted.length,
+                                                                   result.length - checkResult.range.location - converted.length)];
+    }
+    
     return result;
 }
 
