@@ -8,6 +8,7 @@
 
 #import "Topic.h"
 #import "Reply.h"
+#import "TimeOpreator.h"
 
 @implementation Topic
 
@@ -30,15 +31,13 @@
         }
         self.replies = repliesArray;
         
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"E, dd LLL yyyy HH:mm:ss O"];
-        
         if (dict[@"created"] != [NSNull null])
-            self.created = [formatter dateFromString:dict[@"created"]];
+            self.created = [TimeOpreator stringToDate:dict[@"created"]];
         if (dict[@"updated"] != [NSNull null])
-            self.updated = [formatter dateFromString:dict[@"updated"]];
+            self.updated = [TimeOpreator stringToDate:dict[@"updated"]];
         if (dict[@"changed"] != [NSNull null])
-            self.changed = [formatter dateFromString:dict[@"changed"]];}
+            self.changed = [TimeOpreator stringToDate:dict[@"changed"]];
+    }
     
     return self;
 }

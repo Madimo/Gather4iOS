@@ -25,6 +25,7 @@
     self.repliesWebView = [[UIWebView alloc] initWithFrame:frame];
     self.repliesWebView.delegate = self;
     self.repliesWebView.scrollView.scrollEnabled = NO;
+    self.repliesWebView.alpha = 0.0;
     [self.contentScrollView addSubview:self.repliesWebView];
 
     [self.repliesWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
@@ -43,6 +44,12 @@
                                 success:^(Topic *topic) {
                                     NSString *repliesHTML = [[ContentTranslator sharedTranslator] convertToWebUsingReplies:topic.replies];
                                     [self.repliesWebView loadHTMLString:repliesHTML baseURL:nil];
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [UIView beginAnimations:nil context:nil];
+                                        [UIView setAnimationDelay:0.5];
+                                        self.repliesWebView.alpha = 1.0;
+                                        [UIView commitAnimations];
+                                    });
                                 }
                                 failure:^(NSException *exception) {
                                     

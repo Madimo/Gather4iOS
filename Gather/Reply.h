@@ -17,6 +17,9 @@
 
 @property (nonatomic, strong) NSString *content;
 
+@property (nonatomic, strong) NSDate *created;
+@property (nonatomic, strong) NSDate *changed;
+
 @property (nonatomic, strong) User *author;
 
 - (instancetype)initWithReplyDict:(NSDictionary *)dict;

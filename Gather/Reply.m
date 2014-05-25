@@ -7,6 +7,7 @@
 //
 
 #import "Reply.h"
+#import "TimeOpreator.h"
 
 @implementation Reply
 
@@ -19,6 +20,11 @@
         self.topicId = [dict[@"topic"] integerValue];
         
         self.content = dict[@"content"];
+        
+        if (dict[@"created"] != [NSNull null])
+            self.created = [TimeOpreator stringToDate:dict[@"created"]];
+        if (dict[@"changed"] != [NSNull null])
+            self.changed = [TimeOpreator stringToDate:dict[@"changed"]];
     }
     return self;
 }

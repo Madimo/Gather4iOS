@@ -8,6 +8,7 @@
 
 #import "ContentTranslator.h"
 #import "Reply.h"
+#import "TimeOpreator.h"
 
 @interface ContentTranslator ()
 @property (strong, nonatomic) NSString *contentHTML;
@@ -99,12 +100,12 @@
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_time }}"
-                                       withString:@"posted 2 days ago"
+                                       withString:[TimeOpreator convertStringFromDate:reply.created]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_number }}"
-                                       withString:[NSString stringWithFormat:@"# %ld", (long)count]
+                                       withString:[NSString stringWithFormat:@"#%ld", (long)count]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         

@@ -8,6 +8,7 @@
 
 #import "TopicCell.h"
 #import <UIImageView+WebCache.h>
+#import "TimeOpreator.h"
 
 @interface TopicCell ()
 @property (weak, nonatomic) IBOutlet UILabel *replyCountLabel;
@@ -71,25 +72,7 @@
 - (void)setCreated:(NSDate *)created
 {
     _created = created;
-    self.createdLabel.text = [self convertStringFromDate:created];
-}
-
-- (NSString *)convertStringFromDate:(NSDate *)date
-{
-    NSTimeInterval interval = abs([date timeIntervalSinceNow]);
-    if (interval < 60)
-        return @"just now";
-    if (interval < 3600)
-        return  [NSString stringWithFormat:@"%d minutes ago", (int)(interval / 60 + 0.5)];
-    if (interval < 3600 * 24)
-        return  [NSString stringWithFormat:@"%d hours ago", (int)(interval / 3600 + 0.5)];
-    if (interval < 3600 * 24 * 7)
-        return  [NSString stringWithFormat:@"%d days ago", (int)(interval / 3600 / 24 + 0.5)];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"d/M/yy HH:mm:ss"];
-    [formatter setTimeZone:[NSTimeZone localTimeZone]];
-    return [formatter stringFromDate:date];
+    self.createdLabel.text = [TimeOpreator convertStringFromDate:created];
 }
 
 @end
