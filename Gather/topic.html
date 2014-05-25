@@ -1,0 +1,23 @@
+<div class="topic">
+    <div class="topic_title_div">
+        <div class="topic_title">
+            <span>{{ topic_title }}</span>
+        </div>
+    </div>
+    <div class="reply_head">
+        <img class="author_avatar" onclick="userClicked({{ user_id }})" src='{{ avatar }}'/>
+        <div class="trangle"></div>
+        <div class="author">
+            <span onclick="userClicked({{ user_id }})">{{ topic_author }}</span>
+        </div>
+        <div class="reply_time">
+            <span>{{ topic_time }}</span>
+        </div>
+        <div class="reply_number">
+            <span>#0</span>
+        </div>
+    </div>
+    <div class="reply_body">
+        {{ topic_body }}
+    </div>
+</div>

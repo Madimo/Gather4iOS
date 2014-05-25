@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class Topic;
+
 @interface ContentTranslator : NSObject
 
 + (instancetype)sharedTranslator;
 
 - (NSString *)convertToHTMLUsingString:(NSString *)string;
-- (NSString *)convertToWebUsingReplies:(NSArray *)replies;
+- (NSString *)convertToWebUsingTopic:(Topic *)topic;
 
 @end

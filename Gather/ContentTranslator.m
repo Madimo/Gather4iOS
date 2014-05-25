@@ -8,11 +8,13 @@
 
 #import "ContentTranslator.h"
 #import "Reply.h"
+#import "Topic.h"
 #import "TimeOpreator.h"
 
 @interface ContentTranslator ()
 @property (strong, nonatomic) NSString *contentHTML;
 @property (strong, nonatomic) NSString *replyTemplate;
+@property (strong, nonatomic) NSString *topicTemplate;
 @end
 
 @implementation ContentTranslator
@@ -43,6 +45,9 @@
         
         path = [[NSBundle mainBundle] pathForResource:@"reply" ofType:@"html"];
         self.replyTemplate = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        
+        path = [[NSBundle mainBundle] pathForResource:@"topic" ofType:@"html"];
+        self.topicTemplate = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     }
     return self;
 }
@@ -73,13 +78,50 @@
     return result;
 }
 
-- (NSString *)convertToWebUsingReplies:(NSArray *)replies
+- (NSString *)convertToWebUsingTopic:(Topic *)topic
 {
     NSMutableString *result = [self.contentHTML mutableCopy];
     
-    NSMutableString *body = [NSMutableString new];
+    NSMutableString *topicTemplate = [self.topicTemplate mutableCopy];
+    
+    [topicTemplate replaceOccurrencesOfString:@"{{ topic_title }}"
+                                   withString:topic.title
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, topicTemplate.length)];
+    
+    [topicTemplate replaceOccurrencesOfString:@"{{ topic_author }}"
+                                   withString:topic.author.username
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, topicTemplate.length)];
+    
+    [topicTemplate replaceOccurrencesOfString:@"{{ avatar }}"
+                                   withString:[NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=100", topic.author.emailMD5]
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, topicTemplate.length)];
+    
+    [topicTemplate replaceOccurrencesOfString:@"{{ user_id }}"
+                                   withString:[NSString stringWithFormat:@"%ld", (long)topic.author.userId]
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, topicTemplate.length)];
+    
+    [topicTemplate replaceOccurrencesOfString:@"{{ topic_time }}"
+                                   withString:[TimeOpreator convertStringFromDate:topic.created]
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, topicTemplate.length)];
+    
+    [topicTemplate replaceOccurrencesOfString:@"{{ topic_body }}"
+                                   withString:[self convertToHTMLUsingString:topic.content]
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, topicTemplate.length)];
+    
+    [result replaceOccurrencesOfString:@"{{ topic }}"
+                            withString:topicTemplate
+                               options:NSLiteralSearch
+                                 range:NSMakeRange(0, result.length)];
+    
+    NSMutableString *reply_list = [NSMutableString new];
     NSInteger count = 0;
-    for (Reply *reply in replies) {
+    for (Reply *reply in topic.replies) {
         count++;
         
         NSMutableString *replyTemplate = [self.replyTemplate mutableCopy];
@@ -114,9 +156,8 @@
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
-        NSString *converted = [self convertToHTMLUsingString:reply.content];
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_body }}"
-                                       withString:converted
+                                       withString:[self convertToHTMLUsingString:reply.content]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
@@ -125,12 +166,12 @@
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
-        [body appendString:replyTemplate];
+        [reply_list appendString:replyTemplate];
     }
     
     
     [result replaceOccurrencesOfString:@"{{ reply_list }}"
-                            withString:body
+                            withString:reply_list
                                options:NSLiteralSearch
                                  range:NSMakeRange(0, result.length)];
     

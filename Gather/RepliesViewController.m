@@ -12,7 +12,7 @@
 
 @interface RepliesViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
-@property (strong, nonatomic) UIWebView *repliesWebView;
+@property (strong, nonatomic) UIWebView *contentWebView;
 @end
 
 @implementation RepliesViewController
@@ -22,32 +22,32 @@
     [super viewDidLoad];
     
     CGRect frame = CGRectMake(0, 0, self.contentScrollView.frame.size.width, 1);
-    self.repliesWebView = [[UIWebView alloc] initWithFrame:frame];
-    self.repliesWebView.delegate = self;
-    self.repliesWebView.scrollView.scrollEnabled = NO;
-    self.repliesWebView.alpha = 0.0;
-    [self.contentScrollView addSubview:self.repliesWebView];
+    self.contentWebView = [[UIWebView alloc] initWithFrame:frame];
+    self.contentWebView.delegate = self;
+    self.contentWebView.scrollView.scrollEnabled = NO;
+    self.contentWebView.alpha = 0.0;
+    [self.contentScrollView addSubview:self.contentWebView];
 
-    [self.repliesWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    [self.contentWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     
     [self refresh];
 }
 
 - (void)dealloc
 {
-    [self.repliesWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
+    [self.contentWebView.scrollView removeObserver:self forKeyPath:@"contentSize"];
 }
 
 - (void)refresh
 {
     [[GatherAPI sharedAPI] getTopicById:self.topicId
                                 success:^(Topic *topic) {
-                                    NSString *repliesHTML = [[ContentTranslator sharedTranslator] convertToWebUsingReplies:topic.replies];
-                                    [self.repliesWebView loadHTMLString:repliesHTML baseURL:nil];
+                                    NSString *repliesHTML = [[ContentTranslator sharedTranslator] convertToWebUsingTopic:topic];
+                                    [self.contentWebView loadHTMLString:repliesHTML baseURL:nil];
                                     dispatch_async(dispatch_get_main_queue(), ^{
                                         [UIView beginAnimations:nil context:nil];
                                         [UIView setAnimationDelay:0.5];
-                                        self.repliesWebView.alpha = 1.0;
+                                        self.contentWebView.alpha = 1.0;
                                         [UIView commitAnimations];
                                     });
                                 }

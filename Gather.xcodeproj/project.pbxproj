@@ -11,6 +11,7 @@
 		D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80DAB96192F9D2700B2B57C /* RepliesViewController.m */; };
 		D80DAB9B192FB17A00B2B57C /* reply.html in Resources */ = {isa = PBXBuildFile; fileRef = D80DAB9A192FB17A00B2B57C /* reply.html */; };
 		D80DAC691931FAF900B2B57C /* TimeOpreator.m in Sources */ = {isa = PBXBuildFile; fileRef = D80DAC681931FAF900B2B57C /* TimeOpreator.m */; };
+		D80DAC6B1932054F00B2B57C /* topic.html in Resources */ = {isa = PBXBuildFile; fileRef = D80DAC6A1932054F00B2B57C /* topic.html */; };
 		D8A47C0D1923B4FB00448690 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0C1923B4FB00448690 /* Foundation.framework */; };
 		D8A47C0F1923B4FB00448690 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */; };
 		D8A47C111923B4FB00448690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C101923B4FB00448690 /* UIKit.framework */; };
@@ -55,6 +56,7 @@
 		D80DAB9A192FB17A00B2B57C /* reply.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = reply.html; sourceTree = "<group>"; };
 		D80DAC671931FAF900B2B57C /* TimeOpreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeOpreator.h; sourceTree = "<group>"; };
 		D80DAC681931FAF900B2B57C /* TimeOpreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeOpreator.m; sourceTree = "<group>"; };
+		D80DAC6A1932054F00B2B57C /* topic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic.html; sourceTree = "<group>"; };
 		D8A47C091923B4FB00448690 /* Gather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A47C0C1923B4FB00448690 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,6 +134,7 @@
 				D8DB7C321925174600096CBA /* style.css */,
 				D8DB7C34192518A800096CBA /* content.html */,
 				D80DAB9A192FB17A00B2B57C /* reply.html */,
+				D80DAC6A1932054F00B2B57C /* topic.html */,
 			);
 			name = Web;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A47C251923B4FB00448690 /* Images.xcassets in Resources */,
+				D80DAC6B1932054F00B2B57C /* topic.html in Resources */,
 				D80DAB9B192FB17A00B2B57C /* reply.html in Resources */,
 				D8DB7C331925174600096CBA /* style.css in Resources */,
 				D8A47C171923B4FB00448690 /* InfoPlist.strings in Resources */,
