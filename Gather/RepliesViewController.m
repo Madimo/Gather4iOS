@@ -27,6 +27,7 @@
     self.contentWebView = [[UIWebView alloc] initWithFrame:frame];
     self.contentWebView.delegate = self;
     self.contentWebView.scrollView.scrollEnabled = NO;
+    self.contentWebView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.contentWebView.alpha = 0.0;
     [self.contentScrollView addSubview:self.contentWebView];
     
@@ -98,6 +99,9 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *requestString = request.URL.absoluteString;
+    
+    NSLog(@"%@", requestString);
+    
     NSArray *components = [requestString componentsSeparatedByString:@":"];
     if (components.count == 3 && [[components objectAtIndex:0] isEqualToString:@"gather"]) {
         NSInteger index = [components[2] integerValue];
@@ -110,15 +114,27 @@
                                                             otherButtonTitles:@"Rank", nil];
             actionSheet.tag = index;
             [actionSheet showInView:self.view];
+        } else if ([components[1] isEqualToString:@"jumpToFloor"]) {
+            NSInteger top = [components[2] integerValue];
+            CGRect rect = CGRectMake(0, top, 100, self.contentScrollView.frame.size.height - self.contentScrollView.contentInset.top);
+            [self.contentScrollView scrollRectToVisible:rect animated:YES];
         }
         NSString *title = [NSString stringWithFormat:@"recv command: %@\nwith paramter: %@", components[1], components[2]];
         NSLog(@"%@", title);
+        return NO;
     }
     
-    if (navigationType == UIWebViewNavigationTypeLinkClicked)
-        return NO;
-    else
-        return YES;
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        // #x jump to floor
+        if (requestString.length > 15 && [[requestString substringWithRange:NSMakeRange(0, 15)] isEqualToString:@"applewebdata://"]) {
+            NSLog(@"allow");
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

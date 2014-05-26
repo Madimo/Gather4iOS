@@ -67,7 +67,11 @@
 
 - (NSString *)convertToWebUsingTopic:(Topic *)topic
 {
-    return [self convertTopic:topic];
+    NSString *result = [self convertTopic:topic];
+    
+    NSLog(@"%@", result);
+    
+    return result;
 }
 
 #pragma mark - Matching
@@ -86,7 +90,7 @@
                 NSString *format = @"<img class=\"reply_body_img\" src=\"%@\">";
                 converted = [NSString stringWithFormat:format, urlString];
             } else {
-                NSString *format = @"<a class=\"reply_body_a\" href=\"%@\" onclick=\"stopBubble(this.id)\">%@</a>";
+                NSString *format = @"<a class=\"reply_body_a\" href=\"%@\" onclick=\"stopBubble()\">%@</a>";
                 converted = [NSString stringWithFormat:format, urlString, urlString];
             }
             [result replaceCharactersInRange:checkResult.range withString:converted];
@@ -120,7 +124,7 @@
         range.location += 1;
         range.length -= 1;
         NSString *string = [result substringWithRange:range];
-        NSString *format = @"<a class=\"reply_body_a\" href=\"gather:at:%@\" onclick=\"stopBubble(this.id)\">@%@</a>";
+        NSString *format = @"<a class=\"reply_body_a\" href=\"gather:at:%@\" onclick=\"stopBubble()\">@%@</a>";
         converted = [NSString stringWithFormat:format, string, string];
         [result replaceCharactersInRange:checkResult.range withString:converted];
         
@@ -152,8 +156,8 @@
         range.location += 1;
         range.length -= 1;
         NSString *string = [result substringWithRange:range];
-        NSString *format = @"<a class=\"reply_body_a\" href=\"gather:reply:%@\" onclick=\"stopBubble(this.id)\">#%@</a>";
-        converted = [NSString stringWithFormat:format, string, string];
+        NSString *format = @"<a class=\"reply_body_a\" onclick=\"jumpToFloor('F%@')\" href=\"#F%@\">#%@</a>";
+        converted = [NSString stringWithFormat:format, string, string, string];
         [result replaceCharactersInRange:checkResult.range withString:converted];
         
         checkResult = [numberRegex firstMatchInString:result
@@ -254,7 +258,7 @@
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_number }}"
-                                       withString:[NSString stringWithFormat:@"#%ld", (long)count]
+                                       withString:[NSString stringWithFormat:@"%ld", (long)count]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         

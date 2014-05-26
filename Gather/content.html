@@ -21,9 +21,25 @@
             function userClicked(userID) {
                 sendCommandToObjc("user", userID);
             }
-            function stopBubble(e) {
+            function stopBubble() {
                 window.event.cancelBubble = true;
             }
+        
+            function jumpToFloor(element_id) {
+                var element = document.getElementById(element_id);
+                
+                var top = element.offsetTop;
+                var current = element.offsetParent;
+                
+                while (current != null) {
+                    top += current.offsetTop;
+                    current = current.offsetParent;
+                }
+                sendCommandToObjc("jumpToFloor", top);
+                
+                stopBubble();
+            }
+        
             function sendCommandToObjc(cmd, param) {
                 var url = "gather:" + cmd + ":" + param;
                 document.location = url;

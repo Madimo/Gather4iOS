@@ -1,4 +1,4 @@
-<div class="reply">
+<div class="reply" id="F{{ reply_number }}">
     <div class="reply_head">
         <img class="author_avatar" onclick="userClicked({{ user_id }})" src='{{ avatar }}'/>
         <div class="trangle"></div>
@@ -9,7 +9,7 @@
             <span>{{ reply_time }}</span>
         </div>
         <div class="reply_number">
-            <span>{{ reply_number }}</span>
+            <span>#{{ reply_number }}</span>
         </div>
     </div>
     <div class="reply_body" onclick="replyClicked({{ reply_id }})">
