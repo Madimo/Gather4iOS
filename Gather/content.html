@@ -21,7 +21,9 @@
             function userClicked(userID) {
                 sendCommandToObjc("user", userID);
             }
-        
+            function stopBubble(e) {
+                window.event.cancelBubble = true;
+            }
             function sendCommandToObjc(cmd, param) {
                 var url = "gather:" + cmd + ":" + param;
                 document.location = url;

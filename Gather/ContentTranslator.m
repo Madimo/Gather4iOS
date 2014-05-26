@@ -19,42 +19,62 @@
 
 @implementation ContentTranslator
 
+#pragma mark - Initilize
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        NSString *path;
-        path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"html"];
-        self.contentHTML = [[NSString alloc] initWithContentsOfFile:path
-                                                           encoding:NSUTF8StringEncoding
-                                                              error:nil];
-        
-        path = [[NSBundle mainBundle] pathForResource:@"style" ofType:@"css"];
-        NSString *style = [[NSString alloc] initWithContentsOfFile:path
-                                                          encoding:NSUTF8StringEncoding
-                                                             error:nil];
-        self.contentHTML = [self.contentHTML stringByReplacingOccurrencesOfString:@"{{ style }}"
-                                                                       withString:style];
-        
-//        path = [[NSBundle mainBundle] pathForResource:@"script" ofType:@"js"];
-//        NSString *script = [[NSString alloc] initWithContentsOfFile:path
-//                                                           encoding:NSUTF8StringEncoding
-//                                                              error:nil];
-//        self.contentHTML = [self.contentHTML stringByReplacingOccurrencesOfString:@"{{ script }}"
-//                                                                       withString:script];
-        
-        path = [[NSBundle mainBundle] pathForResource:@"reply" ofType:@"html"];
-        self.replyTemplate = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        
-        path = [[NSBundle mainBundle] pathForResource:@"topic" ofType:@"html"];
-        self.topicTemplate = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        [self commonInit];
     }
     return self;
 }
 
+- (void)commonInit
+{
+    NSString *path;
+    path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"html"];
+    self.contentHTML = [[NSString alloc] initWithContentsOfFile:path
+                                                       encoding:NSUTF8StringEncoding
+                                                          error:nil];
+    
+    path = [[NSBundle mainBundle] pathForResource:@"style" ofType:@"css"];
+    NSString *style = [[NSString alloc] initWithContentsOfFile:path
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:nil];
+    self.contentHTML = [self.contentHTML stringByReplacingOccurrencesOfString:@"{{ style }}"
+                                                                   withString:style];
+    
+    path = [[NSBundle mainBundle] pathForResource:@"reply" ofType:@"html"];
+    self.replyTemplate = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    path = [[NSBundle mainBundle] pathForResource:@"topic" ofType:@"html"];
+    self.topicTemplate = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+}
+
+#pragma mark - Public method
+
 - (NSString *)convertToHTMLUsingString:(NSString *)string
 {
-    NSMutableString *result = [string mutableCopy];
+    NSString *result = string;
+    
+    result = [self matchingUrlUsingSourceString:result];
+    result = [self matchingAtUseSourceString:result];
+    result = [self matchingNumberUseSourceString:result];
+    
+    return result;
+}
+
+- (NSString *)convertToWebUsingTopic:(Topic *)topic
+{
+    return [self convertTopic:topic];
+}
+
+#pragma mark - Matching
+
+- (NSString *)matchingUrlUsingSourceString:(NSString *)source
+{
+    NSMutableString *result = [source mutableCopy];
     NSDataDetector *linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
     NSTextCheckingResult *checkResult = [linkDetector firstMatchInString:result options:kNilOptions range:NSMakeRange(0, result.length)];
     
@@ -63,9 +83,11 @@
         if (checkResult.resultType == NSTextCheckingTypeLink) {
             NSString *urlString = [checkResult.URL absoluteString];
             if ([self isImageFileUrl:urlString]) {
-                converted = [NSString stringWithFormat:@"<img class=\"reply_body_img\" src=\"%@\">", urlString];
+                NSString *format = @"<img class=\"reply_body_img\" src=\"%@\">";
+                converted = [NSString stringWithFormat:format, urlString];
             } else {
-                converted = [NSString stringWithFormat:@"<a class=\"reply_body_a\" href=\"%@\">%@</a>", urlString, urlString];
+                NSString *format = @"<a class=\"reply_body_a\" href=\"%@\" onclick=\"stopBubble(this.id)\">%@</a>";
+                converted = [NSString stringWithFormat:format, urlString, urlString];
             }
             [result replaceCharactersInRange:checkResult.range withString:converted];
         }
@@ -75,12 +97,21 @@
                                                                    result.length - checkResult.range.location - converted.length)];
     }
     
-    NSRegularExpression *atRegex = [NSRegularExpression regularExpressionWithPattern:@"@\\w+"
+    
+    
+    return result;
+}
+
+- (NSString *)matchingAtUseSourceString:(NSString *)source
+{
+    NSMutableString *result = [source mutableCopy];
+    
+    NSRegularExpression *atRegex = [NSRegularExpression regularExpressionWithPattern:@"@[a-zA-Z0-9]+"
                                                                              options:NSRegularExpressionCaseInsensitive
                                                                                error:nil];
-    checkResult = [atRegex firstMatchInString:result
-                                      options:kNilOptions
-                                        range:NSMakeRange(0, result.length)];
+    NSTextCheckingResult *checkResult = [atRegex firstMatchInString:result
+                                                            options:kNilOptions
+                                                              range:NSMakeRange(0, result.length)];
     
     while (checkResult.range.location != NSNotFound && checkResult.range.length != 0) {
         
@@ -89,23 +120,30 @@
         range.location += 1;
         range.length -= 1;
         NSString *string = [result substringWithRange:range];
-        converted = [NSString stringWithFormat:@"<a class=\"reply_body_a\" href=\"gather:at:%@\">@%@</a>", string, string];
+        NSString *format = @"<a class=\"reply_body_a\" href=\"gather:at:%@\" onclick=\"stopBubble(this.id)\">@%@</a>";
+        converted = [NSString stringWithFormat:format, string, string];
         [result replaceCharactersInRange:checkResult.range withString:converted];
         
         checkResult = [atRegex firstMatchInString:result
                                           options:kNilOptions
                                             range:NSMakeRange(checkResult.range.location + converted.length,
-                                                                   result.length - checkResult.range.location - converted.length)];
+                                                              result.length - checkResult.range.location - converted.length)];
     }
     
+    return result;
+}
+
+- (NSString *)matchingNumberUseSourceString:(NSString *)source
+{
+    NSMutableString *result = [source mutableCopy];
     
     NSRegularExpression *numberRegex = [NSRegularExpression regularExpressionWithPattern:@"#[1-9]\\d*"
                                                                                  options:NSRegularExpressionCaseInsensitive
                                                                                    error:nil];
     
-    checkResult = [numberRegex firstMatchInString:result
-                                          options:kNilOptions
-                                            range:NSMakeRange(0, result.length)];
+    NSTextCheckingResult *checkResult = [numberRegex firstMatchInString:result
+                                                                options:kNilOptions
+                                                                  range:NSMakeRange(0, result.length)];
     
     while (checkResult.range.location != NSNotFound && checkResult.range.length != 0) {
         
@@ -114,28 +152,39 @@
         range.location += 1;
         range.length -= 1;
         NSString *string = [result substringWithRange:range];
-        converted = [NSString stringWithFormat:@"<a class=\"reply_body_a\" href=\"gather:reply:%@\">#%@</a>", string, string];
+        NSString *format = @"<a class=\"reply_body_a\" href=\"gather:reply:%@\" onclick=\"stopBubble(this.id)\">#%@</a>";
+        converted = [NSString stringWithFormat:format, string, string];
         [result replaceCharactersInRange:checkResult.range withString:converted];
         
         checkResult = [numberRegex firstMatchInString:result
                                               options:kNilOptions
                                                 range:NSMakeRange(checkResult.range.location + converted.length,
-                                                                   result.length - checkResult.range.location - converted.length)];
+                                                                  result.length - checkResult.range.location - converted.length)];
     }
     
     return result;
 }
 
-- (NSString *)convertToWebUsingTopic:(Topic *)topic
+- (BOOL)isImageFileUrl:(NSString *)url
+{
+    NSArray *fileTypes = @[[url substringWithRange:NSMakeRange(url.length - 4, 4)].lowercaseString,
+                           [url substringWithRange:NSMakeRange(url.length - 5, 5)].lowercaseString];
+    if ([fileTypes[0] isEqualToString:@".jpg"] ||
+        [fileTypes[0] isEqualToString:@".png"] ||
+        [fileTypes[1] isEqualToString:@".jpeg"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+#pragma mark - Convert
+
+- (NSString *)convertTopic:(Topic *)topic
 {
     NSMutableString *result = [self.contentHTML mutableCopy];
     
     NSMutableString *topicTemplate = [self.topicTemplate mutableCopy];
-    
-//    [topicTemplate replaceOccurrencesOfString:@"{{ topic_title }}"
-//                                   withString:topic.title
-//                                      options:NSLiteralSearch
-//                                        range:NSMakeRange(0, topicTemplate.length)];
     
     [topicTemplate replaceOccurrencesOfString:@"{{ topic_author }}"
                                    withString:topic.author.username
@@ -167,9 +216,19 @@
                                options:NSLiteralSearch
                                  range:NSMakeRange(0, result.length)];
     
+    [result replaceOccurrencesOfString:@"{{ reply_list }}"
+                            withString:[self convertReplies:topic.replies]
+                               options:NSLiteralSearch
+                                 range:NSMakeRange(0, result.length)];
+    
+    return result;
+}
+
+- (NSString *)convertReplies:(NSArray *)replies
+{
     NSMutableString *reply_list = [NSMutableString new];
     NSInteger count = 0;
-    for (Reply *reply in topic.replies) {
+    for (Reply *reply in replies) {
         count++;
         
         NSMutableString *replyTemplate = [self.replyTemplate mutableCopy];
@@ -217,27 +276,7 @@
         [reply_list appendString:replyTemplate];
     }
     
-    
-    [result replaceOccurrencesOfString:@"{{ reply_list }}"
-                            withString:reply_list
-                               options:NSLiteralSearch
-                                 range:NSMakeRange(0, result.length)];
-    
-    // NSLog(@"%@", result);
-    return result;
-}
-
-- (BOOL)isImageFileUrl:(NSString *)url
-{
-    NSArray *fileTypes = @[[url substringWithRange:NSMakeRange(url.length - 4, 4)].lowercaseString,
-                           [url substringWithRange:NSMakeRange(url.length - 5, 5)].lowercaseString];
-    if ([fileTypes[0] isEqualToString:@".jpg"] ||
-        [fileTypes[0] isEqualToString:@".png"] ||
-        [fileTypes[1] isEqualToString:@".jpeg"]) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return reply_list;
 }
 
 #pragma mark - Singleton
