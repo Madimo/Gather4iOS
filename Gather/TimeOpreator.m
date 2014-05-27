@@ -21,11 +21,11 @@
 {
     NSTimeInterval interval = abs([date timeIntervalSinceNow]);
     int time;
-    if (interval < 120)
-        return @"just now";
+    if (interval < 120) {
+        return @"Just now";
+    }
     if (interval < 3600) {
-        time = (int)(interval / 60 + 0.5);
-        return  [NSString stringWithFormat:@"%d minute%@ ago", time, time > 1 ? @"s" : @""];
+        return  [NSString stringWithFormat:@"%d minutes ago", (int)(interval / 60 + 0.5)];
     }
     if (interval < 3600 * 24) {
         time = (int)(interval / 3600 + 0.5);
@@ -37,7 +37,7 @@
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"M/d/yy HH:mm:ss"];
+    [formatter setDateFormat:@"M-d HH:mm"];
     [formatter setTimeZone:[NSTimeZone localTimeZone]];
     return [formatter stringFromDate:date];
 }

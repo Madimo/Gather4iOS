@@ -119,21 +119,14 @@
     if (indexPath.row > self.currentMaxDisplayedCell) {
         cell.contentView.alpha = 0.3;
         
-        CGAffineTransform transformScale = CGAffineTransformMakeScale(1.15, 1.15);
-        CGAffineTransform transformTranslate;
-        if (indexPath.row % 2)
-            transformTranslate = CGAffineTransformMakeTranslation(-10, 5);
-        else
-            transformTranslate = CGAffineTransformMakeTranslation(10, 5);
-        
-        cell.contentView.transform = CGAffineTransformConcat(transformScale, transformTranslate);
+        cell.contentView.transform = CGAffineTransformMakeTranslation(-40, 0);
         
         [self.tableView bringSubviewToFront:cell.contentView];
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.65];
         cell.contentView.alpha = 1;
-        cell.contentView.transform = CGAffineTransformIdentity;
+        cell.contentView.transform = CGAffineTransformMakeTranslation(0, 0);
         [UIView commitAnimations];
         
         self.currentMaxDisplayedCell = indexPath.row;
