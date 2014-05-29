@@ -16,13 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-Yj-rXt">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-Yj-rXt">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fcW-Yj-rXt" secondAttribute="trailing" id="Ey9-2z-GDg"/>
+                            <constraint firstItem="31G-ZF-j9t" firstAttribute="top" secondItem="fcW-Yj-rXt" secondAttribute="bottom" id="QUd-Bj-kiI"/>
+                            <constraint firstItem="fcW-Yj-rXt" firstAttribute="top" secondItem="qqt-hS-kIX" secondAttribute="top" id="gbc-Ks-1DG"/>
+                            <constraint firstItem="fcW-Yj-rXt" firstAttribute="leading" secondItem="qqt-hS-kIX" secondAttribute="leading" id="xQH-wE-Qc3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reply" id="87J-lF-5sG">
                         <barButtonItem key="rightBarButtonItem" systemItem="reply" id="4Ji-w8-SQ5"/>
