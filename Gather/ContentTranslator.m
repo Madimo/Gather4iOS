@@ -208,7 +208,7 @@
     NSMutableString *topicTemplate = [self.topicTemplate mutableCopy];
     
     [topicTemplate replaceOccurrencesOfString:@"{{ topic_author }}"
-                                   withString:topic.author.username
+                                   withString:[self filterXSS:topic.author.username]
                                       options:NSLiteralSearch
                                         range:NSMakeRange(0, topicTemplate.length)];
     
@@ -227,7 +227,11 @@
                                       options:NSLiteralSearch
                                         range:NSMakeRange(0, topicTemplate.length)];
     
-    NSMutableString *content = [self filterXSS:topic.content];
+    NSMutableString *content;
+    if ([topic.content isEqualToString:@""])
+        content = [self filterXSS:topic.title];
+    else
+        content = [self filterXSS:topic.content];
     
     [content replaceOccurrencesOfString:@"\r\n"
                              withString:@"<br>"
@@ -287,7 +291,7 @@
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_author }}"
-                                       withString:reply.author.username
+                                       withString:[self filterXSS:reply.author.username]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
