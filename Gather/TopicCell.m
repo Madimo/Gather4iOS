@@ -28,7 +28,7 @@
     self.view.layer.cornerRadius = 6.0;
     self.view.layer.masksToBounds = YES;
     
-    self.replyCountLabel.layer.cornerRadius = 7.5;
+    self.replyCountLabel.layer.cornerRadius = 6.0;
     self.replyCountLabel.layer.masksToBounds = YES;
     
     self.avatarView.layer.cornerRadius = self.avatarView.layer.frame.size.height / 2.0;

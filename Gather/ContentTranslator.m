@@ -215,6 +215,12 @@
                                       options:NSLiteralSearch
                                         range:NSMakeRange(0, topicTemplate.length)];
     
+    
+    [topicTemplate replaceOccurrencesOfString:@"\r\n"
+                                   withString:@"<br>"
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, topicTemplate.length)];
+    
     [result replaceOccurrencesOfString:@"{{ topic }}"
                             withString:topicTemplate
                                options:NSLiteralSearch
