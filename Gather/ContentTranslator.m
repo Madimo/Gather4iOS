@@ -58,10 +58,10 @@
 {
     NSString *result = string;
     
-    result = [self matchingUrlUsingSourceString:result];
     result = [self matchingAtUseSourceString:result];
     result = [self matchingNumberUseSourceString:result];
-    
+    result = [self matchingUrlUsingSourceString:result];
+
     return result;
 }
 
@@ -87,7 +87,7 @@
         if (checkResult.resultType == NSTextCheckingTypeLink) {
             NSString *urlString = [checkResult.URL absoluteString];
             if ([self isImageFileUrl:urlString]) {
-                NSString *format = @"<img class=\"reply_body_img\" src=\"%@\">";
+                NSString *format = @"<img class=\"reply_body_img\" src=\"%@\"/>";
                 converted = [NSString stringWithFormat:format, urlString];
             } else {
                 NSString *format = @"<a class=\"reply_body_a\" href=\"%@\" onclick=\"stopBubble()\">%@</a>";
@@ -182,6 +182,23 @@
     }
 }
 
+- (NSMutableString *)filterXSS:(NSString *)string
+{
+    NSMutableString *result = [string mutableCopy];
+    
+    [result replaceOccurrencesOfString:@"<"
+                            withString:@"&lt;"
+                               options:NSLiteralSearch
+                                 range:NSMakeRange(0, result.length)];
+    
+    [result replaceOccurrencesOfString:@">"
+                            withString:@"&gt;"
+                               options:NSLiteralSearch
+                                 range:NSMakeRange(0, result.length)];
+    
+    return result;
+}
+
 #pragma mark - Convert
 
 - (NSString *)convertTopic:(Topic *)topic
@@ -210,14 +227,15 @@
                                       options:NSLiteralSearch
                                         range:NSMakeRange(0, topicTemplate.length)];
     
+    NSMutableString *content = [self filterXSS:topic.content];
+    
+    [content replaceOccurrencesOfString:@"\r\n"
+                             withString:@"<br>"
+                                options:NSLiteralSearch
+                                  range:NSMakeRange(0, content.length)];
+    
     [topicTemplate replaceOccurrencesOfString:@"{{ topic_body }}"
-                                   withString:[self convertToHTMLUsingString:topic.content]
-                                      options:NSLiteralSearch
-                                        range:NSMakeRange(0, topicTemplate.length)];
-    
-    
-    [topicTemplate replaceOccurrencesOfString:@"\r\n"
-                                   withString:@"<br>"
+                                   withString:[self convertToHTMLUsingString:content]
                                       options:NSLiteralSearch
                                         range:NSMakeRange(0, topicTemplate.length)];
     
@@ -273,13 +291,15 @@
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
-        [replyTemplate replaceOccurrencesOfString:@"{{ reply_body }}"
-                                       withString:[self convertToHTMLUsingString:reply.content]
-                                          options:NSLiteralSearch
-                                            range:NSMakeRange(0, replyTemplate.length)];
+        NSMutableString *content = [self filterXSS:reply.content];
         
-        [replyTemplate replaceOccurrencesOfString:@"\r\n"
-                                       withString:@"<br>"
+        [content replaceOccurrencesOfString:@"\r\n"
+                                 withString:@"<br>"
+                                    options:NSLiteralSearch
+                                      range:NSMakeRange(0, content.length)];
+        
+        [replyTemplate replaceOccurrencesOfString:@"{{ reply_body }}"
+                                       withString:[self convertToHTMLUsingString:content]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
