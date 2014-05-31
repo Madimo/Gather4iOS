@@ -37,7 +37,7 @@
     }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"M-d HH:mm"];
+    [formatter setDateFormat:@"M-d H:mm"];
     [formatter setTimeZone:[NSTimeZone localTimeZone]];
     return [formatter stringFromDate:date];
 }
