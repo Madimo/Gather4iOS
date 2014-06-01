@@ -9,6 +9,7 @@
 #import "RepliesViewController.h"
 #import "GatherAPI.h"
 #import "ContentTranslator.h"
+#import "WebBrowserViewController.h"
 
 @interface RepliesViewController () <UIWebViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
@@ -130,6 +131,12 @@
             NSLog(@"allow");
             return YES;
         } else {
+            WebBrowserViewController *webBrowser = [[WebBrowserViewController alloc] init];
+            webBrowser.url = requestString;
+            UIBarButtonItem *item = [UIBarButtonItem new];
+            item.title = @"";
+            self.navigationItem.backBarButtonItem = item;
+            [self.navigationController pushViewController:webBrowser animated:YES];
             return NO;
         }
     }
