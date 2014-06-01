@@ -8,7 +8,7 @@
 
 #import "WebBrowserViewController.h"
 #import "MAWebView.h"
-#import "OpenInChromeController.h"
+#import <OpenInChromeController.h>
 
 @interface WebBrowserViewController () <UIWebViewDelegate, MAWebViewProgressDelegate>
 @property (nonatomic) BOOL toolbarHidden;

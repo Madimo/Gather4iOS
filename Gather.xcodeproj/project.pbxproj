@@ -35,7 +35,6 @@
 		D8B2289A193B012A00755032 /* WebBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B22899193B012A00755032 /* WebBrowserViewController.m */; };
 		D8B228A4193B591E00755032 /* MAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B228A3193B591E00755032 /* MAWebView.m */; };
 		D8B228A8193B691100755032 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B228A7193B691100755032 /* Start.storyboard */; };
-		D8B228AB193B693B00755032 /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B228AA193B693B00755032 /* OpenInChromeController.m */; };
 		D8DB7C331925174600096CBA /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C321925174600096CBA /* style.css */; };
 		D8DB7C35192518A800096CBA /* content.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C34192518A800096CBA /* content.html */; };
 		E4EB49B9B0E341B1B4E4F8FD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 993D7F85A6C942C384DD6F39 /* libPods.a */; };
@@ -98,8 +97,6 @@
 		D8B228A2193B591E00755032 /* MAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWebView.h; sourceTree = "<group>"; };
 		D8B228A3193B591E00755032 /* MAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAWebView.m; sourceTree = "<group>"; };
 		D8B228A7193B691100755032 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
-		D8B228A9193B693B00755032 /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInChromeController.h; sourceTree = "<group>"; };
-		D8B228AA193B693B00755032 /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
 		D8DB7C321925174600096CBA /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		D8DB7C34192518A800096CBA /* content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = content.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,8 +131,6 @@
 			children = (
 				D8A47C441923B61600448690 /* GatherAPI.h */,
 				D8A47C451923B61600448690 /* GatherAPI.m */,
-				D8B228A9193B693B00755032 /* OpenInChromeController.h */,
-				D8B228AA193B693B00755032 /* OpenInChromeController.m */,
 				D80DAB92192F96D600B2B57C /* ContentTranslator.h */,
 				D80DAB93192F96D600B2B57C /* ContentTranslator.m */,
 				D80DAC671931FAF900B2B57C /* TimeOpreator.h */,
@@ -423,7 +418,6 @@
 				D8A47C191923B4FB00448690 /* main.m in Sources */,
 				D8A47C461923B61600448690 /* GatherAPI.m in Sources */,
 				D8A47C531923C73900448690 /* TopicCell.m in Sources */,
-				D8B228AB193B693B00755032 /* OpenInChromeController.m in Sources */,
 				D8B228A4193B591E00755032 /* MAWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
