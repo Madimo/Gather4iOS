@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GatherAPI.h"
 #import <AFNetworkActivityIndicatorManager.h>
 
 @implementation AppDelegate
@@ -15,6 +16,14 @@
 {
     AFNetworkActivityIndicatorManager *manager = [AFNetworkActivityIndicatorManager sharedManager];
     [manager setEnabled:YES];
+    
+    NSString *storyboardName;
+    storyboardName = [[GatherAPI sharedAPI] isLogined] ? @"Main" : @"Start";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = storyboard.instantiateInitialViewController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

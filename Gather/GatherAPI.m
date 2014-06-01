@@ -7,12 +7,16 @@
 //
 
 #import "GatherAPI.h"
+#import <KeychainItemWrapper.h>
 
 #define GATHER_API_LOGIN @"http://gather.whouz.com/api/user/authorize/"
 #define GATHER_API_TOPIC @"http://gather.whouz.com/api/topic/"
 #define GATHER_API_USER  @"http://gather.whouz.com/api/user/"
 
+#define KEYCHAIN_IDENTIFIER @"com.Madimo.Gather.Keychain"
+
 @interface GatherAPI ()
+@property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *token;
 @property (strong, nonatomic) NSMutableDictionary *userList;
 @property (strong, nonatomic) NSMutableDictionary *nodeList;
@@ -30,10 +34,41 @@
     return self;
 }
 
-- (void)setToken:(NSString *)token
+#pragma mark - Keychain
+
+- (NSString *)username
 {
-    _token = token;
-    // todo: save token
+    if (!_username) {
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER accessGroup:nil];
+        _token = [wrapper objectForKey:(__bridge id)(kSecAttrAccount)];
+    }
+    return _username;
+}
+
+- (NSString *)token
+{
+    if (!_token) {
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER accessGroup:nil];
+        _token = [wrapper objectForKey:(__bridge id)(kSecValueData)];
+    }
+    return _token;
+}
+
+- (void)saveUsername:(NSString *)username token:(NSString *)token
+{
+    self.username = username;
+    self.token = token;
+    
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER accessGroup:nil];
+    [wrapper setObject:username forKey:(__bridge id)(kSecAttrAccount)];
+    [wrapper setObject:token forKey:(__bridge id)(kSecValueData)];
+}
+
+#pragma mark - Public method
+
+- (BOOL)isLogined
+{
+    return self.token != nil && ![self.token isEqualToString:@""];
 }
 
 - (NSURLSessionDataTask *)loginWithUsername:(NSString *)username
@@ -61,7 +96,7 @@
                                                    return;
                                                }
                                                
-                                               self.token = result[@"token"];
+                                               [self saveUsername:username token:result[@"token"]];
 
                                            }
                                            @catch (NSException *exception) {
@@ -288,6 +323,29 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)createTopicWithTitle:(NSString *)title
+                                       content:(NSString *)content
+                                        nodeId:(NSInteger)nodeId
+                                       success:(void (^)(Topic *topic))success
+                                       failure:(void (^)(NSException * exception))failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSDictionary *parameters = @{ @"token"   : self.token,
+                                  @"title"   : title,
+                                  @"content" : content,
+                                  @"node"    : @(nodeId) };
+    NSURLSessionDataTask *task = [manager POST:GATHER_API_TOPIC
+                                    parameters:parameters
+                                       success:^(NSURLSessionDataTask *task, id responseObject) {
+                                           
+                                       }
+                                       failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                           
+                                       }
+                                  ];
+    return task;
+}
+
 //- (NSURLSessionDataTask *)getTopicsInPage:(NSInteger)page
 //                                  success:(void (^)(NSArray *topics, NSInteger totalPage, NSInteger totalTopics))success
 //                                  failure:(void (^)(NSException * exception))failure
@@ -320,6 +378,8 @@
 //                                      }];
 //    return task;
 //}
+
+#pragma mark - Private method
 
 NSException *CreateNetworkErrorException(NSURLSessionDataTask *task, NSError *error)
 {

@@ -33,8 +33,9 @@
 		D8A47C561923C92900448690 /* TopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C551923C92900448690 /* TopicViewController.m */; };
 		D8A47C59192444AE00448690 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C58192444AE00448690 /* User.m */; };
 		D8B2289A193B012A00755032 /* WebBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B22899193B012A00755032 /* WebBrowserViewController.m */; };
-		D8B228A1193B1B3400755032 /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B228A0193B1B3400755032 /* OpenInChromeController.m */; };
 		D8B228A4193B591E00755032 /* MAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B228A3193B591E00755032 /* MAWebView.m */; };
+		D8B228A8193B691100755032 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B228A7193B691100755032 /* Start.storyboard */; };
+		D8B228AB193B693B00755032 /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B228AA193B693B00755032 /* OpenInChromeController.m */; };
 		D8DB7C331925174600096CBA /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C321925174600096CBA /* style.css */; };
 		D8DB7C35192518A800096CBA /* content.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C34192518A800096CBA /* content.html */; };
 		E4EB49B9B0E341B1B4E4F8FD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 993D7F85A6C942C384DD6F39 /* libPods.a */; };
@@ -94,10 +95,11 @@
 		D8A47C58192444AE00448690 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D8B22898193B012A00755032 /* WebBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowserViewController.h; sourceTree = "<group>"; };
 		D8B22899193B012A00755032 /* WebBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowserViewController.m; sourceTree = "<group>"; };
-		D8B2289F193B1B3400755032 /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInChromeController.h; sourceTree = "<group>"; };
-		D8B228A0193B1B3400755032 /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
 		D8B228A2193B591E00755032 /* MAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWebView.h; sourceTree = "<group>"; };
 		D8B228A3193B591E00755032 /* MAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAWebView.m; sourceTree = "<group>"; };
+		D8B228A7193B691100755032 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
+		D8B228A9193B693B00755032 /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInChromeController.h; sourceTree = "<group>"; };
+		D8B228AA193B693B00755032 /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInChromeController.m; sourceTree = "<group>"; };
 		D8DB7C321925174600096CBA /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		D8DB7C34192518A800096CBA /* content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = content.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +134,8 @@
 			children = (
 				D8A47C441923B61600448690 /* GatherAPI.h */,
 				D8A47C451923B61600448690 /* GatherAPI.m */,
+				D8B228A9193B693B00755032 /* OpenInChromeController.h */,
+				D8B228AA193B693B00755032 /* OpenInChromeController.m */,
 				D80DAB92192F96D600B2B57C /* ContentTranslator.h */,
 				D80DAB93192F96D600B2B57C /* ContentTranslator.m */,
 				D80DAC671931FAF900B2B57C /* TimeOpreator.h */,
@@ -154,8 +158,6 @@
 		D8A47C001923B4FB00448690 = {
 			isa = PBXGroup;
 			children = (
-				D8B2289F193B1B3400755032 /* OpenInChromeController.h */,
-				D8B228A0193B1B3400755032 /* OpenInChromeController.m */,
 				D8A47C121923B4FB00448690 /* Gather */,
 				D8A47C311923B4FB00448690 /* GatherTests */,
 				D8A47C0B1923B4FB00448690 /* Frameworks */,
@@ -189,9 +191,10 @@
 			isa = PBXGroup;
 			children = (
 				D80DAB9C192FBCAB00B2B57C /* Library */,
-				D8A47C4A1923BE1300448690 /* Models */,
 				D8DB7BFD1924948600096CBA /* Views */,
+				D8A47C4A1923BE1300448690 /* Models */,
 				D8DB7BFE1924949500096CBA /* Controllers */,
+				D8B228A7193B691100755032 /* Start.storyboard */,
 				D8A47C1E1923B4FB00448690 /* Main.storyboard */,
 				D8A47C1B1923B4FB00448690 /* AppDelegate.h */,
 				D8A47C1C1923B4FB00448690 /* AppDelegate.m */,
@@ -353,6 +356,7 @@
 				D80DAB9B192FB17A00B2B57C /* reply.html in Resources */,
 				D8DB7C331925174600096CBA /* style.css in Resources */,
 				D8A47C171923B4FB00448690 /* InfoPlist.strings in Resources */,
+				D8B228A8193B691100755032 /* Start.storyboard in Resources */,
 				D8A47C201923B4FB00448690 /* Main.storyboard in Resources */,
 				D8DB7C35192518A800096CBA /* content.html in Resources */,
 			);
@@ -412,7 +416,6 @@
 				D8A47C1D1923B4FB00448690 /* AppDelegate.m in Sources */,
 				D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */,
 				D8A47C491923BA4C00448690 /* Topic.m in Sources */,
-				D8B228A1193B1B3400755032 /* OpenInChromeController.m in Sources */,
 				D8A47C561923C92900448690 /* TopicViewController.m in Sources */,
 				D80DAB94192F96D600B2B57C /* ContentTranslator.m in Sources */,
 				D8B2289A193B012A00755032 /* WebBrowserViewController.m in Sources */,
@@ -420,6 +423,7 @@
 				D8A47C191923B4FB00448690 /* main.m in Sources */,
 				D8A47C461923B61600448690 /* GatherAPI.m in Sources */,
 				D8A47C531923C73900448690 /* TopicCell.m in Sources */,
+				D8B228AB193B693B00755032 /* OpenInChromeController.m in Sources */,
 				D8B228A4193B591E00755032 /* MAWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
