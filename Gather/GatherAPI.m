@@ -7,6 +7,7 @@
 //
 
 #import "GatherAPI.h"
+#import <AFNetworking.h>
 #import <KeychainItemWrapper.h>
 
 #define GATHER_API_LOGIN @"http://gather.whouz.com/api/user/authorize/"

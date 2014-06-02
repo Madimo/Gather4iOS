@@ -37,6 +37,8 @@
 		D8B228A8193B691100755032 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B228A7193B691100755032 /* Start.storyboard */; };
 		D8DB7C331925174600096CBA /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C321925174600096CBA /* style.css */; };
 		D8DB7C35192518A800096CBA /* content.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C34192518A800096CBA /* content.html */; };
+		D8F7B66D193C400300A9B9BA /* BackgroundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B66C193C400300A9B9BA /* BackgroundImage.m */; };
+		D8F7B670193C446C00A9B9BA /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B66F193C446C00A9B9BA /* StartViewController.m */; };
 		E4EB49B9B0E341B1B4E4F8FD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 993D7F85A6C942C384DD6F39 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,10 @@
 		D8B228A7193B691100755032 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		D8DB7C321925174600096CBA /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		D8DB7C34192518A800096CBA /* content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = content.html; sourceTree = "<group>"; };
+		D8F7B66B193C400300A9B9BA /* BackgroundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundImage.h; sourceTree = "<group>"; };
+		D8F7B66C193C400300A9B9BA /* BackgroundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundImage.m; sourceTree = "<group>"; };
+		D8F7B66E193C446C00A9B9BA /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		D8F7B66F193C446C00A9B9BA /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,8 @@
 				D80DAB93192F96D600B2B57C /* ContentTranslator.m */,
 				D80DAC671931FAF900B2B57C /* TimeOpreator.h */,
 				D80DAC681931FAF900B2B57C /* TimeOpreator.m */,
+				D8F7B66B193C400300A9B9BA /* BackgroundImage.h */,
+				D8F7B66C193C400300A9B9BA /* BackgroundImage.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -190,6 +198,8 @@
 				D8A47C4A1923BE1300448690 /* Models */,
 				D8DB7BFE1924949500096CBA /* Controllers */,
 				D8B228A7193B691100755032 /* Start.storyboard */,
+				D8F7B66E193C446C00A9B9BA /* StartViewController.h */,
+				D8F7B66F193C446C00A9B9BA /* StartViewController.m */,
 				D8A47C1E1923B4FB00448690 /* Main.storyboard */,
 				D8A47C1B1923B4FB00448690 /* AppDelegate.h */,
 				D8A47C1C1923B4FB00448690 /* AppDelegate.m */,
@@ -413,10 +423,12 @@
 				D8A47C491923BA4C00448690 /* Topic.m in Sources */,
 				D8A47C561923C92900448690 /* TopicViewController.m in Sources */,
 				D80DAB94192F96D600B2B57C /* ContentTranslator.m in Sources */,
+				D8F7B66D193C400300A9B9BA /* BackgroundImage.m in Sources */,
 				D8B2289A193B012A00755032 /* WebBrowserViewController.m in Sources */,
 				D80DAC691931FAF900B2B57C /* TimeOpreator.m in Sources */,
 				D8A47C191923B4FB00448690 /* main.m in Sources */,
 				D8A47C461923B61600448690 /* GatherAPI.m in Sources */,
+				D8F7B670193C446C00A9B9BA /* StartViewController.m in Sources */,
 				D8A47C531923C73900448690 /* TopicCell.m in Sources */,
 				D8B228A4193B591E00755032 /* MAWebView.m in Sources */,
 			);

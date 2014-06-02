@@ -20,20 +20,26 @@ PODS:
     - AFNetworking/NSURLSession
   - KeychainItemWrapper (1.2)
   - OpenInChrome (0.0.1)
+  - pop (1.0.5)
   - SDWebImage (3.6):
     - SDWebImage/Core
   - SDWebImage/Core (3.6)
+  - UIImageEffects (0.0.1)
 
 DEPENDENCIES:
   - AFNetworking
   - KeychainItemWrapper
   - OpenInChrome
+  - pop
   - SDWebImage
+  - UIImageEffects
 
 SPEC CHECKSUMS:
   AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
   KeychainItemWrapper: 577e9e920185892873ded075b8ceb730bebdfd91
   OpenInChrome: b7c73ddf8fe0a1788dc0549c3c4c70e3c84da578
+  pop: 75fa2b33934200a8a68abb449ac1726fcf7e43b9
   SDWebImage: c6989652c1cdf27cbdf3f56957e2030f825af5bc
+  UIImageEffects: 69cd1e1f8fc4042a8fefcf4a0727cbf213e4dbfb
 
 COCOAPODS: 0.33.1
