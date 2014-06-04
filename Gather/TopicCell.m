@@ -34,7 +34,7 @@
     self.avatarView.layer.cornerRadius = self.avatarView.layer.frame.size.height / 2.0;
     self.avatarView.layer.masksToBounds = YES;
     
-    self.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

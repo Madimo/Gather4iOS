@@ -13,7 +13,6 @@
 #import <POP.h>
 
 @interface StartViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *loginView;
 @property (weak, nonatomic) IBOutlet UIView *signView;
@@ -36,8 +35,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.backgroundImageView.image = [BackgroundImage sharedImage].image;
-
     [self initViewPositionAndAlpha];
     [self initTextField];
     [self initGestureRecognizer];

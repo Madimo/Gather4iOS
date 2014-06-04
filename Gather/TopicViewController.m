@@ -10,6 +10,7 @@
 #import "TopicCell.h"
 #import "RepliesViewController.h"
 #import "GatherAPI.h"
+#import "BackgroundImage.h"
 
 @interface TopicViewController ()
 @property (nonatomic, strong) NSMutableArray *topics;
@@ -23,8 +24,12 @@
 
 - (void)viewDidLoad
 {
+    //self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+    //self.navigationController.navigationBar.alpha = 0.5;
+    
     [super viewDidLoad];
     
+    self.refreshControl.tintColor = [UIColor whiteColor];
     [self refresh];
 }
 

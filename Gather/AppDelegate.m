@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GatherAPI.h"
+#import "BackgroundImage.h"
 #import <AFNetworkActivityIndicatorManager.h>
 
 @implementation AppDelegate
@@ -16,6 +17,12 @@
 {
     AFNetworkActivityIndicatorManager *manager = [AFNetworkActivityIndicatorManager sharedManager];
     [manager setEnabled:YES];
+    
+    self.backgroundWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.backgroundWindow.bounds];
+    backgroundImageView.image = [BackgroundImage sharedImage].image;
+    [self.backgroundWindow addSubview:backgroundImageView];
+    [self.backgroundWindow makeKeyAndVisible];
     
     NSString *storyboardName;
     storyboardName = [[GatherAPI sharedAPI] isLogined] ? @"Main" : @"Start";
