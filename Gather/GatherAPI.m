@@ -61,8 +61,8 @@
     self.token = token;
     
     KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER accessGroup:nil];
-    [wrapper setObject:username forKey:(__bridge id)(kSecAttrAccount)];
-    [wrapper setObject:token forKey:(__bridge id)(kSecValueData)];
+    //[wrapper setObject:username forKey:(__bridge id)(kSecAttrAccount)];
+    //[wrapper setObject:token forKey:(__bridge id)(kSecValueData)];
 }
 
 #pragma mark - Public method
@@ -98,7 +98,7 @@
                                                }
                                                
                                                [self saveUsername:username token:result[@"token"]];
-
+                                               success();
                                            }
                                            @catch (NSException *exception) {
                                                if (failure)
