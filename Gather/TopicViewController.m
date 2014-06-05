@@ -18,24 +18,23 @@
 @property (nonatomic) NSInteger currentPage;
 @property (nonatomic) BOOL loading;
 @property (nonatomic) NSInteger currentMaxDisplayedCell;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIView *lodingIndicatorView;
 @end
 
 @implementation TopicViewController
 
 - (void)viewDidLoad
 {
-    //self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
-    //self.navigationController.navigationBar.alpha = 0.5;
-    
     [super viewDidLoad];
     
     self.refreshControl.tintColor = [UIColor whiteColor];
+    
     [self refresh];
 }
 
 - (IBAction)refresh
 {
-    [self.refreshControl beginRefreshing];
     self.currentPage = 1;
     GatherAPI *api = [GatherAPI sharedAPI];
     [api getTopicsInPage:1
@@ -45,9 +44,11 @@
                      self.currentMaxDisplayedCell = -1;
                      [self.tableView reloadData];
                      [self.refreshControl endRefreshing];
+                     self.lodingIndicatorView.hidden = YES;
                  }
                  failure:^(NSException *exception) {
                      [self.refreshControl endRefreshing];
+                     self.lodingIndicatorView.hidden = YES;
                  }
     ];
 }
@@ -64,6 +65,7 @@
         return;
     
     self.loading = YES;
+    self.lodingIndicatorView.hidden = NO;
     
     GatherAPI *api = [GatherAPI sharedAPI];
     [api getTopicsInPage:self.currentPage + 1
@@ -77,9 +79,11 @@
                      }
                      [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
                      self.currentPage++;
+                     self.lodingIndicatorView.hidden = YES;
                      self.loading = NO;
                  }
                  failure:^(NSException *exception) {
+                     self.lodingIndicatorView.hidden = YES;
                      self.loading = NO;
                  }
     ];
@@ -114,6 +118,9 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    CGFloat fontSize = MIN(MAX(50.0, 70.0 - scrollView.contentOffset.y / 5.0), 100.0);
+    self.titleLabel.font = [UIFont fontWithName:@"Bodoni 72 Smallcaps" size:fontSize];
+    
     if (scrollView.contentOffset.y > scrollView.contentSize.height * 2.0 / 3.0) {
         [self loadNext];
     }
@@ -148,9 +155,6 @@
             RepliesViewController *dest = segue.destinationViewController;
             [dest setTopicId:((TopicCell *)sender).topicId];
             [dest setTitle:((TopicCell *)sender).title];
-            UIBarButtonItem *item = [UIBarButtonItem new];
-            item.title = @"";
-            self.navigationItem.backBarButtonItem = item;
         }
     }
 }

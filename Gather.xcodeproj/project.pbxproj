@@ -32,7 +32,7 @@
 		D8A47C531923C73900448690 /* TopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C521923C73900448690 /* TopicCell.m */; };
 		D8A47C561923C92900448690 /* TopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C551923C92900448690 /* TopicViewController.m */; };
 		D8A47C59192444AE00448690 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C58192444AE00448690 /* User.m */; };
-		D8B2289A193B012A00755032 /* WebBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B22899193B012A00755032 /* WebBrowserViewController.m */; };
+		D8B2289A193B012A00755032 /* WebBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B22899193B012A00755032 /* WebBrowserController.m */; };
 		D8B228A4193B591E00755032 /* MAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B228A3193B591E00755032 /* MAWebView.m */; };
 		D8B228A8193B691100755032 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B228A7193B691100755032 /* Start.storyboard */; };
 		D8DB7C331925174600096CBA /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C321925174600096CBA /* style.css */; };
@@ -94,8 +94,8 @@
 		D8A47C551923C92900448690 /* TopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicViewController.m; sourceTree = "<group>"; };
 		D8A47C57192444AE00448690 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		D8A47C58192444AE00448690 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		D8B22898193B012A00755032 /* WebBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowserViewController.h; sourceTree = "<group>"; };
-		D8B22899193B012A00755032 /* WebBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowserViewController.m; sourceTree = "<group>"; };
+		D8B22898193B012A00755032 /* WebBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowserController.h; sourceTree = "<group>"; };
+		D8B22899193B012A00755032 /* WebBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowserController.m; sourceTree = "<group>"; };
 		D8B228A2193B591E00755032 /* MAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWebView.h; sourceTree = "<group>"; };
 		D8B228A3193B591E00755032 /* MAWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAWebView.m; sourceTree = "<group>"; };
 		D8B228A7193B691100755032 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
@@ -272,8 +272,8 @@
 				D8A47C551923C92900448690 /* TopicViewController.m */,
 				D80DAB95192F9D2700B2B57C /* RepliesViewController.h */,
 				D80DAB96192F9D2700B2B57C /* RepliesViewController.m */,
-				D8B22898193B012A00755032 /* WebBrowserViewController.h */,
-				D8B22899193B012A00755032 /* WebBrowserViewController.m */,
+				D8B22898193B012A00755032 /* WebBrowserController.h */,
+				D8B22899193B012A00755032 /* WebBrowserController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -424,7 +424,7 @@
 				D8A47C561923C92900448690 /* TopicViewController.m in Sources */,
 				D80DAB94192F96D600B2B57C /* ContentTranslator.m in Sources */,
 				D8F7B66D193C400300A9B9BA /* BackgroundImage.m in Sources */,
-				D8B2289A193B012A00755032 /* WebBrowserViewController.m in Sources */,
+				D8B2289A193B012A00755032 /* WebBrowserController.m in Sources */,
 				D80DAC691931FAF900B2B57C /* TimeOpreator.m in Sources */,
 				D8A47C191923B4FB00448690 /* main.m in Sources */,
 				D8A47C461923B61600448690 /* GatherAPI.m in Sources */,
@@ -557,10 +557,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gather/Gather-Prefix.pch";
 				INFOPLIST_FILE = "Gather/Gather-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -572,10 +575,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gather/Gather-Prefix.pch";
 				INFOPLIST_FILE = "Gather/Gather-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

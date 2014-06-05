@@ -1,16 +1,17 @@
 //
-//  WebBrowserViewController.m
+//  WebBrowserController.m
 //  Gather
 //
 //  Created by Madimo on 14-6-1.
 //  Copyright (c) 2014年 Madimo. All rights reserved.
 //
 
-#import "WebBrowserViewController.h"
+#import "WebBrowserController.h"
 #import "MAWebView.h"
 #import <OpenInChromeController.h>
 
-@interface WebBrowserViewController () <UIWebViewDelegate, MAWebViewProgressDelegate>
+@interface WebBrowserController () <UIWebViewDelegate, MAWebViewProgressDelegate>
+@property (nonatomic) UIStatusBarStyle statusBarStyle;
 @property (nonatomic) BOOL toolbarHidden;
 @property (strong, nonatomic) MAWebView *webView;
 @property (strong, nonatomic) UIProgressView *progressView;
@@ -21,9 +22,24 @@
 @property (strong, nonatomic) UIBarButtonItem *openInSafariButton;
 @end
 
-@implementation WebBrowserViewController
+@implementation WebBrowserController
 
 #pragma mark - Initialize
+
+- (void)initStatusBar
+{
+    self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault
+                                                animated:YES];
+}
+
+- (void)initNavigationBar
+{
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                          target:self
+                                                                          action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = done;
+}
 
 - (void)initWebView
 {
@@ -92,6 +108,8 @@
 {
     [super viewDidLoad];
     
+    [self initStatusBar];
+    [self initNavigationBar];
     [self initWebView];
     [self initProgressView];
     [self initToolbar];
@@ -104,6 +122,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle animated:YES];
     self.navigationController.toolbarHidden = self.toolbarHidden;
 }
 
@@ -165,7 +184,12 @@
     }
 }
 
-#pragma mark - Toolbar button item action
+#pragma mark - Button item action
+
+- (void)done:(id)sender
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)refreshButtonStatus
 {

@@ -9,7 +9,7 @@
 #import "RepliesViewController.h"
 #import "GatherAPI.h"
 #import "ContentTranslator.h"
-#import "WebBrowserViewController.h"
+#import "WebBrowserController.h"
 
 @interface RepliesViewController () <UIWebViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
@@ -29,8 +29,12 @@
     self.contentWebView.delegate = self;
     self.contentWebView.scrollView.scrollEnabled = NO;
     self.contentWebView.dataDetectorTypes = UIDataDetectorTypeNone;
+    self.contentWebView.backgroundColor = [UIColor clearColor];
+    self.contentWebView.opaque = NO;
     self.contentWebView.alpha = 0.0;
     [self.contentScrollView addSubview:self.contentWebView];
+    
+    self.contentScrollView.contentInset = UIEdgeInsetsMake(75, 0, 0, 0);
     
     self.titleLabel = [UILabel new];
 
@@ -39,13 +43,13 @@
                                         attributes:@{ NSFontAttributeName : self.titleLabel.font }
                                            context:nil];
     rect.size.width = self.view.frame.size.width;
-    rect.origin.y = -rect.size.height - 20;
+    rect.origin.y = -rect.size.height - 95;
     self.titleLabel.frame = rect;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.text = self.title;
-    self.titleLabel.textColor = [UIColor grayColor];
+    self.titleLabel.textColor = [UIColor whiteColor];
     [self.contentScrollView addSubview:self.titleLabel];
 
     [self.contentWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
@@ -86,10 +90,11 @@
 
         CGSize size = self.contentScrollView.frame.size;
         size.height = scrollView.contentSize.height;
-        CGRect frame = CGRectMake(0, 0, size.width, size.height);
+        CGRect frame = webView.frame;
+        frame.size = size;
         webView.frame = frame;
         
-        CGFloat height = self.contentScrollView.frame.size.height - self.contentScrollView.contentInset.top;
+        CGFloat height = self.contentScrollView.frame.size.height - self.contentScrollView.contentInset.top + webView.frame.origin.y;
         
         size.height = scrollView.contentSize.height > height ? scrollView.contentSize.height : height;
         
@@ -131,12 +136,10 @@
             NSLog(@"allow");
             return YES;
         } else {
-            WebBrowserViewController *webBrowser = [[WebBrowserViewController alloc] init];
+            WebBrowserController *webBrowser = [[WebBrowserController alloc] init];
             webBrowser.url = requestString;
-            UIBarButtonItem *item = [UIBarButtonItem new];
-            item.title = @"";
-            self.navigationItem.backBarButtonItem = item;
-            [self.navigationController pushViewController:webBrowser animated:YES];
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:webBrowser];
+            [self presentViewController:nc animated:YES completion:nil];
             return NO;
         }
     }
@@ -149,15 +152,11 @@
     
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Button action
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (IBAction)cancel:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
-*/
 
 @end

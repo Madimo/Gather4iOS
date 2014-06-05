@@ -1,5 +1,5 @@
 //
-//  WebBrowserViewController.h
+//  WebBrowserController.h
 //  Gather
 //
 //  Created by Madimo on 14-6-1.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebBrowserViewController : UIViewController
+@interface WebBrowserController : UIViewController
 
 @property (strong, nonatomic) NSString *url;
 
