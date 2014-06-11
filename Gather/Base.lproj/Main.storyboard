@@ -62,6 +62,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <inset key="scrollIndicatorInsets" minX="0.0" minY="133" maxX="0.0" maxY="0.0"/>
                         <label key="tableHeaderView" appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gather" textAlignment="center" lineBreakMode="clip" adjustsFontSizeToFit="NO" id="rda-US-ycV">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
