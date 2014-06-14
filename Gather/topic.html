@@ -1,13 +1,6 @@
 <div class="topic">
-<!--
-    <div class="topic_title_div">
-        <div class="topic_title">
-            <span>{{ topic_title }}</span>
-        </div>
-    </div>
--->
     <div class="reply_head">
-        <img class="author_avatar" onclick="userClicked({{ user_id }})" src='{{ avatar }}'/>
+        <img class="author_avatar" onclick="userClicked({{ user_id }})" onload="avatarOnload(this)" src='{{ avatar }}'/>
         <div class="trangle"></div>
         <div class="author">
             <span onclick="userClicked({{ user_id }})">{{ topic_author }}</span>

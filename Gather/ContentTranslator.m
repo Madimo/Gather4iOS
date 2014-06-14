@@ -87,7 +87,7 @@
         if (checkResult.resultType == NSTextCheckingTypeLink) {
             NSString *urlString = [checkResult.URL absoluteString];
             if ([self isImageFileUrl:urlString]) {
-                NSString *format = @"<img class=\"reply_body_img\" src=\"%@\"/>";
+                NSString *format = @"<img class=\"reply_body_img\" onload=\"replyImgOnload(this)\" src=\"%@\"/>";
                 converted = [NSString stringWithFormat:format, urlString];
             } else {
                 NSString *format = @"<a class=\"reply_body_a\" href=\"%@\" onclick=\"stopBubble()\">%@</a>";

@@ -32,6 +32,7 @@
 		D8A47C531923C73900448690 /* TopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C521923C73900448690 /* TopicCell.m */; };
 		D8A47C561923C92900448690 /* TopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C551923C92900448690 /* TopicViewController.m */; };
 		D8A47C59192444AE00448690 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C58192444AE00448690 /* User.m */; };
+		D8A9DA9E194C776600256973 /* FadeInImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A9DA9D194C776600256973 /* FadeInImageView.m */; };
 		D8B2289A193B012A00755032 /* WebBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B22899193B012A00755032 /* WebBrowserController.m */; };
 		D8B228A4193B591E00755032 /* MAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B228A3193B591E00755032 /* MAWebView.m */; };
 		D8B228A8193B691100755032 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B228A7193B691100755032 /* Start.storyboard */; };
@@ -94,6 +95,8 @@
 		D8A47C551923C92900448690 /* TopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicViewController.m; sourceTree = "<group>"; };
 		D8A47C57192444AE00448690 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		D8A47C58192444AE00448690 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		D8A9DA9C194C776600256973 /* FadeInImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInImageView.h; sourceTree = "<group>"; };
+		D8A9DA9D194C776600256973 /* FadeInImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInImageView.m; sourceTree = "<group>"; };
 		D8B22898193B012A00755032 /* WebBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowserController.h; sourceTree = "<group>"; };
 		D8B22899193B012A00755032 /* WebBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowserController.m; sourceTree = "<group>"; };
 		D8B228A2193B591E00755032 /* MAWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAWebView.h; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 		D8DB7BFD1924948600096CBA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D8A9DA9C194C776600256973 /* FadeInImageView.h */,
+				D8A9DA9D194C776600256973 /* FadeInImageView.m */,
 				D8A47C511923C73900448690 /* TopicCell.h */,
 				D8A47C521923C73900448690 /* TopicCell.m */,
 				D86CA66B19341E1D00E6D79E /* TriangleView.h */,
@@ -418,6 +423,7 @@
 				D8A47C59192444AE00448690 /* User.m in Sources */,
 				D8A47C501923BE4600448690 /* Reply.m in Sources */,
 				D86CA66D19341E1D00E6D79E /* TriangleView.m in Sources */,
+				D8A9DA9E194C776600256973 /* FadeInImageView.m in Sources */,
 				D8A47C1D1923B4FB00448690 /* AppDelegate.m in Sources */,
 				D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */,
 				D8A47C491923BA4C00448690 /* Topic.m in Sources */,

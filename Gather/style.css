@@ -65,6 +65,19 @@ body {
     opacity: 0.8;
     border-radius: 20px;
     float: left;
+    opacity: 0;
+}
+
+.author_avatar_fade_in {
+    position: relative;
+    margin: 5px auto 5px 5px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.8;
+    border-radius: 20px;
+    float: left;
+    opacity: 1;
+    -webkit-transition: opacity .8s ease;
 }
 
 .trangle {
@@ -114,6 +127,13 @@ body {
 }
 
 .reply_body_img {
+    opacity: 0;
+    position: relative;
+}
+
+.reply_body_img_fade_in {
+    opacity: 1;
+    -webkit-transition: opacity .8s ease;
     position: relative;
 }
 

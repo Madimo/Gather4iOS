@@ -44,6 +44,14 @@
                 var url = "gather:" + cmd + ":" + param;
                 document.location = url;
             }
+        
+            function avatarOnload(object) {
+                object.className = "author_avatar_fade_in";
+            }
+        
+            function replyImgOnload(object) {
+                object.className = "reply_body_img_fade_in";
+            }
         </script>
 	</head>
 	<body>
