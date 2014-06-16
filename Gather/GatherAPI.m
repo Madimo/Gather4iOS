@@ -13,6 +13,7 @@
 #define GATHER_API_LOGIN @"http://gather.whouz.com/api/user/authorize/"
 #define GATHER_API_TOPIC @"http://gather.whouz.com/api/topic/"
 #define GATHER_API_USER  @"http://gather.whouz.com/api/user/"
+#define GATHER_API_NODE  @"http://gather.whouz.com/api/node/"
 
 #define KEYCHAIN_IDENTIFIER @"com.Madimo.Gather.Keychain"
 
@@ -307,6 +308,83 @@
                                               User *user = [[User alloc] initWithUserDict:result[@"user"]];
                                               self.userList[[NSNumber numberWithInteger:userId]] = user;
                                               success(user);
+                                          }
+                                          @catch (NSException *exception) {
+                                              if (failure)
+                                                  failure(exception);
+                                          }
+                                      }
+                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                          
+                                          if (!failure)
+                                              return;
+                                          
+                                          NSException *exception = CreateNetworkErrorException(task, error);
+                                          failure(exception);
+                                      }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)getNodesInPage:(NSString *)page
+                                 success:(void (^)(NSArray *nodes, NSInteger totalPage, NSInteger totalNode))success
+                                 failure:(void (^)(NSException * exception))failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSDictionary *parameters = @{ @"token"   : self.token,
+                                  @"page"    : page };
+    NSURLSessionDataTask *task = [manager GET:GATHER_API_NODE
+                                   parameters:parameters
+                                      success:^(NSURLSessionDataTask *task, id responseObject) {
+                                          
+                                          if (!success)
+                                              return;
+                                          
+                                          @try {
+                                              NSDictionary *result = (NSDictionary *)responseObject;
+                                              NSMutableArray *nodes = [NSMutableArray new];
+                                              for (NSDictionary *dict in result[@"nodes"]) {
+                                                  Node *node = [[Node alloc] initWithNodeDict:dict];
+                                                  [nodes addObject:node];
+                                              }
+                                              NSInteger totalPage = [result[@"total_page"] integerValue];
+                                              NSInteger totalNode = [result[@"total"] integerValue];
+                                              success(nodes, totalPage, totalNode);
+                                          }
+                                          @catch (NSException *exception) {
+                                              if (failure)
+                                                  failure(exception);
+                                          }
+                                      }
+                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                          
+                                          if (!failure)
+                                              return;
+                                          
+                                          NSException *exception = CreateNetworkErrorException(task, error);
+                                          failure(exception);
+                                      }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)getNodesById:(NSInteger)nodeId
+                               success:(void (^)(Node *node))success
+                               failure:(void (^)(NSException * exception))failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_NODE, @(nodeId)];
+    NSURLSessionDataTask *task = [manager GET:url
+                                   parameters:nil
+                                      success:^(NSURLSessionDataTask *task, id responseObject) {
+                                          
+                                          if (!success)
+                                              return;
+                                          
+                                          @try {
+                                              NSDictionary *result = (NSDictionary *)responseObject;
+                                              
+                                              Node *node = [[Node alloc] initWithNodeDict:result[@"node"]];
+                                
+                                              success(node);
                                           }
                                           @catch (NSException *exception) {
                                               if (failure)

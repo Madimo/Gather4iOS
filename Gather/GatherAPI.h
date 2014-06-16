@@ -11,6 +11,7 @@
 #import "Topic.h"
 #import "Reply.h"
 #import "User.h"
+#import "Node.h"
 
 @interface GatherAPI : NSObject
 
