@@ -67,68 +67,38 @@
 {
     CGRect frame = CGRectMake(20, 0, 280, 35);
     
-    self.usernameTextField = ({
-        UITextField *t = [[UITextField alloc] initWithFrame:frame];
-        t.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        t.textColor = [UIColor lightGrayColor];
-        t.clearButtonMode = UITextFieldViewModeWhileEditing;
-        t.textAlignment = NSTextAlignmentCenter;
-        t.keyboardType = UIKeyboardTypeASCIICapable;
-        t.spellCheckingType = UITextSpellCheckingTypeNo;
-        t.autocorrectionType = UITextAutocorrectionTypeNo;
-        t.returnKeyType = UIReturnKeyNext;
-        t.enablesReturnKeyAutomatically = YES;
-        t.delegate = self;
-        t.placeholder = @"Username";
-        t.alpha = 0.0;
-        t;
-    });
+    self.usernameTextField = [[UITextField alloc] initWithFrame:frame];
+    self.passwordTextField = [[UITextField alloc] initWithFrame:frame];
+    self.emailTextField = [[UITextField alloc] initWithFrame:frame];
+    self.confirmTextField = [[UITextField alloc] initWithFrame:frame];
     
-    self.passwordTextField = ({
-        UITextField *t = [[UITextField alloc] initWithFrame:frame];
-        t.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        t.textColor = [UIColor lightGrayColor];
-        t.clearButtonMode = UITextFieldViewModeWhileEditing;
-        t.textAlignment = NSTextAlignmentCenter;
-        t.enablesReturnKeyAutomatically = YES;
-        t.delegate = self;
-        t.placeholder = @"Password";
-        t.alpha = 0.0;
-        t.secureTextEntry = YES;
-        t;
-    });
+    NSArray *textFields = @[self.usernameTextField, self.passwordTextField, self.emailTextField, self.confirmTextField];
     
-    self.emailTextField = ({
-        UITextField *t = [[UITextField alloc] initWithFrame:frame];
-        t.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        t.textColor = [UIColor lightGrayColor];
-        t.clearButtonMode = UITextFieldViewModeWhileEditing;
-        t.textAlignment = NSTextAlignmentCenter;
-        t.keyboardType = UIKeyboardTypeEmailAddress;
-        t.keyboardType = UIKeyboardTypeASCIICapable;
-        t.spellCheckingType = UITextSpellCheckingTypeNo;
-        t.returnKeyType = UIReturnKeyNext;
-        t.enablesReturnKeyAutomatically = YES;
-        t.delegate = self;
-        t.placeholder = @"Email Address";
-        t.alpha = 0.0;
-        t;
-    });
+    for (UITextField *textField in textFields) {
+        textField.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        textField.textColor = [UIColor lightGrayColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.textAlignment = NSTextAlignmentCenter;
+        textField.keyboardType = UIKeyboardTypeASCIICapable;
+        textField.spellCheckingType = UITextSpellCheckingTypeNo;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.returnKeyType = UIReturnKeyNext;
+        textField.enablesReturnKeyAutomatically = YES;
+        textField.delegate = self;
+        textField.alpha = 0.0;
+    }
     
-    self.confirmTextField = ({
-        UITextField *t = [[UITextField alloc] initWithFrame:frame];
-        t.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        t.textColor = [UIColor lightGrayColor];
-        t.clearButtonMode = UITextFieldViewModeWhileEditing;
-        t.textAlignment = NSTextAlignmentCenter;
-        t.returnKeyType = UIReturnKeyGo;
-        t.enablesReturnKeyAutomatically = YES;
-        t.delegate = self;
-        t.placeholder = @"Confirm Password";
-        t.alpha = 0.0;
-        t.secureTextEntry = YES;
-        t;
-    });
+    self.usernameTextField.placeholder = @"Username";
+    self.passwordTextField.placeholder = @"Password";
+    self.emailTextField.placeholder    = @"Email Address";
+    self.confirmTextField.placeholder  = @"Confirm Password";
+    
+    self.passwordTextField.secureTextEntry = YES;
+    self.confirmTextField.secureTextEntry  = YES;
+    
+    self.emailTextField.keyboardType = UIKeyboardTypeEmailAddress;
+    
+    self.confirmTextField.returnKeyType = UIReturnKeyGo;
 }
 
 - (void)initGestureRecognizer
