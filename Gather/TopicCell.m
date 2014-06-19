@@ -9,6 +9,7 @@
 #import "TopicCell.h"
 #import <UIImageView+WebCache.h>
 #import "TimeOpreator.h"
+#import "Topic.h"
 
 @interface TopicCell ()
 @property (weak, nonatomic) IBOutlet UILabel *replyCountLabel;
@@ -37,42 +38,32 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)setTopic:(Topic *)topic
 {
-    [super setSelected:selected animated:animated];
+    _topic = topic;
+    
+    self.titleLabel.text = topic.title;
+    self.authorLabel.text = topic.author.username;
+    NSString *avatarUrl = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=200", topic.author.emailMD5];
+    [self.avatarView setImageWithURL:[NSURL URLWithString:avatarUrl]];
+    self.replyCountLabel.text = [NSString stringWithFormat:@"%@", @(topic.replyCount)];
+    self.createdLabel.text = [TimeOpreator convertStringFromDate:topic.created];
 
-    // Configure the view for the selected state
+    if (topic.changed) {
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        animation.fromValue = @0.5;
+        animation.toValue = @0.0;
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        animation.repeatCount = HUGE_VALF;
+        animation.autoreverses = YES;
+        animation.duration = 1.5;
+        [self.replyCountLabel.layer addAnimation:animation forKey:@"UnreadNotifacition"];
+    }
 }
 
-- (void)setTitle:(NSString *)title
+- (void)prepareForReuse
 {
-    _title = title;
-    self.titleLabel.text = title;
-}
-
-- (void)setAuthor:(NSString *)author
-{
-    _author = author;
-    self.authorLabel.text = author;
-}
-
-- (void)setAvatar:(NSString *)avatar
-{
-    _avatar = avatar;
-    [self.avatarView setImageWithURL:[NSURL URLWithString:self.avatar]
-                    placeholderImage:nil];
-}
-
-- (void)setReplyCount:(NSInteger)replyCount
-{
-    _replyCount = replyCount;
-    self.replyCountLabel.text = [NSString stringWithFormat:@"%ld", (long)replyCount];
-}
-
-- (void)setCreated:(NSDate *)created
-{
-    _created = created;
-    self.createdLabel.text = [TimeOpreator convertStringFromDate:created];
+    [self.replyCountLabel.layer removeAnimationForKey:@"UnreadNotifacition"];
 }
 
 @end

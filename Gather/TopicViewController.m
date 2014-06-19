@@ -107,12 +107,8 @@
     
     // Configure the cell...
     Topic *topic = self.topics[indexPath.row];
-    cell.topicId = topic.topicId;
-    cell.title = topic.title;
-    cell.author = topic.author.username;
-    cell.avatar = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=200", topic.author.emailMD5];
-    cell.replyCount = topic.replyCount;
-    cell.created = topic.created;
+    [cell setTopic:topic];
+    
     return cell;
 }
 
@@ -153,8 +149,8 @@
     if ([segue.identifier isEqualToString:@"Reply"]) {
         if ([segue.destinationViewController isKindOfClass:[RepliesViewController class]]) {
             RepliesViewController *dest = segue.destinationViewController;
-            [dest setTopicId:((TopicCell *)sender).topicId];
-            [dest setTitle:((TopicCell *)sender).title];
+            [dest setTopicId:((TopicCell *)sender).topic.topicId];
+            [dest setTitle:((TopicCell *)sender).topic.title];
         }
     }
 }
