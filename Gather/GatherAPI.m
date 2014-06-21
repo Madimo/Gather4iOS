@@ -580,22 +580,21 @@
                                                   
                                                   NSOperationQueue *queue = [[NSOperationQueue alloc] init];
                                                   
-                                                  for (NSInteger i = 1; i <= totalPage; ++i) {
-                                                      NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_NODE, @(i)];
+                                                  for (NSInteger i = 2; i <= totalPage; ++i) {
+                                                      NSString *url = [NSString stringWithFormat:@"%@?page=%@", GATHER_API_NODE, @(i)];
                                                       NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                                                       AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
                                                       op.responseSerializer = [AFJSONResponseSerializer serializer];
                                                       [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                          NSDictionary *result = (NSDictionary *)responseObject;
-                                                          NSMutableArray *nodes = [NSMutableArray new];
-                                                          for (NSDictionary *dict in result[@"nodes"]) {
-                                                              Node *node = [[Node alloc] initWithNodeDict:dict];
-                                                              [nodes addObject:node];
-                                                          }
-                                                          if (i == totalPage) {
-                                                              success(nodes);
-                                                          }
-                                                      }
+                                                                                    NSDictionary *result = (NSDictionary *)responseObject;
+                                                                                    for (NSDictionary *dict in result[@"nodes"]) {
+                                                                                        Node *node = [[Node alloc] initWithNodeDict:dict];
+                                                                                        [nodes addObject:node];
+                                                                                    }
+                                                                                    if (i == totalPage) {
+                                                                                        success(nodes);
+                                                                                    }
+                                                                                }
                                                                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                                                     if (i == totalPage) {
                                                                                         success(nodes);
@@ -636,10 +635,19 @@
     NSURLSessionDataTask *task = [manager POST:GATHER_API_TOPIC
                                     parameters:parameters
                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+                                           if (!success)
+                                               return;
                                            
+                                           Topic *topic = [[Topic alloc] initWithTopicDict:responseObject[@"Topic"]];
+                                           success(topic);
                                        }
                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
                                            
+                                           if (!failure)
+                                               return;
+                                           
+                                           NSException *exception = CreateNetworkErrorException(task, error);
+                                           failure(exception);
                                        }
                                   ];
     return task;

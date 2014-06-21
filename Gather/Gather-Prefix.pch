@@ -23,3 +23,5 @@
 #define debugMethod()
 #endif
 
+#define UD_KEY_SIGNATURE @"Signature"
+

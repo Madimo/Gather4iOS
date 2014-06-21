@@ -32,6 +32,12 @@
     self.window.rootViewController = storyboard.instantiateInitialViewController;
     [self.window makeKeyAndVisible];
     
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if (![ud stringForKey:UD_KEY_SIGNATURE]) {
+        [ud setObject:@"Posted from Gather for iOS" forKey:UD_KEY_SIGNATURE];
+        [ud synchronize];
+    }
+    
     return YES;
 }
 							

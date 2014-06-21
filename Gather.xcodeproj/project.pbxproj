@@ -12,8 +12,12 @@
 		D80DAB9B192FB17A00B2B57C /* reply.html in Resources */ = {isa = PBXBuildFile; fileRef = D80DAB9A192FB17A00B2B57C /* reply.html */; };
 		D80DAC691931FAF900B2B57C /* TimeOpreator.m in Sources */ = {isa = PBXBuildFile; fileRef = D80DAC681931FAF900B2B57C /* TimeOpreator.m */; };
 		D80DAC6B1932054F00B2B57C /* topic.html in Resources */ = {isa = PBXBuildFile; fileRef = D80DAC6A1932054F00B2B57C /* topic.html */; };
+		D82B23CD1955E78400D2F2F0 /* NodeChosenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82B23CC1955E78400D2F2F0 /* NodeChosenViewController.m */; };
+		D82B23D01955F3CF00D2F2F0 /* PostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D82B23CF1955F3CF00D2F2F0 /* PostManager.m */; };
 		D833CE5A194EBB050087C852 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = D833CE59194EBB050087C852 /* Node.m */; };
 		D86CA66D19341E1D00E6D79E /* TriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86CA66C19341E1D00E6D79E /* TriangleView.m */; };
+		D86E9655195472430044C28F /* PostView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86E9654195472430044C28F /* PostView.storyboard */; };
+		D86E9658195474830044C28F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86E9657195474830044C28F /* PostViewController.m */; };
 		D8A47C0D1923B4FB00448690 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0C1923B4FB00448690 /* Foundation.framework */; };
 		D8A47C0F1923B4FB00448690 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */; };
 		D8A47C111923B4FB00448690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C101923B4FB00448690 /* UIKit.framework */; };
@@ -65,10 +69,17 @@
 		D80DAC671931FAF900B2B57C /* TimeOpreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeOpreator.h; sourceTree = "<group>"; };
 		D80DAC681931FAF900B2B57C /* TimeOpreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeOpreator.m; sourceTree = "<group>"; };
 		D80DAC6A1932054F00B2B57C /* topic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic.html; sourceTree = "<group>"; };
+		D82B23CB1955E78400D2F2F0 /* NodeChosenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeChosenViewController.h; sourceTree = "<group>"; };
+		D82B23CC1955E78400D2F2F0 /* NodeChosenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeChosenViewController.m; sourceTree = "<group>"; };
+		D82B23CE1955F3CF00D2F2F0 /* PostManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostManager.h; sourceTree = "<group>"; };
+		D82B23CF1955F3CF00D2F2F0 /* PostManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostManager.m; sourceTree = "<group>"; };
 		D833CE58194EBB050087C852 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		D833CE59194EBB050087C852 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 		D86CA66B19341E1D00E6D79E /* TriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleView.h; sourceTree = "<group>"; };
 		D86CA66C19341E1D00E6D79E /* TriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleView.m; sourceTree = "<group>"; };
+		D86E9654195472430044C28F /* PostView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostView.storyboard; sourceTree = "<group>"; };
+		D86E9656195474830044C28F /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		D86E9657195474830044C28F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		D8A47C091923B4FB00448690 /* Gather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A47C0C1923B4FB00448690 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -164,6 +175,30 @@
 			name = Web;
 			sourceTree = "<group>";
 		};
+		D827E0F81955FC8E00DD1AD8 /* PostView */ = {
+			isa = PBXGroup;
+			children = (
+				D86E9654195472430044C28F /* PostView.storyboard */,
+				D82B23CE1955F3CF00D2F2F0 /* PostManager.h */,
+				D82B23CF1955F3CF00D2F2F0 /* PostManager.m */,
+				D86E9656195474830044C28F /* PostViewController.h */,
+				D86E9657195474830044C28F /* PostViewController.m */,
+				D82B23CB1955E78400D2F2F0 /* NodeChosenViewController.h */,
+				D82B23CC1955E78400D2F2F0 /* NodeChosenViewController.m */,
+			);
+			name = PostView;
+			sourceTree = "<group>";
+		};
+		D827E0F91955FCAC00DD1AD8 /* StartView */ = {
+			isa = PBXGroup;
+			children = (
+				D8B228A7193B691100755032 /* Start.storyboard */,
+				D8F7B66E193C446C00A9B9BA /* StartViewController.h */,
+				D8F7B66F193C446C00A9B9BA /* StartViewController.m */,
+			);
+			name = StartView;
+			sourceTree = "<group>";
+		};
 		D8A47C001923B4FB00448690 = {
 			isa = PBXGroup;
 			children = (
@@ -203,9 +238,8 @@
 				D8DB7BFD1924948600096CBA /* Views */,
 				D8A47C4A1923BE1300448690 /* Models */,
 				D8DB7BFE1924949500096CBA /* Controllers */,
-				D8B228A7193B691100755032 /* Start.storyboard */,
-				D8F7B66E193C446C00A9B9BA /* StartViewController.h */,
-				D8F7B66F193C446C00A9B9BA /* StartViewController.m */,
+				D827E0F81955FC8E00DD1AD8 /* PostView */,
+				D827E0F91955FCAC00DD1AD8 /* StartView */,
 				D8A47C1E1923B4FB00448690 /* Main.storyboard */,
 				D8A47C1B1923B4FB00448690 /* AppDelegate.h */,
 				D8A47C1C1923B4FB00448690 /* AppDelegate.m */,
@@ -368,6 +402,7 @@
 			files = (
 				D8A47C251923B4FB00448690 /* Images.xcassets in Resources */,
 				D80DAC6B1932054F00B2B57C /* topic.html in Resources */,
+				D86E9655195472430044C28F /* PostView.storyboard in Resources */,
 				D80DAB9B192FB17A00B2B57C /* reply.html in Resources */,
 				D8DB7C331925174600096CBA /* style.css in Resources */,
 				D8A47C171923B4FB00448690 /* InfoPlist.strings in Resources */,
@@ -425,10 +460,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D86E9658195474830044C28F /* PostViewController.m in Sources */,
 				D8A47C59192444AE00448690 /* User.m in Sources */,
 				D8A47C501923BE4600448690 /* Reply.m in Sources */,
 				D86CA66D19341E1D00E6D79E /* TriangleView.m in Sources */,
 				D8A9DA9E194C776600256973 /* FadeInImageView.m in Sources */,
+				D82B23D01955F3CF00D2F2F0 /* PostManager.m in Sources */,
 				D8A47C1D1923B4FB00448690 /* AppDelegate.m in Sources */,
 				D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */,
 				D8A47C491923BA4C00448690 /* Topic.m in Sources */,
@@ -442,6 +479,7 @@
 				D8A47C461923B61600448690 /* GatherAPI.m in Sources */,
 				D8F7B670193C446C00A9B9BA /* StartViewController.m in Sources */,
 				D8A47C531923C73900448690 /* TopicCell.m in Sources */,
+				D82B23CD1955E78400D2F2F0 /* NodeChosenViewController.m in Sources */,
 				D8B228A4193B591E00755032 /* MAWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

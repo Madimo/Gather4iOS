@@ -49,6 +49,12 @@
 - (NSURLSessionDataTask *)getAllNodesWithSuccess:(void (^)(NSArray *nodes))success
                                          failure:(void (^)(NSException * exception))failure;
 
+- (NSURLSessionDataTask *)createTopicWithTitle:(NSString *)title
+                                       content:(NSString *)content
+                                        nodeId:(NSInteger)nodeId
+                                       success:(void (^)(Topic *topic))success
+                                       failure:(void (^)(NSException * exception))failure;
+
 + (instancetype)sharedAPI;
 
 @end
