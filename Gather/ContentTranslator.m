@@ -234,7 +234,7 @@
         content = [self filterXSS:topic.content];
     
     [content replaceOccurrencesOfString:@"\r\n"
-                             withString:@"<br>"
+                             withString:@" <br> "
                                 options:NSLiteralSearch
                                   range:NSMakeRange(0, content.length)];
     
@@ -298,7 +298,7 @@
         NSMutableString *content = [self filterXSS:reply.content];
         
         [content replaceOccurrencesOfString:@"\r\n"
-                                 withString:@"<br>"
+                                 withString:@" <br> "
                                     options:NSLiteralSearch
                                       range:NSMakeRange(0, content.length)];
         
