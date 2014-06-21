@@ -31,7 +31,7 @@
     dispatch_once(&onceToken, ^{
         user = [[User alloc] init];
         user.userId = 0;
-        user.username = @"Unknown User";
+        user.username = @"Unknown";
     });
     return user;
 }

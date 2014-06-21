@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "Node.h"
 
 @interface Topic : NSObject
 
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) NSDate *changed;
 
 @property (strong, nonatomic) User *author;
+@property (strong, nonatomic) Node *node;
 
 - (id)initWithTopicDict:(NSDictionary *)dict;
 

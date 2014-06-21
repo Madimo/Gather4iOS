@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSString *icon;
 
++ (instancetype)unknownNode;
+
 - (instancetype)initWithId:(NSInteger)nodeId
                       name:(NSString *)name
                       slug:(NSString *)slug
