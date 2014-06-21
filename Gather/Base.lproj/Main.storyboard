@@ -102,7 +102,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12-12 00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Drr-qi-QkI">
-                                            <rect key="frame" x="88" y="86" width="183" height="21"/>
+                                            <rect key="frame" x="88" y="86" width="77" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -133,6 +133,17 @@
                                             <rect key="frame" x="68" y="33" width="13" height="24"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="node" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecY-sj-i4g">
+                                            <rect key="frame" x="193" y="86" width="80" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Tag" translatesAutoresizingMaskIntoConstraints="NO" id="TMB-Qm-1rS">
+                                            <rect key="frame" x="173" y="89" width="15" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
@@ -141,6 +152,7 @@
                                     <outlet property="authorLabel" destination="lRq-kx-RpZ" id="8fZ-9N-ymM"/>
                                     <outlet property="avatarView" destination="35J-ek-L5B" id="zbh-BI-3Rz"/>
                                     <outlet property="createdLabel" destination="Drr-qi-QkI" id="3CM-5g-jF9"/>
+                                    <outlet property="nodeLabel" destination="ecY-sj-i4g" id="Vz2-ZB-x7D"/>
                                     <outlet property="replyCountLabel" destination="c4h-ro-UOo" id="qTp-hW-lz8"/>
                                     <outlet property="titleLabel" destination="rpd-BH-5IA" id="f6H-l1-Q6p"/>
                                     <outlet property="view" destination="cEL-Pu-d9n" id="4Rb-L9-gep"/>
@@ -173,6 +185,7 @@
     <resources>
         <image name="ReplyAdd" width="60" height="60"/>
         <image name="ReplyCancel" width="30" height="30"/>
+        <image name="Tag" width="64" height="64"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

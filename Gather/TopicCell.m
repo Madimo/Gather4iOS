@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarView;
 @property (weak, nonatomic) IBOutlet UILabel *createdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nodeLabel;
 @end
 
 @implementation TopicCell
@@ -46,6 +47,7 @@
     self.authorLabel.text = topic.author.username;
     NSString *avatarUrl = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=200", topic.author.emailMD5];
     [self.avatarView setImageWithURL:[NSURL URLWithString:avatarUrl]];
+    self.nodeLabel.text = topic.node.name;
     self.replyCountLabel.text = [NSString stringWithFormat:@"%@", @(topic.replyCount)];
     self.createdLabel.text = [TimeOpreator convertStringFromDate:topic.created];
 

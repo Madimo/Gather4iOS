@@ -11,6 +11,7 @@
 #import "RepliesViewController.h"
 #import "GatherAPI.h"
 #import "BackgroundImage.h"
+#import "PostViewController.h"
 
 @interface TopicViewController ()
 @property (nonatomic, strong) NSMutableArray *topics;
@@ -141,6 +142,18 @@
     }
 }
 
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PostView" bundle:nil];
+        
+        if ([storyboard.instantiateInitialViewController isKindOfClass:[PostViewController class]]) {
+            PostViewController *pvc = storyboard.instantiateInitialViewController;
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:pvc];
+            [self presentViewController:nc animated:YES completion:nil];
+        }
+    }
+}
 
 #pragma mark - Navigation
 
