@@ -238,6 +238,11 @@
                                 options:NSLiteralSearch
                                   range:NSMakeRange(0, content.length)];
     
+    [content replaceOccurrencesOfString:@"\n"
+                             withString:@" <br> "
+                                options:NSLiteralSearch
+                                  range:NSMakeRange(0, content.length)];
+    
     [topicTemplate replaceOccurrencesOfString:@"{{ topic_body }}"
                                    withString:[self convertToHTMLUsingString:content]
                                       options:NSLiteralSearch
@@ -298,6 +303,11 @@
         NSMutableString *content = [self filterXSS:reply.content];
         
         [content replaceOccurrencesOfString:@"\r\n"
+                                 withString:@" <br> "
+                                    options:NSLiteralSearch
+                                      range:NSMakeRange(0, content.length)];
+        
+        [content replaceOccurrencesOfString:@"\n"
                                  withString:@" <br> "
                                     options:NSLiteralSearch
                                       range:NSMakeRange(0, content.length)];
