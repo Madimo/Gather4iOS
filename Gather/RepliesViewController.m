@@ -10,12 +10,14 @@
 #import "GatherAPI.h"
 #import "ContentTranslator.h"
 #import "WebBrowserController.h"
+#import "PostViewController.h"
 
-@interface RepliesViewController () <UIWebViewDelegate, UIActionSheetDelegate>
+@interface RepliesViewController () <UIWebViewDelegate, UIActionSheetDelegate, PostViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
 @property (strong, nonatomic) UIWebView *contentWebView;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) Topic *topic;
+@property (strong, nonatomic) NSString *content;
 @end
 
 @implementation RepliesViewController
@@ -116,8 +118,8 @@
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
                                                                      delegate:self
                                                             cancelButtonTitle:@"Cancel"
-                                                       destructiveButtonTitle:@"Reply"
-                                                            otherButtonTitles:@"Rank", nil];
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"Reply", @"Rank", nil];
             actionSheet.tag = index;
             [actionSheet showInView:self.view];
         } else if ([components[1] isEqualToString:@"jumpToFloor"]) {
@@ -149,14 +151,59 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
+    switch (buttonIndex) {
+        case 0: {
+            // Reply
+            NSString *username = ((Reply *)self.topic.replies[actionSheet.tag]).author.username;
+            NSString *reply = [NSString stringWithFormat:@"#%@ @%@ ", @(actionSheet.tag + 1), username];
+            if (!self.content || [self.content isEqualToString:@""]) {
+                self.content = reply;
+            } else {
+                self.content = [NSString stringWithFormat:@"%@\n%@ ", self.content, reply];
+            }
+            [self reply:actionSheet];
+        }
+            break;
+        case 1:
+            // Rank
+            self.content = ((Reply *)self.topic.replies[actionSheet.tag]).content;
+            [self reply:actionSheet];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - Button action
 
+- (IBAction)reply:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PostView" bundle:nil];
+    if ([storyboard.instantiateInitialViewController isKindOfClass:[PostViewController class]]) {
+        PostViewController *pvc = storyboard.instantiateInitialViewController;
+        pvc.postType = PostTypeReply;
+        pvc.topic = self.topic;
+        pvc.content = self.content;
+        pvc.delegate = self;
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:pvc];
+        [self presentViewController:nc animated:YES completion:nil];
+    }
+}
+
 - (IBAction)cancel:(id)sender
 {
     [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+#pragma mark - PostViewControllerDelegate
+
+- (void)postViewController:(PostViewController *)controller
+  postCanceledWithPostType:(PostType)postType
+                     title:(NSString *)title
+                      node:(Node *)node
+                   content:(NSString *)content
+{
+    self.content = content;
 }
 
 @end
