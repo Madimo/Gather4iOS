@@ -119,7 +119,7 @@
                                                                      delegate:self
                                                             cancelButtonTitle:@"Cancel"
                                                        destructiveButtonTitle:nil
-                                                            otherButtonTitles:@"Reply", @"Rank", nil];
+                                                            otherButtonTitles:@"Reply", @"Rank", @"Copy", nil];
             actionSheet.tag = index;
             [actionSheet showInView:self.view];
         } else if ([components[1] isEqualToString:@"jumpToFloor"]) {
@@ -168,6 +168,12 @@
             // Rank
             self.content = ((Reply *)self.topic.replies[actionSheet.tag]).content;
             [self reply:actionSheet];
+            break;
+        case 2: {
+            // Copy
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            [pasteboard setString:((Reply *)self.topic.replies[actionSheet.tag]).content];
+        }
             break;
         default:
             break;
