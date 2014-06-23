@@ -42,9 +42,9 @@
                                  success:(void (^)(NSArray *nodes, NSInteger totalPage, NSInteger totalNode))success
                                  failure:(void (^)(NSException * exception))failure;
 
-- (NSURLSessionDataTask *)getNodesById:(NSInteger)nodeId
-                               success:(void (^)(Node *node))success
-                               failure:(void (^)(NSException * exception))failure;
+- (NSURLSessionDataTask *)getNodeById:(NSInteger)nodeId
+                              success:(void (^)(Node *node))success
+                              failure:(void (^)(NSException * exception))failure;
 
 - (NSURLSessionDataTask *)getAllNodesWithSuccess:(void (^)(NSArray *nodes))success
                                          failure:(void (^)(NSException * exception))failure;
@@ -54,6 +54,11 @@
                                         nodeId:(NSInteger)nodeId
                                        success:(void (^)(Topic *topic))success
                                        failure:(void (^)(NSException * exception))failure;
+
+- (NSURLSessionDataTask *)createReplyWithTopicId:(NSInteger)topicId
+                                         content:(NSString *)content
+                                         success:(void (^)(Reply *reply))success
+                                         failure:(void (^)(NSException * exception))failure;
 
 + (instancetype)sharedAPI;
 
