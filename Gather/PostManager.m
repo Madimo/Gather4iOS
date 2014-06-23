@@ -44,6 +44,27 @@
     
 }
 
+- (void)postReplyWithTopicId:(NSInteger)topicId
+                     content:(NSString *)content
+                      images:(UIImage *)images
+                     success:(void (^)(Reply *reply))success
+                     failure:(void (^)(NSException *exception))failure
+{
+    GatherAPI *api = [GatherAPI sharedAPI];
+    [api createReplyWithTopicId:topicId
+                        content:content
+                        success:^(Reply *reply) {
+                            if (success) {
+                                success(reply);
+                            }
+                        }
+                        failure:^(NSException *exception) {
+                            if (failure) {
+                                failure(exception);
+                            }
+                        }];
+}
+
 #pragma mark - Singleton
 
 + (instancetype)manager

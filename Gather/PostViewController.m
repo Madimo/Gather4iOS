@@ -40,11 +40,12 @@
     
     if (self.postType == PostTypeTopic) {
         self.nodeItem = -1;
-    } else {
-        self.titleTextField.text = [NSString stringWithFormat:@"Re: %@", self.title];
+    } else if (self.postType == PostTypeReply) {
+        self.titleTextField.text = [NSString stringWithFormat:@"Re: %@", self.topic.title];
         self.titleTextField.enabled = NO;
+        self.titleTextField.textColor = [UIColor lightGrayColor];
         [self.activityIndicator stopAnimating];
-        self.nodeLabel.text = self.nodeName;
+        self.nodeLabel.text = self.topic.node.name;
         self.nodeLabel.hidden = NO;
     }
     self.contentTextView.text = self.content;
@@ -64,50 +65,110 @@
 - (IBAction)post:(id)sender
 {
     if (self.postType == PostTypeTopic) {
-        if ([self.titleTextField.text isEqualToString:@""]) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops .."
-                                                                message:@"It must have a title."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-            [alertView show];
-            return;
-        }
-        if (self.nodeItem < 0 || self.nodeItem >= self.nodes.count) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops .."
-                                                                message:@"You have to choose a node."
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-            [alertView show];
-            return;
-        }
-        
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        
-        NSString *content = self.contentTextView.text;
-        content = [NSString stringWithFormat:@"%@\n\n%@", content, [ud stringForKey:UD_KEY_SIGNATURE]];
-        
-        [[PostManager manager] postTopicWithTitle:self.titleTextField.text
-                                           nodeId:((Node *)self.nodes[self.nodeItem]).nodeId
-                                          content:content
-                                           images:nil
-                                          success:^(Topic *topic) {
-                                              
-                                          }
-                                          failure:^(NSException *exception) {
-                                              
-                                          }];
+        [self postTopic];
     } else if (self.postType == PostTypeReply) {
-        
+        [self postReply];
     }
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)close:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(postViewController:postCanceledWithPostType:title:node:content:)]) {
+        [self.delegate postViewController:self
+                 postCanceledWithPostType:self.postType
+                                    title:self.titleTextField.text
+                                     node:self.nodes[self.nodeItem]
+                                  content:self.contentTextView.text];
+    }
+}
+
+#pragma mark - Post
+
+- (void)postTopic
+{
+    if ([self.titleTextField.text isEqualToString:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops .."
+                                                            message:@"It must have a title."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    if (self.nodeItem < 0 || self.nodeItem >= self.nodes.count) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops .."
+                                                            message:@"You have to choose a node."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(postViewController:willPostWithPostType:title:node:content:)]) {
+        [self.delegate postViewController:self
+                     willPostWithPostType:self.postType
+                                    title:self.titleTextField.text
+                                     node:self.nodes[self.nodeItem]
+                                  content:self.contentTextView.text];
+    }
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    
+    NSString *content = self.contentTextView.text;
+    content = [NSString stringWithFormat:@"%@\n\n%@", content, [ud stringForKey:UD_KEY_SIGNATURE]];
+    
+    [[PostManager manager] postTopicWithTitle:self.titleTextField.text
+                                       nodeId:((Node *)self.nodes[self.nodeItem]).nodeId
+                                      content:content
+                                       images:nil
+                                      success:^(Topic *topic) {
+                                          
+                                      }
+                                      failure:^(NSException *exception) {
+                                          
+                                      }];
+}
+
+- (void)postReply
+{
+    if ([self.titleTextField.text isEqualToString:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops .."
+                                                            message:@"It must have content."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(postViewController:willPostWithPostType:title:node:content:)]) {
+        [self.delegate postViewController:self
+                     willPostWithPostType:self.postType
+                                    title:self.titleTextField.text
+                                     node:self.nodes[self.nodeItem]
+                                  content:self.contentTextView.text];
+    }
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    
+    NSString *content = self.contentTextView.text;
+    content = [NSString stringWithFormat:@"%@\n\n%@", content, [ud stringForKey:UD_KEY_SIGNATURE]];
+    
+    [[PostManager manager] postReplyWithTopicId:self.topic.topicId
+                                        content:self.contentTextView.text
+                                         images:nil
+                                        success:^(Reply *reply) {
+                                            
+                                        }
+                                        failure:^(NSException *exception) {
+                                            
+                                        }];
 }
 
 #pragma mark - Load nodes

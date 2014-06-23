@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Topic;
+@class Reply;
 
 @interface PostManager : NSObject
 
@@ -18,6 +19,12 @@
                     images:(UIImage *)images
                    success:(void (^)(Topic *topic))success
                    failure:(void (^)(NSException *exception))failure;
+
+- (void)postReplyWithTopicId:(NSInteger)topicId
+                     content:(NSString *)content
+                      images:(UIImage *)images
+                     success:(void (^)(Reply *reply))success
+                     failure:(void (^)(NSException *exception))failure;
 
 + (instancetype)manager;
 

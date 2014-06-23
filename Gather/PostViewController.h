@@ -8,16 +8,37 @@
 
 #import <UIKit/UIKit.h>
 
+@class PostViewController;
+@class Topic;
+@class Node;
+
 typedef NS_ENUM(NSUInteger, PostType) {
     PostTypeTopic,
     PostTypeReply,
 };
 
+@protocol PostViewControllerDelegate <NSObject>
+
+@optional
+- (void)postViewController:(PostViewController *)controller
+      willPostWithPostType:(PostType)postType
+                     title:(NSString *)title
+                      node:(Node *)node
+                   content:(NSString *)content;
+
+- (void)postViewController:(PostViewController *)controller
+  postCanceledWithPostType:(PostType)postType
+                     title:(NSString *)title
+                      node:(Node *)node
+                   content:(NSString *)content;
+
+@end
+
 @interface PostViewController : UITableViewController
 
 @property (nonatomic) PostType postType;
-@property (nonatomic, strong) NSString *nodeName;
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) Topic *topic;
 @property (nonatomic, strong) NSString *content;
+@property (nonatomic, weak) id<PostViewControllerDelegate> delegate;
 
 @end
