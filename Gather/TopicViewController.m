@@ -149,6 +149,7 @@
         
         if ([storyboard.instantiateInitialViewController isKindOfClass:[PostViewController class]]) {
             PostViewController *pvc = storyboard.instantiateInitialViewController;
+            [pvc setPostType:PostTypeTopic];
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:pvc];
             [self presentViewController:nc animated:YES completion:nil];
         }
