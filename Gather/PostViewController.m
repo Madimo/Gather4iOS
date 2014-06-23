@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *nodeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *errorIcon;
 @property (strong, nonatomic) NSArray *nodes;
 @property (nonatomic) NSInteger nodeItem;
 @property (nonatomic) BOOL isLoadingNodes;
@@ -181,6 +182,7 @@
 
     self.isLoadingNodes = YES;
     self.nodeLabel.hidden = YES;
+    self.errorIcon.hidden = YES;
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     
@@ -193,8 +195,7 @@
         self.isLoadingNodes = NO;
     } failure:^(NSException *exception) {
         [self.activityIndicator stopAnimating];
-        self.nodeLabel.text = @"Load failed, tap to try again";
-        self.nodeLabel.hidden = NO;
+        self.errorIcon.hidden = NO;
         self.isLoadingNodes = NO;
     }];
 }

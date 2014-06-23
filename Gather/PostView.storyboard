@@ -26,7 +26,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TITLE" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="STa-b1-NbG">
                                                     <rect key="frame" x="20" y="7" width="280" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -63,6 +63,10 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Error" translatesAutoresizingMaskIntoConstraints="NO" id="KP6-0B-3a9">
+                                                    <rect key="frame" x="267" y="12" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -112,6 +116,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="33S-cT-Esh" id="MbZ-33-iUE"/>
                         <outlet property="contentTextView" destination="ant-43-6Ua" id="XlK-NT-rmJ"/>
+                        <outlet property="errorIcon" destination="KP6-0B-3a9" id="e2H-a9-9E9"/>
                         <outlet property="nodeLabel" destination="oyg-yO-vNb" id="5Jd-Zs-XJc"/>
                         <outlet property="postButton" destination="sUa-N6-kvO" id="td9-e6-zYJ"/>
                         <outlet property="titleTextField" destination="STa-b1-NbG" id="cgv-uE-MkK"/>
@@ -186,6 +191,9 @@
             <point key="canvasLocation" x="94" y="23"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Error" width="64" height="64"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
