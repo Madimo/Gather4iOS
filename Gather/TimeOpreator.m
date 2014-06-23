@@ -25,7 +25,7 @@
         return @"Just now";
     }
     if (interval < 3600) {
-        return  [NSString stringWithFormat:@"%d minutes ago", (int)(interval / 60 + 0.5)];
+        return  [NSString stringWithFormat:@"%d mins ago", (int)(interval / 60 + 0.5)];
     }
     if (interval < 3600 * 24) {
         time = (int)(interval / 3600 + 0.5);
