@@ -123,7 +123,7 @@
                                   failure:(void (^)(NSException * exception))failure
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *parameters = @{ @"page" : [NSNumber numberWithInteger:page] };
+    NSDictionary *parameters = @{ @"page" : @(page) };
     NSURLSessionDataTask *task = [manager GET:GATHER_API_TOPIC
                                    parameters:parameters
                                       success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -199,81 +199,12 @@
     return task;
 }
 
-//- (NSURLSessionDataTask *)getTopicsInPage:(NSInteger)page
-//                                  success:(void (^)(NSArray *topics, NSInteger totalPage, NSInteger totalTopics))success
-//                                  failure:(void (^)(NSException * exception))failure
-//{
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    NSDictionary *parameters = @{ @"page" : [NSNumber numberWithInteger:page] };
-//    NSURLSessionDataTask *task = [manager GET:GATHER_API_TOPIC
-//                                   parameters:parameters
-//                                      success:^(NSURLSessionDataTask *task, id responseObject) {
-//                                          
-//                                          if (!success)
-//                                              return;
-//                                          
-//                                          @try {
-//                                              NSDictionary *result = (NSDictionary *)responseObject;
-//                                              NSInteger totalPage = [result[@"total_page"] integerValue];
-//                                              NSInteger totalTopics = [result[@"total"] integerValue];
-//                                              NSMutableArray *topics = [NSMutableArray new];
-//                                              for (NSDictionary *topicDict in result[@"topics"]) {
-//                                                  Topic *topic = [[Topic alloc] initWithTopicDict:topicDict];
-//                                                  [topics addObject:topic];
-//                                              }
-//                                              
-//                                              __block NSInteger finishCount = 0;
-//                                              __block void (^blk)() = ^{
-//                                                  [self getUserById:((Topic *)topics[finishCount]).authorId
-//                                                            success:^(User *user) {
-//                                                                ((Topic *)topics[finishCount]).author = user;
-//                                                                finishCount++;
-//                                                                if (finishCount == topics.count) {
-//                                                                    success(topics, totalPage, totalTopics);
-//                                                                    blk = nil;
-//                                                                }
-//                                                                else {
-//                                                                    blk();
-//                                                                }
-//                                                            }
-//                                                            failure:^(NSException *exception) {
-//                                                                ((Topic *)topics[finishCount]).author = [User unknownUser];
-//                                                                finishCount++;
-//                                                                if (finishCount == topics.count) {
-//                                                                    success(topics, totalPage, totalTopics);
-//                                                                    blk = nil;
-//                                                                }
-//                                                                else {
-//                                                                    blk();
-//                                                                }
-//                                                            }
-//                                                  ];
-//                                              };
-//                                              
-//                                              blk();
-//                                          }
-//                                          @catch (NSException *exception) {
-//                                              if (failure)
-//                                                  failure(exception);
-//                                          }
-//                                      }
-//                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                          
-//                                          if (!failure)
-//                                              return;
-//                                          
-//                                          NSException *exception = CreateNetworkErrorException(task, error);
-//                                          failure(exception);
-//                                      }];
-//    return task;
-//}
-
 - (NSURLSessionDataTask *)getTopicById:(NSInteger)topicId
                                success:(void (^)(Topic *topic))success
                                failure:(void (^)(NSException * exception))failure
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSString *url = [NSString stringWithFormat:@"%@%ld", GATHER_API_TOPIC, (long)topicId];
+    NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_TOPIC, @(topicId)];
     debugLog(@"%@", url);
     NSURLSessionDataTask *task = [manager GET:url
                                    parameters:nil
@@ -350,83 +281,6 @@
     return task;
 }
 
-//- (NSURLSessionDataTask *)getTopicById:(NSInteger)topicId
-//                               success:(void (^)(Topic *topic))success
-//                               failure:(void (^)(NSException * exception))failure
-//{
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    NSString *url = [NSString stringWithFormat:@"%@%ld", GATHER_API_TOPIC, (long)topicId];
-//    debugLog(@"%@", url);
-//    NSURLSessionDataTask *task = [manager GET:url
-//                                   parameters:nil
-//                                      success:^(NSURLSessionDataTask *task, id responseObject) {
-//                                          
-//                                          if (!success)
-//                                              return;
-//                                          
-//                                          @try {
-//                                              NSDictionary *result = (NSDictionary *)responseObject;
-//                                              Topic *topic = [[Topic alloc] initWithTopicDict:result[@"topic"]];
-//                                              [self getUserById:topic.authorId
-//                                                        success:^(User *user) {
-//                                                            topic.author = user;
-//                                                            
-//                                                            if (topic.replies.count <= 0) {
-//                                                                success(topic);
-//                                                                return;
-//                                                            }
-//                                                            
-//                                                            __block NSInteger finishCount = 0;
-//                                                            __block void (^blk)() = ^{
-//                                                                [self getUserById:((Reply *)topic.replies[finishCount]).authorId
-//                                                                          success:^(User *user) {
-//                                                                              ((Reply *)topic.replies[finishCount]).author = user;
-//                                                                              finishCount++;
-//                                                                              if (finishCount == topic.replies.count) {
-//                                                                                  success(topic);
-//                                                                                  blk = nil;
-//                                                                              }
-//                                                                              else {
-//                                                                                  blk();
-//                                                                              }
-//                                                                          }
-//                                                                          failure:^(NSException *exception) {
-//                                                                              ((Reply *)topic.replies[finishCount]).author = [User unknownUser];
-//                                                                              finishCount++;
-//                                                                              if (finishCount == topic.replies.count) {
-//                                                                                  success(topic);
-//                                                                                  blk = nil;
-//                                                                              }
-//                                                                              else {
-//                                                                                  blk();
-//                                                                              }
-//                                                                          }
-//                                                                ];
-//                                                            };
-//                                                            
-//                                                            blk();
-//                                                        }
-//                                                        failure:^(NSException *exception) {
-//                                                            topic.author = [User unknownUser];
-//                                                        }
-//                                               ];
-//                                          }
-//                                          @catch (NSException *exception) {
-//                                              if (failure)
-//                                                  failure(exception);
-//                                          }
-//                                      }
-//                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                          
-//                                          if (!failure)
-//                                              return;
-//                                          
-//                                          NSException *exception = CreateNetworkErrorException(task, error);
-//                                          failure(exception);
-//                                      }];
-//    return task;
-//}
-
 - (NSURLSessionDataTask *)getUserById:(NSInteger)userId
                               success:(void (^)(User *user))success
                               failure:(void (^)(NSException * exception))failure
@@ -435,7 +289,7 @@
         return nil;
     
     User *user;
-    NSNumber *idNumber = [NSNumber numberWithInteger:userId];
+    NSNumber *idNumber = @(userId);
     if (self.userList[idNumber]) {
         user = self.userList[idNumber];
         success(user);
@@ -459,7 +313,7 @@
                                   failure:(void (^)(NSException * exception))failure
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSString *url = [NSString stringWithFormat:@"%@%ld", GATHER_API_USER, (long)userId];
+    NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_USER, @(userId)];
     NSURLSessionDataTask *task = [manager GET:url
                                    parameters:nil
                                       success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -470,7 +324,7 @@
                                           @try {
                                               NSDictionary *result = (NSDictionary *)responseObject;
                                               User *user = [[User alloc] initWithUserDict:result[@"user"]];
-                                              self.userList[[NSNumber numberWithInteger:userId]] = user;
+                                              self.userList[@(userId)] = user;
                                               success(user);
                                           }
                                           @catch (NSException *exception) {
@@ -691,39 +545,6 @@
                                   ];
     return task;
 }
-
-//- (NSURLSessionDataTask *)getTopicsInPage:(NSInteger)page
-//                                  success:(void (^)(NSArray *topics, NSInteger totalPage, NSInteger totalTopics))success
-//                                  failure:(void (^)(NSException * exception))failure
-//{
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    NSDictionary *parameters = @{ @"page" : [NSNumber numberWithInteger:page] };
-//    NSURLSessionDataTask *task = [manager GET:GATHER_API_TOPIC
-//                                   parameters:parameters
-//                                      success:^(NSURLSessionDataTask *task, id responseObject) {
-//                                          
-//                                          if (!success)
-//                                              return;
-//                                          
-//                                          @try {
-//                                              NSDictionary *result = (NSDictionary *)responseObject;
-//
-//                                          }
-//                                          @catch (NSException *exception) {
-//                                              if (failure)
-//                                                  failure(exception);
-//                                          }
-//                                      }
-//                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                          
-//                                          if (!failure)
-//                                              return;
-//                                          
-//                                          NSException *exception = CreateNetworkErrorException(task, error);
-//                                          failure(exception);
-//                                      }];
-//    return task;
-//}
 
 #pragma mark - Private method
 

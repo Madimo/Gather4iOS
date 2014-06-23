@@ -19,7 +19,7 @@
 - (id)webView:(id)view identifierForInitialRequest:(id)initialRequest fromDataSource:(id)dataSource
 {
     [super webView:view identifierForInitialRequest:initialRequest fromDataSource:dataSource];
-    return [NSNumber numberWithInteger:self.resourceCount++];
+    return @(self.resourceCount++);
 }
 
 - (void)webView:(id)view resource:(id)resource didFailLoadingWithError:(id)error fromDataSource:(id)dataSource
