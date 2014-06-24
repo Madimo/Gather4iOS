@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *nodeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *errorIcon;
+@property (weak, nonatomic) IBOutlet UILabel *nodeDisplay;
 @property (strong, nonatomic) NSArray *nodes;
 @property (nonatomic) NSInteger nodeItem;
 @property (nonatomic) BOOL isLoadingNodes;
@@ -48,6 +49,7 @@
         [self.activityIndicator stopAnimating];
         self.nodeLabel.text = self.topic.node.name;
         self.nodeLabel.hidden = NO;
+        self.nodeDisplay.textColor = [UIColor grayColor];
     }
     self.contentTextView.text = self.content;
 }
@@ -56,8 +58,12 @@
 {
     if (self.postType == PostTypeTopic) {
         [self.titleTextField becomeFirstResponder];
-    } else {
+    } else if (self.postType == PostTypeReply) {
         [self.contentTextView becomeFirstResponder];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        [self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+
     }
 }
 

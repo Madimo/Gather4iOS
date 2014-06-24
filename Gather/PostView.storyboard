@@ -117,6 +117,7 @@
                         <outlet property="activityIndicator" destination="33S-cT-Esh" id="MbZ-33-iUE"/>
                         <outlet property="contentTextView" destination="ant-43-6Ua" id="XlK-NT-rmJ"/>
                         <outlet property="errorIcon" destination="KP6-0B-3a9" id="e2H-a9-9E9"/>
+                        <outlet property="nodeDisplay" destination="e7D-MR-rxz" id="Dtu-gs-Hvv"/>
                         <outlet property="nodeLabel" destination="oyg-yO-vNb" id="5Jd-Zs-XJc"/>
                         <outlet property="postButton" destination="sUa-N6-kvO" id="td9-e6-zYJ"/>
                         <outlet property="titleTextField" destination="STa-b1-NbG" id="cgv-uE-MkK"/>
