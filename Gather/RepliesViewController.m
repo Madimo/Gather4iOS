@@ -14,6 +14,7 @@
 
 @interface RepliesViewController () <UIWebViewDelegate, UIActionSheetDelegate, PostViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIWebView *contentWebView;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) Topic *topic;
@@ -66,12 +67,16 @@
 
 - (void)refresh
 {
+    [self.activityIndicator startAnimating];
+    self.activityIndicator.hidden = NO;
+    
     [[GatherAPI sharedAPI] getTopicById:self.topicId
                                 success:^(Topic *topic) {
                                     self.topic = topic;
                                     NSString *repliesHTML = [[ContentTranslator sharedTranslator] convertToWebUsingTopic:topic];
                                     [self.contentWebView loadHTMLString:repliesHTML baseURL:nil];
                                     dispatch_async(dispatch_get_main_queue(), ^{
+                                        [self.activityIndicator stopAnimating];
                                         [UIView beginAnimations:nil context:nil];
                                         [UIView setAnimationDelay:0.5];
                                         self.contentWebView.alpha = 1.0;

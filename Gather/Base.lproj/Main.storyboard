@@ -19,6 +19,10 @@
                             <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-Yj-rXt">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FOd-h1-iZP">
+                                <rect key="frame" x="142" y="266" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ulf-ei-crd">
                                 <rect key="frame" x="20" y="34" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -42,6 +46,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="FOd-h1-iZP" secondAttribute="centerX" id="01Q-Zi-1cy"/>
+                            <constraint firstAttribute="centerY" secondItem="FOd-h1-iZP" secondAttribute="centerY" id="BvS-JR-a3p"/>
                             <constraint firstAttribute="trailing" secondItem="fcW-Yj-rXt" secondAttribute="trailing" id="Ey9-2z-GDg"/>
                             <constraint firstItem="31G-ZF-j9t" firstAttribute="top" secondItem="fcW-Yj-rXt" secondAttribute="bottom" id="QUd-Bj-kiI"/>
                             <constraint firstItem="fcW-Yj-rXt" firstAttribute="top" secondItem="qqt-hS-kIX" secondAttribute="top" id="gbc-Ks-1DG"/>
@@ -50,6 +56,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Reply" id="87J-lF-5sG"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="FOd-h1-iZP" id="kqB-Dc-hgz"/>
                         <outlet property="contentScrollView" destination="fcW-Yj-rXt" id="RFM-6M-JWC"/>
                     </connections>
                 </viewController>
