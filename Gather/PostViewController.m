@@ -76,9 +76,6 @@
     } else if (self.postType == PostTypeReply) {
         [self postReply];
     }
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)close:(id)sender
@@ -140,11 +137,14 @@
                                       failure:^(NSException *exception) {
                                           
                                       }];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)postReply
 {
-    if ([self.titleTextField.text isEqualToString:@""]) {
+    if ([self.contentTextView.text isEqualToString:@""]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops .."
                                                             message:@"It must have content."
                                                            delegate:nil
@@ -176,6 +176,9 @@
                                         failure:^(NSException *exception) {
                                             
                                         }];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Load nodes
