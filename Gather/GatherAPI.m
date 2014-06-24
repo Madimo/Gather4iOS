@@ -143,41 +143,45 @@
                   
                   NSOperationQueue *queue = [[NSOperationQueue alloc] init];
                   
-                  for (NSInteger i = 0; i < topics.count; ++i) {
-                      NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_USER, @(((Topic *)topics[i]).authorId)];
+                  for (Topic *topic in topics) {
+                      NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_USER, @(topic.authorId)];
                       NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                       AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
                       op.responseSerializer = [AFJSONResponseSerializer serializer];
                       [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                           User *author = [[User alloc] initWithUserDict:responseObject[@"user"]];
-                          ((Topic *)topics[i]).author = author;
+                          topic.author = author;
                       }
-                                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                    User *author = [User unknownUser];
-                                                    ((Topic *)topics[i]).author = author;
-                                                }];
+                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                          User *author = [User unknownUser];
+                          topic.author = author;
+                      }];
                       [queue addOperations:@[op] waitUntilFinished:YES];
                   }
                   
-                  for (NSInteger i = 0; i < topics.count; ++i) {
-                      NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_NODE, @(((Topic *)topics[i]).nodeId)];
+                  for (Topic *topic in topics) {
+                      NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_NODE, @(topic.nodeId)];
                       NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                       AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
                       op.responseSerializer = [AFJSONResponseSerializer serializer];
                       [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                           Node *node = [[Node alloc] initWithNodeDict:responseObject[@"node"]];
-                          ((Topic *)topics[i]).node = node;
-                          if (i == topics.count - 1) {
-                              success(topics, totalPage, totalTopics);
+                          topic.node = node;
+                          for (Topic *t in topics) {
+                              if (!t.node)
+                                  return;
                           }
+                          success(topics, totalPage, totalTopics);
                       }
-                                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                    Node *node = [Node unknownNode];
-                                                    ((Topic *)topics[i]).node = node;
-                                                    if (i == topics.count - 1) {
-                                                        success(topics, totalPage, totalTopics);
-                                                    }
-                                                }];
+                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                          Node *node = [Node unknownNode];
+                          topic.node = node;
+                          for (Topic *t in topics) {
+                              if (!t.node)
+                                  return;
+                          }
+                          success(topics, totalPage, totalTopics);
+                      }];
                       [queue addOperations:@[op] waitUntilFinished:YES];
                   }
                   
@@ -233,25 +237,28 @@
                                                
                                                NSOperationQueue *queue = [[NSOperationQueue alloc] init];
                                                
-                                               for (NSInteger i = 0; i < topic.replies.count; ++i) {
-                                                   NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_USER, @(((Reply *)(topic.replies[i])).authorId)];
+                                               for (Reply *reply in topic.replies) {
+                                                   NSString *url = [NSString stringWithFormat:@"%@%@", GATHER_API_USER, @(reply.authorId)];
                                                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                                                    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
                                                    op.responseSerializer = [AFJSONResponseSerializer serializer];
                                                    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                        User *author = [[User alloc] initWithUserDict:responseObject[@"user"]];
-                                                       ((Reply *)(topic.replies[i])).author = author;
-                                                       if (i == topic.replies.count - 1) {
-                                                           success(topic);
+                                                       reply.author = author;
+                                                       for (Reply *r in topic.replies) {
+                                                           if (!r.author)
+                                                               return;
                                                        }
+                                                       success(topic);
                                                    }
-                                                                             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                                                 User *author = [User unknownUser];
-                                                                                 ((Reply *)(topic.replies[i])).author = author;
-                                                                                 if (i == topic.replies.count - 1) {
-                                                                                     success(topic);
-                                                                                 }
-                                                                             }];
+                                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                         User *author = [User unknownUser];
+                                                         reply.author = author;
+                                                         for (Reply *r in topic.replies) {
+                                                             if (!r.author)
+                                                                 return;
+                                                         }
+                                                    }];
                                                    [queue addOperations:@[op] waitUntilFinished:YES];
                                                }
                                            }
