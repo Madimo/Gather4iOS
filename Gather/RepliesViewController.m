@@ -114,7 +114,7 @@
     if (components.count == 3 && [[components objectAtIndex:0] isEqualToString:@"gather"]) {
         NSInteger index = [components[2] integerValue];
         if ([components[1] isEqualToString:@"reply"]) {
-            NSString *title = [NSString stringWithFormat:@"#%ld by %@", (long)index + 1, [self.topic.replies[index] author].username];
+            NSString *title = [NSString stringWithFormat:@"#%@ by %@", @(index + 1), [self.topic.replies[index] author].username];
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
                                                                      delegate:self
                                                             cancelButtonTitle:@"Cancel"

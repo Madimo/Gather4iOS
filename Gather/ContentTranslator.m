@@ -218,7 +218,7 @@
                                         range:NSMakeRange(0, topicTemplate.length)];
     
     [topicTemplate replaceOccurrencesOfString:@"{{ user_id }}"
-                                   withString:[NSString stringWithFormat:@"%ld", (long)topic.author.userId]
+                                   withString:[NSString stringWithFormat:@"%@", @(topic.author.userId)]
                                       options:NSLiteralSearch
                                         range:NSMakeRange(0, topicTemplate.length)];
     
@@ -271,12 +271,12 @@
         NSMutableString *replyTemplate = [self.replyTemplate mutableCopy];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_id }}"
-                                       withString:[NSString stringWithFormat:@"%ld", (long)count - 1]
+                                       withString:[NSString stringWithFormat:@"%@", @(count - 1)]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ user_id }}"
-                                       withString:[NSString stringWithFormat:@"%ld", (long)reply.author.userId]
+                                       withString:[NSString stringWithFormat:@"%@", @(reply.author.userId)]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
@@ -291,7 +291,7 @@
                                             range:NSMakeRange(0, replyTemplate.length)];
         
         [replyTemplate replaceOccurrencesOfString:@"{{ reply_number }}"
-                                       withString:[NSString stringWithFormat:@"%ld", (long)count]
+                                       withString:[NSString stringWithFormat:@"%@", @(count)]
                                           options:NSLiteralSearch
                                             range:NSMakeRange(0, replyTemplate.length)];
         
