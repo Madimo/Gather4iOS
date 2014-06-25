@@ -116,7 +116,8 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat fontSize = MIN(MAX(50.0, 70.0 - scrollView.contentOffset.y / 5.0), 100.0);
-    self.titleLabel.font = [UIFont fontWithName:@"Bodoni 72 Smallcaps" size:fontSize];
+    UIFont *font = self.titleLabel.font;
+    self.titleLabel.font = [font fontWithSize:fontSize];
     
     if (scrollView.contentOffset.y > scrollView.contentSize.height * 2.0 / 3.0) {
         [self loadNext];
