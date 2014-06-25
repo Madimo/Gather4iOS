@@ -171,15 +171,9 @@
 
 - (BOOL)isImageFileUrl:(NSString *)url
 {
-    NSArray *fileTypes = @[[url substringWithRange:NSMakeRange(url.length - 4, 4)].lowercaseString,
-                           [url substringWithRange:NSMakeRange(url.length - 5, 5)].lowercaseString];
-    if ([fileTypes[0] isEqualToString:@".jpg"] ||
-        [fileTypes[0] isEqualToString:@".png"] ||
-        [fileTypes[1] isEqualToString:@".jpeg"]) {
-        return YES;
-    } else {
-        return NO;
-    }
+    NSArray *array = [url componentsSeparatedByString:@"."];
+    NSArray *filetypes = @[@"jpg", @"jpeg", @"gif", @"png"];
+    return [filetypes containsObject:array.lastObject];
 }
 
 - (NSMutableString *)filterXSS:(NSString *)string
