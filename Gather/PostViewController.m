@@ -168,7 +168,7 @@
     content = [NSString stringWithFormat:@"%@\n\n%@", content, [ud stringForKey:UD_KEY_SIGNATURE]];
     
     [[PostManager manager] postReplyWithTopicId:self.topic.topicId
-                                        content:self.contentTextView.text
+                                        content:content
                                          images:nil
                                         success:^(Reply *reply) {
                                             
