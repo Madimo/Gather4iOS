@@ -15,6 +15,7 @@
 @interface RepliesViewController () <UIWebViewDelegate, UIActionSheetDelegate, PostViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *addReplyButton;
 @property (strong, nonatomic) UIWebView *contentWebView;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) Topic *topic;
@@ -69,6 +70,7 @@
 {
     [self.activityIndicator startAnimating];
     self.activityIndicator.hidden = NO;
+    self.addReplyButton.alpha = 0.0;
     
     [[GatherAPI sharedAPI] getTopicById:self.topicId
                                 success:^(Topic *topic) {
@@ -80,6 +82,7 @@
                                         [UIView beginAnimations:nil context:nil];
                                         [UIView setAnimationDelay:0.5];
                                         self.contentWebView.alpha = 1.0;
+                                        self.addReplyButton.alpha = 1.0;
                                         [UIView commitAnimations];
                                     });
                                 }

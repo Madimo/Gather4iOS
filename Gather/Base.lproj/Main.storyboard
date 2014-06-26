@@ -57,6 +57,7 @@
                     <navigationItem key="navigationItem" title="Reply" id="87J-lF-5sG"/>
                     <connections>
                         <outlet property="activityIndicator" destination="FOd-h1-iZP" id="kqB-Dc-hgz"/>
+                        <outlet property="addReplyButton" destination="Mjf-l1-pXc" id="Epk-hE-B9s"/>
                         <outlet property="contentScrollView" destination="fcW-Yj-rXt" id="RFM-6M-JWC"/>
                     </connections>
                 </viewController>
