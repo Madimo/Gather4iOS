@@ -21,7 +21,10 @@
     self.backgroundWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.backgroundWindow.bounds];
     backgroundImageView.image = [BackgroundImage sharedImage].image;
-    [self.backgroundWindow addSubview:backgroundImageView];
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.view = backgroundImageView;
+    self.backgroundWindow.rootViewController = vc;
+    self.backgroundWindow.windowLevel = UIWindowLevelNormal - 1;
     [self.backgroundWindow makeKeyAndVisible];
     
     NSString *storyboardName;
