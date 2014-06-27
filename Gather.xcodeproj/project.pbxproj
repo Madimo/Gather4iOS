@@ -404,6 +404,7 @@
 				D8A47C061923B4FB00448690 /* Frameworks */,
 				D8A47C071923B4FB00448690 /* Resources */,
 				53096D7146DB4DA89695F3BA /* Copy Pods Resources */,
+				D87C1349195DA63F00113D25 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -518,6 +519,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D87C1349195DA63F00113D25 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH`\nversion=`expr $version + 1`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $version\" $PRODUCT_SETTINGS_PATH  ";
 		};
 		E11560787A73452AB840D0F5 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
