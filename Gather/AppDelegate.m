@@ -10,6 +10,11 @@
 #import "GatherAPI.h"
 #import "BackgroundImage.h"
 #import <AFNetworkActivityIndicatorManager.h>
+#import <AFNetworking.h>
+
+@interface AppDelegate () <UIAlertViewDelegate>
+@property (strong, nonatomic) NSString *updateUrl;
+@end
 
 @implementation AppDelegate
 
@@ -41,7 +46,39 @@
         [ud synchronize];
     }
     
+    [self checkForUpdate];
+    
     return YES;
+}
+
+#pragma mark - Update
+
+- (void)checkForUpdate
+{
+    [[AFHTTPSessionManager manager] GET:@"http://fir.im/api/v2/app/version/com.Madimo.Gather"
+                             parameters:nil
+                                success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+                                    if ([responseObject[@"name"] isEqualToString:@"Gather"]) {
+                                        NSString *version = [NSBundle mainBundle].infoDictionary[(NSString *)kCFBundleVersionKey];
+                                        if (![version isEqualToString:responseObject[@"version"]]) {
+                                            self.updateUrl = responseObject[@"update_url"];
+                                            UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Update Available"
+                                                                                           message:responseObject[@"changelog"]
+                                                                                          delegate:self
+                                                                                 cancelButtonTitle:@"Later"
+                                                                                 otherButtonTitles:@"Update", nil];
+                                            [view show];
+                                        }
+                                    }
+                                }
+                                failure:nil];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.updateUrl]];
+    }
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
