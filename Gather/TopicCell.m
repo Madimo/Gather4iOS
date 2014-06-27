@@ -7,7 +7,6 @@
 //
 
 #import "TopicCell.h"
-#import <UIImageView+WebCache.h>
 #import "TimeOpreator.h"
 #import "Topic.h"
 

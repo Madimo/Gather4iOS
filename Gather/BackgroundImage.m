@@ -7,7 +7,6 @@
 //
 
 #import "BackgroundImage.h"
-#import <UIImage+ImageEffects.h>
 
 @implementation BackgroundImage
 

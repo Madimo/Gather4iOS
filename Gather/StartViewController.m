@@ -10,7 +10,6 @@
 #import "BackgroundImage.h"
 #import "GatherAPI.h"
 #import "TopicViewController.h"
-#import <POP.h>
 
 @interface StartViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

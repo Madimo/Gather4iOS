@@ -8,7 +8,6 @@
 
 #import "WebBrowserController.h"
 #import "MAWebView.h"
-#import <OpenInChromeController.h>
 
 @interface WebBrowserController () <UIWebViewDelegate, MAWebViewProgressDelegate>
 @property (nonatomic) UIStatusBarStyle statusBarStyle;

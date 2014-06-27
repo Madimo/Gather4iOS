@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 #import "GatherAPI.h"
 #import "BackgroundImage.h"
-#import <AFNetworkActivityIndicatorManager.h>
-#import <AFNetworking.h>
 
 @interface AppDelegate () <UIAlertViewDelegate>
 @property (strong, nonatomic) NSString *updateUrl;
