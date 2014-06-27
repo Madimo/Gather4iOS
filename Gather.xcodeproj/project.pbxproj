@@ -12,9 +12,24 @@
 		D80DAB9B192FB17A00B2B57C /* reply.html in Resources */ = {isa = PBXBuildFile; fileRef = D80DAB9A192FB17A00B2B57C /* reply.html */; };
 		D80DAC691931FAF900B2B57C /* TimeOpreator.m in Sources */ = {isa = PBXBuildFile; fileRef = D80DAC681931FAF900B2B57C /* TimeOpreator.m */; };
 		D80DAC6B1932054F00B2B57C /* topic.html in Resources */ = {isa = PBXBuildFile; fileRef = D80DAC6A1932054F00B2B57C /* topic.html */; };
+		D822FFA3195C2E5800C89CCF /* ALi0068.gif in Resources */ = {isa = PBXBuildFile; fileRef = D822FFA1195C2E5800C89CCF /* ALi0068.gif */; };
+		D822FFA4195C2E5800C89CCF /* ALi0122.gif in Resources */ = {isa = PBXBuildFile; fileRef = D822FFA2195C2E5800C89CCF /* ALi0122.gif */; };
 		D82B23CD1955E78400D2F2F0 /* NodeChosenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D82B23CC1955E78400D2F2F0 /* NodeChosenViewController.m */; };
 		D82B23D01955F3CF00D2F2F0 /* PostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D82B23CF1955F3CF00D2F2F0 /* PostManager.m */; };
 		D833CE5A194EBB050087C852 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = D833CE59194EBB050087C852 /* Node.m */; };
+		D865BE22195BA18500E39B38 /* Emoticons.plist in Resources */ = {isa = PBXBuildFile; fileRef = D865BE21195BA18500E39B38 /* Emoticons.plist */; };
+		D865BE2C195BA35B00E39B38 /* ALi0003.gif in Resources */ = {isa = PBXBuildFile; fileRef = D865BE24195BA35B00E39B38 /* ALi0003.gif */; };
+		D865BE2D195BA35B00E39B38 /* ALi0011.gif in Resources */ = {isa = PBXBuildFile; fileRef = D865BE25195BA35B00E39B38 /* ALi0011.gif */; };
+		D865BE2E195BA35B00E39B38 /* ALi0012.gif in Resources */ = {isa = PBXBuildFile; fileRef = D865BE26195BA35B00E39B38 /* ALi0012.gif */; };
+		D865BE2F195BA35B00E39B38 /* ALi0019.gif in Resources */ = {isa = PBXBuildFile; fileRef = D865BE27195BA35B00E39B38 /* ALi0019.gif */; };
+		D865BE30195BA35B00E39B38 /* ALi0021.gif in Resources */ = {isa = PBXBuildFile; fileRef = D865BE28195BA35B00E39B38 /* ALi0021.gif */; };
+		D865BE31195BA35B00E39B38 /* ALi0024.gif in Resources */ = {isa = PBXBuildFile; fileRef = D865BE29195BA35B00E39B38 /* ALi0024.gif */; };
+		D865BE32195BA35B00E39B38 /* ALi0028.gif in Resources */ = {isa = PBXBuildFile; fileRef = D865BE2A195BA35B00E39B38 /* ALi0028.gif */; };
+		D865BE33195BA35B00E39B38 /* ALi0030.gif in Resources */ = {isa = PBXBuildFile; fileRef = D865BE2B195BA35B00E39B38 /* ALi0030.gif */; };
+		D865BE36195BA3AF00E39B38 /* EmoticonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D865BE35195BA3AF00E39B38 /* EmoticonManager.m */; };
+		D865BE39195BA49600E39B38 /* Emoticon.m in Sources */ = {isa = PBXBuildFile; fileRef = D865BE38195BA49600E39B38 /* Emoticon.m */; };
+		D865BE3C195BAA6A00E39B38 /* EmoticonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D865BE3B195BAA6A00E39B38 /* EmoticonViewController.m */; };
+		D865BE3F195BAC9500E39B38 /* EmoticonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D865BE3E195BAC9500E39B38 /* EmoticonCell.m */; };
 		D86CA66D19341E1D00E6D79E /* TriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86CA66C19341E1D00E6D79E /* TriangleView.m */; };
 		D86E9655195472430044C28F /* PostView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86E9654195472430044C28F /* PostView.storyboard */; };
 		D86E9658195474830044C28F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86E9657195474830044C28F /* PostViewController.m */; };
@@ -69,12 +84,31 @@
 		D80DAC671931FAF900B2B57C /* TimeOpreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeOpreator.h; sourceTree = "<group>"; };
 		D80DAC681931FAF900B2B57C /* TimeOpreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeOpreator.m; sourceTree = "<group>"; };
 		D80DAC6A1932054F00B2B57C /* topic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = topic.html; sourceTree = "<group>"; };
+		D822FFA1195C2E5800C89CCF /* ALi0068.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0068.gif; sourceTree = "<group>"; };
+		D822FFA2195C2E5800C89CCF /* ALi0122.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0122.gif; sourceTree = "<group>"; };
 		D82B23CB1955E78400D2F2F0 /* NodeChosenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeChosenViewController.h; sourceTree = "<group>"; };
 		D82B23CC1955E78400D2F2F0 /* NodeChosenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeChosenViewController.m; sourceTree = "<group>"; };
 		D82B23CE1955F3CF00D2F2F0 /* PostManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostManager.h; sourceTree = "<group>"; };
 		D82B23CF1955F3CF00D2F2F0 /* PostManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostManager.m; sourceTree = "<group>"; };
 		D833CE58194EBB050087C852 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
 		D833CE59194EBB050087C852 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
+		D865BE21195BA18500E39B38 /* Emoticons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Emoticons.plist; path = Gather/Emoticons.plist; sourceTree = SOURCE_ROOT; };
+		D865BE24195BA35B00E39B38 /* ALi0003.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0003.gif; sourceTree = "<group>"; };
+		D865BE25195BA35B00E39B38 /* ALi0011.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0011.gif; sourceTree = "<group>"; };
+		D865BE26195BA35B00E39B38 /* ALi0012.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0012.gif; sourceTree = "<group>"; };
+		D865BE27195BA35B00E39B38 /* ALi0019.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0019.gif; sourceTree = "<group>"; };
+		D865BE28195BA35B00E39B38 /* ALi0021.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0021.gif; sourceTree = "<group>"; };
+		D865BE29195BA35B00E39B38 /* ALi0024.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0024.gif; sourceTree = "<group>"; };
+		D865BE2A195BA35B00E39B38 /* ALi0028.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0028.gif; sourceTree = "<group>"; };
+		D865BE2B195BA35B00E39B38 /* ALi0030.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ALi0030.gif; sourceTree = "<group>"; };
+		D865BE34195BA3AF00E39B38 /* EmoticonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonManager.h; sourceTree = "<group>"; };
+		D865BE35195BA3AF00E39B38 /* EmoticonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonManager.m; sourceTree = "<group>"; };
+		D865BE37195BA49600E39B38 /* Emoticon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emoticon.h; sourceTree = "<group>"; };
+		D865BE38195BA49600E39B38 /* Emoticon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Emoticon.m; sourceTree = "<group>"; };
+		D865BE3A195BAA6A00E39B38 /* EmoticonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonViewController.h; sourceTree = "<group>"; };
+		D865BE3B195BAA6A00E39B38 /* EmoticonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonViewController.m; sourceTree = "<group>"; };
+		D865BE3D195BAC9500E39B38 /* EmoticonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonCell.h; sourceTree = "<group>"; };
+		D865BE3E195BAC9500E39B38 /* EmoticonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonCell.m; sourceTree = "<group>"; };
 		D86CA66B19341E1D00E6D79E /* TriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleView.h; sourceTree = "<group>"; };
 		D86CA66C19341E1D00E6D79E /* TriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleView.m; sourceTree = "<group>"; };
 		D86E9654195472430044C28F /* PostView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostView.storyboard; sourceTree = "<group>"; };
@@ -178,6 +212,7 @@
 		D827E0F81955FC8E00DD1AD8 /* PostView */ = {
 			isa = PBXGroup;
 			children = (
+				D87C1345195D28CE00113D25 /* EmoticonView */,
 				D86E9654195472430044C28F /* PostView.storyboard */,
 				D82B23CE1955F3CF00D2F2F0 /* PostManager.h */,
 				D82B23CF1955F3CF00D2F2F0 /* PostManager.m */,
@@ -197,6 +232,41 @@
 				D8F7B66F193C446C00A9B9BA /* StartViewController.m */,
 			);
 			name = StartView;
+			sourceTree = "<group>";
+		};
+		D865BE23195BA35B00E39B38 /* Emoticons */ = {
+			isa = PBXGroup;
+			children = (
+				D865BE21195BA18500E39B38 /* Emoticons.plist */,
+				D865BE24195BA35B00E39B38 /* ALi0003.gif */,
+				D865BE25195BA35B00E39B38 /* ALi0011.gif */,
+				D865BE26195BA35B00E39B38 /* ALi0012.gif */,
+				D865BE27195BA35B00E39B38 /* ALi0019.gif */,
+				D822FFA1195C2E5800C89CCF /* ALi0068.gif */,
+				D822FFA2195C2E5800C89CCF /* ALi0122.gif */,
+				D865BE28195BA35B00E39B38 /* ALi0021.gif */,
+				D865BE29195BA35B00E39B38 /* ALi0024.gif */,
+				D865BE2A195BA35B00E39B38 /* ALi0028.gif */,
+				D865BE2B195BA35B00E39B38 /* ALi0030.gif */,
+			);
+			name = Emoticons;
+			path = Emoticon;
+			sourceTree = "<group>";
+		};
+		D87C1345195D28CE00113D25 /* EmoticonView */ = {
+			isa = PBXGroup;
+			children = (
+				D865BE23195BA35B00E39B38 /* Emoticons */,
+				D865BE34195BA3AF00E39B38 /* EmoticonManager.h */,
+				D865BE35195BA3AF00E39B38 /* EmoticonManager.m */,
+				D865BE37195BA49600E39B38 /* Emoticon.h */,
+				D865BE38195BA49600E39B38 /* Emoticon.m */,
+				D865BE3A195BAA6A00E39B38 /* EmoticonViewController.h */,
+				D865BE3B195BAA6A00E39B38 /* EmoticonViewController.m */,
+				D865BE3D195BAC9500E39B38 /* EmoticonCell.h */,
+				D865BE3E195BAC9500E39B38 /* EmoticonCell.m */,
+			);
+			name = EmoticonView;
 			sourceTree = "<group>";
 		};
 		D8A47C001923B4FB00448690 = {
@@ -401,14 +471,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A47C251923B4FB00448690 /* Images.xcassets in Resources */,
+				D822FFA3195C2E5800C89CCF /* ALi0068.gif in Resources */,
 				D80DAC6B1932054F00B2B57C /* topic.html in Resources */,
+				D865BE33195BA35B00E39B38 /* ALi0030.gif in Resources */,
 				D86E9655195472430044C28F /* PostView.storyboard in Resources */,
 				D80DAB9B192FB17A00B2B57C /* reply.html in Resources */,
 				D8DB7C331925174600096CBA /* style.css in Resources */,
 				D8A47C171923B4FB00448690 /* InfoPlist.strings in Resources */,
+				D865BE22195BA18500E39B38 /* Emoticons.plist in Resources */,
+				D865BE2F195BA35B00E39B38 /* ALi0019.gif in Resources */,
+				D865BE2C195BA35B00E39B38 /* ALi0003.gif in Resources */,
 				D8B228A8193B691100755032 /* Start.storyboard in Resources */,
 				D8A47C201923B4FB00448690 /* Main.storyboard in Resources */,
+				D865BE31195BA35B00E39B38 /* ALi0024.gif in Resources */,
+				D822FFA4195C2E5800C89CCF /* ALi0122.gif in Resources */,
 				D8DB7C35192518A800096CBA /* content.html in Resources */,
+				D865BE2E195BA35B00E39B38 /* ALi0012.gif in Resources */,
+				D865BE2D195BA35B00E39B38 /* ALi0011.gif in Resources */,
+				D865BE32195BA35B00E39B38 /* ALi0028.gif in Resources */,
+				D865BE30195BA35B00E39B38 /* ALi0021.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,14 +541,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D865BE39195BA49600E39B38 /* Emoticon.m in Sources */,
 				D86E9658195474830044C28F /* PostViewController.m in Sources */,
 				D8A47C59192444AE00448690 /* User.m in Sources */,
 				D8A47C501923BE4600448690 /* Reply.m in Sources */,
+				D865BE36195BA3AF00E39B38 /* EmoticonManager.m in Sources */,
 				D86CA66D19341E1D00E6D79E /* TriangleView.m in Sources */,
 				D8A9DA9E194C776600256973 /* FadeInImageView.m in Sources */,
 				D82B23D01955F3CF00D2F2F0 /* PostManager.m in Sources */,
+				D865BE3C195BAA6A00E39B38 /* EmoticonViewController.m in Sources */,
 				D8A47C1D1923B4FB00448690 /* AppDelegate.m in Sources */,
 				D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */,
+				D865BE3F195BAC9500E39B38 /* EmoticonCell.m in Sources */,
 				D8A47C491923BA4C00448690 /* Topic.m in Sources */,
 				D8A47C561923C92900448690 /* TopicViewController.m in Sources */,
 				D833CE5A194EBB050087C852 /* Node.m in Sources */,
