@@ -158,8 +158,9 @@
                                       content:content
                                        images:nil
                                       success:^(Topic *topic) {
-                                          
-                                      }
+                                          if (self.delegate && [self.delegate respondsToSelector:@selector(postViewController:didPostWithPost:)]) {
+                                              [self.delegate postViewController:self didPostWithPost:topic];
+                                          }                                      }
                                       failure:^(NSException *exception) {
                                           
                                       }];
@@ -198,7 +199,9 @@
                                         content:content
                                          images:nil
                                         success:^(Reply *reply) {
-                                            
+                                            if (self.delegate && [self.delegate respondsToSelector:@selector(postViewController:didPostWithPost:)]) {
+                                                [self.delegate postViewController:self didPostWithPost:reply];
+                                            }
                                         }
                                         failure:^(NSException *exception) {
                                             

@@ -71,6 +71,7 @@
     [self.activityIndicator startAnimating];
     self.activityIndicator.hidden = NO;
     self.addReplyButton.alpha = 0.0;
+    self.contentWebView.alpha = 0.0;
     
     [[GatherAPI sharedAPI] getTopicById:self.topicId
                                 success:^(Topic *topic) {
@@ -218,6 +219,11 @@
                    content:(NSString *)content
 {
     self.content = content;
+}
+
+- (void)postViewController:(PostViewController *)controller didPostWithPost:(id)post
+{
+    [self refresh];
 }
 
 @end

@@ -32,6 +32,9 @@ typedef NS_ENUM(NSUInteger, PostType) {
                       node:(Node *)node
                    content:(NSString *)content;
 
+- (void)postViewController:(PostViewController *)controller
+           didPostWithPost:(id)post;
+
 @end
 
 @interface PostViewController : UITableViewController

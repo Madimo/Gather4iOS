@@ -508,7 +508,7 @@
                                            if (!success)
                                                return;
                                            
-                                           Topic *topic = [[Topic alloc] initWithTopicDict:responseObject[@"Topic"]];
+                                           Topic *topic = [[Topic alloc] initWithTopicDict:responseObject[@"topic"]];
                                            success(topic);
                                        }
                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -538,7 +538,7 @@
                                            if (!success)
                                                return;
                                            
-                                           Reply *reply = [[Reply alloc] initWithReplyDict:responseObject[@"Reply"]];
+                                           Reply *reply = [[Reply alloc] initWithReplyDict:responseObject[@"reply"]];
                                            success(reply);
                                        }
                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
