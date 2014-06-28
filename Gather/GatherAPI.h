@@ -17,6 +17,8 @@
 
 - (BOOL)isLogined;
 
+- (void)logout;
+
 - (NSURLSessionDataTask *)loginWithUsername:(NSString *)username
                                    password:(NSString *)password
                                     success:(void (^)())success

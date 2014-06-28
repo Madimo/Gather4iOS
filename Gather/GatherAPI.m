@@ -40,7 +40,8 @@
 - (NSString *)username
 {
     if (!_username) {
-        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER accessGroup:nil];
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER
+                                                                           accessGroup:nil];
         _token = [wrapper objectForKey:(__bridge id)(kSecAttrAccount)];
     }
     return _username;
@@ -49,7 +50,8 @@
 - (NSString *)token
 {
     if (!_token) {
-        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER accessGroup:nil];
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER
+                                                                           accessGroup:nil];
         _token = [wrapper objectForKey:(__bridge id)(kSecValueData)];
     }
     return _token;
@@ -60,7 +62,8 @@
     self.username = username;
     self.token = token;
     
-    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER accessGroup:nil];
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER
+                                                                       accessGroup:nil];
     [wrapper setObject:username forKey:(__bridge id)(kSecAttrAccount)];
     [wrapper setObject:token forKey:(__bridge id)(kSecValueData)];
 }
@@ -70,6 +73,15 @@
 - (BOOL)isLogined
 {
     return self.token != nil && ![self.token isEqualToString:@""];
+}
+
+- (void)logout
+{
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:KEYCHAIN_IDENTIFIER
+                                                                       accessGroup:nil];
+    [wrapper resetKeychainItem];
+    self.username = nil;
+    self.token = nil;
 }
 
 - (NSURLSessionDataTask *)loginWithUsername:(NSString *)username

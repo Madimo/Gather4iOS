@@ -13,7 +13,7 @@
 #import "BackgroundImage.h"
 #import "PostViewController.h"
 
-@interface TopicViewController () <TopicCellDelegate>
+@interface TopicViewController () <TopicCellDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSMutableArray *topics;
 @property (nonatomic) NSInteger totalPage;
 @property (nonatomic) NSInteger currentPage;
@@ -137,9 +137,21 @@
     
 }
 
-- (IBAction)logout:(id)sender
+- (IBAction)gotoLogout:(id)sender
 {
-    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Log out ?"
+                                                        message:@""
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Logout", nil];
+    [alertView show];
+}
+
+- (void)logout
+{
+    [[GatherAPI sharedAPI] logout];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Start" bundle:nil];
+    self.view.window.rootViewController = storyboard.instantiateInitialViewController;
 }
 
 #pragma mark - Table view data source & Delegate
@@ -234,6 +246,15 @@
     rvc.title = cell.topic.title;
     
     [self presentViewController:rvc animated:YES completion:nil];
+}
+
+#pragma mark - UIAlertView delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self logout];
+    }
 }
 
 @end

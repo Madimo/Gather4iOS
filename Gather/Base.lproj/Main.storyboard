@@ -106,7 +106,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="logout:" destination="SnJ-Fl-sLj" eventType="touchUpInside" id="ae3-oI-6vh"/>
+                                                <action selector="gotoLogout:" destination="SnJ-Fl-sLj" eventType="touchUpInside" id="QMC-WT-MWB"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1oX-QQ-3cm">
