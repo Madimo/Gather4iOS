@@ -124,7 +124,14 @@
 
 - (IBAction)newTopic:(id)sender
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PostView" bundle:nil];
     
+    if ([storyboard.instantiateInitialViewController isKindOfClass:[PostViewController class]]) {
+        PostViewController *pvc = storyboard.instantiateInitialViewController;
+        [pvc setPostType:PostTypeTopic];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:pvc];
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
 
 - (IBAction)changeTheme:(id)sender
@@ -212,22 +219,6 @@
         [UIView commitAnimations];
         
         self.currentMaxDisplayedCell = indexPath.row;
-    }
-}
-
-#pragma mark - Shake to create topic
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    if (motion == UIEventSubtypeMotionShake) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PostView" bundle:nil];
-        
-        if ([storyboard.instantiateInitialViewController isKindOfClass:[PostViewController class]]) {
-            PostViewController *pvc = storyboard.instantiateInitialViewController;
-            [pvc setPostType:PostTypeTopic];
-            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:pvc];
-            [self presentViewController:nc animated:YES completion:nil];
-        }
     }
 }
 
