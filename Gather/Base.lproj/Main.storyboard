@@ -176,12 +176,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Topics" id="i3K-NV-liO"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Zwn-Ne-APL">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <action selector="refresh" destination="SnJ-Fl-sLj" eventType="valueChanged" id="8Or-b3-8Lf"/>
-                        </connections>
-                    </refreshControl>
                     <connections>
                         <outlet property="lodingIndicatorView" destination="roK-T8-Xij" id="cac-DJ-0nF"/>
                         <outlet property="titleLabel" destination="rda-US-ycV" id="qQu-F2-0ab"/>

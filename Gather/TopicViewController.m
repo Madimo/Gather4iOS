@@ -17,10 +17,11 @@
 @property (nonatomic, strong) NSMutableArray *topics;
 @property (nonatomic) NSInteger totalPage;
 @property (nonatomic) NSInteger currentPage;
-@property (nonatomic) BOOL loading;
 @property (nonatomic) NSInteger currentMaxDisplayedCell;
+@property (nonatomic) BOOL loading;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *lodingIndicatorView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation TopicViewController
@@ -34,8 +35,14 @@
     [self refresh];
 }
 
-- (IBAction)refresh
+- (void)refresh
 {
+    if (self.loading) {
+        [self.refreshControl endRefreshing];
+        return;
+    }
+    
+    self.loading = YES;
     self.currentPage = 1;
     GatherAPI *api = [GatherAPI sharedAPI];
     [api getTopicsInPage:1
@@ -46,10 +53,21 @@
                      [self.tableView reloadData];
                      [self.refreshControl endRefreshing];
                      self.lodingIndicatorView.hidden = YES;
+                     
+                     if (!self.refreshControl) {
+                         self.refreshControl = [[UIRefreshControl alloc] init];
+                         self.refreshControl.tintColor = [UIColor whiteColor];
+                         [self.refreshControl addTarget:self
+                                                 action:@selector(refresh)
+                                       forControlEvents:UIControlEventValueChanged];
+                         [self.tableView addSubview:self.refreshControl];
+                     }
+                     self.loading = NO;
                  }
                  failure:^(NSException *exception) {
                      [self.refreshControl endRefreshing];
                      self.lodingIndicatorView.hidden = YES;
+                     self.loading = NO;
                  }
     ];
 }
