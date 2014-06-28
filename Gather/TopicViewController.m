@@ -13,7 +13,7 @@
 #import "BackgroundImage.h"
 #import "PostViewController.h"
 
-@interface TopicViewController ()
+@interface TopicViewController () <TopicCellDelegate>
 @property (nonatomic, strong) NSMutableArray *topics;
 @property (nonatomic) NSInteger totalPage;
 @property (nonatomic) NSInteger currentPage;
@@ -108,7 +108,8 @@
     
     // Configure the cell...
     Topic *topic = self.topics[indexPath.row];
-    [cell setTopic:topic];
+    cell.delegate = self;
+    cell.topic = topic;
     
     return cell;
 }
@@ -143,6 +144,8 @@
     }
 }
 
+#pragma mark - Shake to create topic
+
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     if (motion == UIEventSubtypeMotionShake) {
@@ -157,18 +160,21 @@
     }
 }
 
-#pragma mark - Navigation
+#pragma mark - TopicCell delegate
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)didTapUserInTopicCell:(TopicCell *)cell
 {
-    if ([segue.identifier isEqualToString:@"Reply"]) {
-        if ([segue.destinationViewController isKindOfClass:[RepliesViewController class]]) {
-            RepliesViewController *dest = segue.destinationViewController;
-            [dest setTopicId:((TopicCell *)sender).topic.topicId];
-            [dest setTitle:((TopicCell *)sender).topic.title];
-        }
-    }
+
 }
 
+- (void)didTapTopicInTopicCell:(TopicCell *)cell
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RepliesViewController *rvc = [storyboard instantiateViewControllerWithIdentifier:@"Reply"];
+    rvc.topicId = cell.topic.topicId;
+    rvc.title = cell.topic.title;
+    
+    [self presentViewController:rvc animated:YES completion:nil];
+}
 
 @end

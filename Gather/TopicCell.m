@@ -36,6 +36,14 @@
     self.avatarView.layer.masksToBounds = YES;
     
     self.backgroundColor = [UIColor clearColor];
+    
+    NSArray *views = @[self.view, self.avatarView, self.authorLabel];
+    for (UIView *view in views) {
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:@selector(handleGesture:)];
+        [view addGestureRecognizer:recognizer];
+        view.userInteractionEnabled = YES;
+    }
 }
 
 - (void)setTopic:(Topic *)topic
@@ -59,6 +67,21 @@
         animation.autoreverses = YES;
         animation.duration = 1.5;
         [self.replyCountLabel.layer addAnimation:animation forKey:@"UnreadNotifacition"];
+    }
+}
+
+- (void)handleGesture:(UITapGestureRecognizer *)recognizer
+{
+    if (self.delegate) {
+        if (recognizer.view == self.view) {
+            if ([self.delegate respondsToSelector:@selector(didTapTopicInTopicCell:)]) {
+                [self.delegate didTapTopicInTopicCell:self];
+            }
+        } else if (recognizer.view == self.avatarView || recognizer.view == self.authorLabel) {
+            if ([self.delegate respondsToSelector:@selector(didTapUserInTopicCell:)]) {
+                [self.delegate didTapUserInTopicCell:self];
+            }
+        }
     }
 }
 

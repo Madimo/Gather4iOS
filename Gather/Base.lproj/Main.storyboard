@@ -7,7 +7,7 @@
         <!--Replies View Controller - Reply-->
         <scene sceneID="hfy-2J-Ute">
             <objects>
-                <viewController id="xWe-ki-sFQ" customClass="RepliesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Reply" id="xWe-ki-sFQ" customClass="RepliesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sbc-DR-H1v"/>
                         <viewControllerLayoutGuide type="bottom" id="31G-ZF-j9t"/>
@@ -167,7 +167,6 @@
                                     <outlet property="replyCountLabel" destination="c4h-ro-UOo" id="qTp-hW-lz8"/>
                                     <outlet property="titleLabel" destination="rpd-BH-5IA" id="f6H-l1-Q6p"/>
                                     <outlet property="view" destination="cEL-Pu-d9n" id="4Rb-L9-gep"/>
-                                    <segue destination="xWe-ki-sFQ" kind="modal" identifier="Reply" animates="NO" id="cd3-Jm-m1Q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -186,6 +185,7 @@
                     <connections>
                         <outlet property="lodingIndicatorView" destination="roK-T8-Xij" id="cac-DJ-0nF"/>
                         <outlet property="titleLabel" destination="rda-US-ycV" id="qQu-F2-0ab"/>
+                        <segue destination="xWe-ki-sFQ" kind="modal" identifier="Reply" id="SuI-V8-tJ5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9X-dO-82N" userLabel="First Responder" sceneMemberID="firstResponder"/>
