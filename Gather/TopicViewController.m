@@ -21,6 +21,7 @@
 @property (nonatomic) BOOL loading;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *lodingIndicatorView;
+@property (weak, nonatomic) IBOutlet UIView *actionButtonView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -30,7 +31,10 @@
 {
     [super viewDidLoad];
     
-    self.refreshControl.tintColor = [UIColor whiteColor];
+    self.titleLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(titleLabelTap)];
+    [self.titleLabel addGestureRecognizer:recognizer];
     
     [self refresh];
 }
@@ -108,6 +112,36 @@
     ];
 }
 
+#pragma mark - Menu button action
+
+- (void)titleLabelTap
+{
+    [UIView beginAnimations:nil context:nil];
+    self.actionButtonView.alpha = 0.8;
+    self.titleLabel.alpha = 0.0;
+    [UIView commitAnimations];
+}
+
+- (IBAction)newTopic:(id)sender
+{
+    
+}
+
+- (IBAction)changeTheme:(id)sender
+{
+    
+}
+
+- (IBAction)gotoSettings:(id)sender
+{
+    
+}
+
+- (IBAction)logout:(id)sender
+{
+    
+}
+
 #pragma mark - Table view data source & Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -134,6 +168,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    if (!self.titleLabel.alpha) {
+        [UIView beginAnimations:nil context:nil];
+        self.titleLabel.alpha = 0.8;
+        self.actionButtonView.alpha = 0.0;
+        [UIView commitAnimations];
+    }
+    
     CGFloat fontSize = MIN(MAX(50.0, 70.0 - scrollView.contentOffset.y / 5.0), 100.0);
     UIFont *font = self.titleLabel.font;
     self.titleLabel.font = [font fontWithSize:fontSize];
