@@ -44,7 +44,9 @@
         [ud synchronize];
     }
     
+#ifndef DEBUG
     [self checkForUpdate];
+#endif
     
     return YES;
 }
@@ -58,7 +60,7 @@
                                 success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                                     if ([responseObject[@"name"] isEqualToString:@"Gather"]) {
                                         NSString *version = [NSBundle mainBundle].infoDictionary[(NSString *)kCFBundleVersionKey];
-                                        if (![version isEqualToString:responseObject[@"version"]]) {
+                                        if (version.integerValue < [responseObject[@"version"] integerValue]) {
                                             self.updateUrl = responseObject[@"update_url"];
                                             UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Update Available"
                                                                                            message:responseObject[@"changelog"]
