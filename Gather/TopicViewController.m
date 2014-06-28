@@ -13,6 +13,7 @@
 #import "BackgroundImage.h"
 #import "PostViewController.h"
 #import "SettingsViewController.h"
+#import "ChangeThemeViewController.h"
 
 @interface TopicViewController () <TopicCellDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSMutableArray *topics;
@@ -123,7 +124,7 @@
     [UIView commitAnimations];
 }
 
-- (IBAction)newTopic:(id)sender
+- (IBAction)gotoNewTopic:(id)sender
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"PostView" bundle:nil];
     
@@ -135,9 +136,15 @@
     }
 }
 
-- (IBAction)changeTheme:(id)sender
+- (IBAction)gotoChangeTheme:(id)sender
 {
-
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Settings" bundle:nil];
+    
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ChangeTheme"];
+    if ([vc isKindOfClass:[ChangeThemeViewController class]]) {
+        ChangeThemeViewController *ctv = (ChangeThemeViewController *)vc;
+        [self presentViewController:ctv animated:YES completion:nil];
+    }
 }
 
 - (IBAction)gotoSettings:(id)sender
