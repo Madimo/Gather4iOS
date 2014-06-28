@@ -36,6 +36,7 @@
 		D87C134B195EAAB500113D25 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D87C134A195EAAB500113D25 /* Settings.storyboard */; };
 		D87C134F195EABD300113D25 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87C134E195EABD300113D25 /* SettingsViewController.m */; };
 		D87C1352195EAE6F00113D25 /* ChangeThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87C1351195EAE6F00113D25 /* ChangeThemeViewController.m */; };
+		D87C1355195EF95400113D25 /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87C1354195EF95400113D25 /* SignatureViewController.m */; };
 		D8A47C0D1923B4FB00448690 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0C1923B4FB00448690 /* Foundation.framework */; };
 		D8A47C0F1923B4FB00448690 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */; };
 		D8A47C111923B4FB00448690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C101923B4FB00448690 /* UIKit.framework */; };
@@ -122,6 +123,8 @@
 		D87C134E195EABD300113D25 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D87C1350195EAE6F00113D25 /* ChangeThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeThemeViewController.h; sourceTree = "<group>"; };
 		D87C1351195EAE6F00113D25 /* ChangeThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeThemeViewController.m; sourceTree = "<group>"; };
+		D87C1353195EF95400113D25 /* SignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureViewController.h; sourceTree = "<group>"; };
+		D87C1354195EF95400113D25 /* SignatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureViewController.m; sourceTree = "<group>"; };
 		D8A47C091923B4FB00448690 /* Gather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A47C0C1923B4FB00448690 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -285,6 +288,8 @@
 				D87C134E195EABD300113D25 /* SettingsViewController.m */,
 				D87C1350195EAE6F00113D25 /* ChangeThemeViewController.h */,
 				D87C1351195EAE6F00113D25 /* ChangeThemeViewController.m */,
+				D87C1353195EF95400113D25 /* SignatureViewController.h */,
+				D87C1354195EF95400113D25 /* SignatureViewController.m */,
 			);
 			name = SettingsView;
 			sourceTree = "<group>";
@@ -586,6 +591,7 @@
 				D86CA66D19341E1D00E6D79E /* TriangleView.m in Sources */,
 				D8A9DA9E194C776600256973 /* FadeInImageView.m in Sources */,
 				D82B23D01955F3CF00D2F2F0 /* PostManager.m in Sources */,
+				D87C1355195EF95400113D25 /* SignatureViewController.m in Sources */,
 				D865BE3C195BAA6A00E39B38 /* EmoticonViewController.m in Sources */,
 				D8A47C1D1923B4FB00448690 /* AppDelegate.m in Sources */,
 				D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */,

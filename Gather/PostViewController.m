@@ -157,11 +157,7 @@
                                   content:self.contentTextView.text];
     }
     
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    
-    NSString *content = self.contentTextView.text;
-    content = [[EmoticonManager manager] translateEmoticonName:content];
-    content = [NSString stringWithFormat:@"%@\n\n%@", content, [ud stringForKey:UD_KEY_SIGNATURE]];
+    NSString *content = [self evalContent];
     
     [[PostManager manager] postTopicWithTitle:self.titleTextField.text
                                        nodeId:((Node *)self.nodes[self.nodeItem]).nodeId
@@ -199,11 +195,7 @@
                                   content:self.contentTextView.text];
     }
     
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    
-    NSString *content = self.contentTextView.text;
-    content = [[EmoticonManager manager] translateEmoticonName:content];
-    content = [NSString stringWithFormat:@"%@ \n\n %@", content, [ud stringForKey:UD_KEY_SIGNATURE]];
+    NSString *content = [self evalContent];
     
     [[PostManager manager] postReplyWithTopicId:self.topic.topicId
                                         content:content
@@ -219,6 +211,18 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSString *)evalContent
+{
+    NSString *content = self.contentTextView.text;
+    content = [[EmoticonManager manager] translateEmoticonName:content];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *signature = [ud stringForKey:UD_KEY_SIGNATURE];
+    if (![signature isEqualToString:@""]) {
+        content = [NSString stringWithFormat:@"%@\n\n%@", content, [ud stringForKey:UD_KEY_SIGNATURE]];
+    }
+    return content;
 }
 
 #pragma mark - Toolbar button action

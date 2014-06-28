@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UITableViewCell *signatureCell;
 
 @end
 
