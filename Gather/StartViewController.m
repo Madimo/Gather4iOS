@@ -75,13 +75,14 @@
     
     for (UITextField *textField in textFields) {
         textField.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        textField.textColor = [UIColor lightGrayColor];
+        textField.textColor = [UIColor darkGrayColor];
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.textAlignment = NSTextAlignmentCenter;
         textField.keyboardType = UIKeyboardTypeASCIICapable;
         textField.spellCheckingType = UITextSpellCheckingTypeNo;
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
         textField.returnKeyType = UIReturnKeyNext;
+        textField.keyboardAppearance = UIKeyboardAppearanceDark;
         textField.enablesReturnKeyAutomatically = YES;
         textField.delegate = self;
         textField.alpha = 0.0;
