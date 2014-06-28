@@ -12,6 +12,7 @@
 #import "GatherAPI.h"
 #import "BackgroundImage.h"
 #import "PostViewController.h"
+#import "SettingsViewController.h"
 
 @interface TopicViewController () <TopicCellDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) NSMutableArray *topics;
@@ -136,12 +137,18 @@
 
 - (IBAction)changeTheme:(id)sender
 {
-    
+
 }
 
 - (IBAction)gotoSettings:(id)sender
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Settings" bundle:nil];
     
+    if ([storyboard.instantiateInitialViewController isKindOfClass:[SettingsViewController class]]) {
+        SettingsViewController *sv = storyboard.instantiateInitialViewController;
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:sv];
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
 
 - (IBAction)gotoLogout:(id)sender

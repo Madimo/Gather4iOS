@@ -33,6 +33,8 @@
 		D86CA66D19341E1D00E6D79E /* TriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D86CA66C19341E1D00E6D79E /* TriangleView.m */; };
 		D86E9655195472430044C28F /* PostView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86E9654195472430044C28F /* PostView.storyboard */; };
 		D86E9658195474830044C28F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D86E9657195474830044C28F /* PostViewController.m */; };
+		D87C134B195EAAB500113D25 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D87C134A195EAAB500113D25 /* Settings.storyboard */; };
+		D87C134F195EABD300113D25 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D87C134E195EABD300113D25 /* SettingsViewController.m */; };
 		D8A47C0D1923B4FB00448690 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0C1923B4FB00448690 /* Foundation.framework */; };
 		D8A47C0F1923B4FB00448690 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */; };
 		D8A47C111923B4FB00448690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C101923B4FB00448690 /* UIKit.framework */; };
@@ -114,6 +116,9 @@
 		D86E9654195472430044C28F /* PostView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostView.storyboard; sourceTree = "<group>"; };
 		D86E9656195474830044C28F /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		D86E9657195474830044C28F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		D87C134A195EAAB500113D25 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		D87C134D195EABD300113D25 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		D87C134E195EABD300113D25 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D8A47C091923B4FB00448690 /* Gather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A47C0C1923B4FB00448690 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8A47C0E1923B4FB00448690 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -269,6 +274,16 @@
 			name = EmoticonView;
 			sourceTree = "<group>";
 		};
+		D87C134C195EAAC100113D25 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				D87C134A195EAAB500113D25 /* Settings.storyboard */,
+				D87C134D195EABD300113D25 /* SettingsViewController.h */,
+				D87C134E195EABD300113D25 /* SettingsViewController.m */,
+			);
+			name = SettingsView;
+			sourceTree = "<group>";
+		};
 		D8A47C001923B4FB00448690 = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +325,7 @@
 				D8DB7BFE1924949500096CBA /* Controllers */,
 				D827E0F81955FC8E00DD1AD8 /* PostView */,
 				D827E0F91955FCAC00DD1AD8 /* StartView */,
+				D87C134C195EAAC100113D25 /* SettingsView */,
 				D8A47C1E1923B4FB00448690 /* Main.storyboard */,
 				D8A47C1B1923B4FB00448690 /* AppDelegate.h */,
 				D8A47C1C1923B4FB00448690 /* AppDelegate.m */,
@@ -477,6 +493,7 @@
 				D865BE33195BA35B00E39B38 /* ALi0030.gif in Resources */,
 				D86E9655195472430044C28F /* PostView.storyboard in Resources */,
 				D80DAB9B192FB17A00B2B57C /* reply.html in Resources */,
+				D87C134B195EAAB500113D25 /* Settings.storyboard in Resources */,
 				D8DB7C331925174600096CBA /* style.css in Resources */,
 				D8A47C171923B4FB00448690 /* InfoPlist.strings in Resources */,
 				D865BE22195BA18500E39B38 /* Emoticons.plist in Resources */,
@@ -580,6 +597,7 @@
 				D8A47C531923C73900448690 /* TopicCell.m in Sources */,
 				D82B23CD1955E78400D2F2F0 /* NodeChosenViewController.m in Sources */,
 				D8B228A4193B591E00755032 /* MAWebView.m in Sources */,
+				D87C134F195EABD300113D25 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
