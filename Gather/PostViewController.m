@@ -60,16 +60,26 @@
     self.contentTextView.text = self.content;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    if (self.postType == PostTypeTopic) {
-        [self.titleTextField becomeFirstResponder];
-    } else if (self.postType == PostTypeReply) {
-        [self.contentTextView becomeFirstResponder];
-        
+    [super viewWillAppear:animated];
+    
+    if (self.postType == PostTypeReply) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
         [self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+    }
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.postType == PostTypeTopic) {
+        if (![self.contentTextView isFirstResponder]) {
+            [self.titleTextField becomeFirstResponder];
+        }
+    } else if (self.postType == PostTypeReply) {
+        [self.contentTextView becomeFirstResponder];
     }
 }
 
