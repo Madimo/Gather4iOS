@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GatherAPI.h"
-#import "BackgroundImage.h"
+#import "ThemeManager.h"
 
 @interface AppDelegate () <UIAlertViewDelegate>
 @property (strong, nonatomic) NSString *updateUrl;
@@ -21,14 +21,7 @@
     AFNetworkActivityIndicatorManager *manager = [AFNetworkActivityIndicatorManager sharedManager];
     [manager setEnabled:YES];
     
-    self.backgroundWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.backgroundWindow.bounds];
-    backgroundImageView.image = [BackgroundImage sharedImage].image;
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.view = backgroundImageView;
-    self.backgroundWindow.rootViewController = vc;
-    self.backgroundWindow.windowLevel = UIWindowLevelNormal - 1;
-    [self.backgroundWindow makeKeyAndVisible];
+    [[ThemeManager manager] initTheme];
     
     NSString *storyboardName;
     storyboardName = [[GatherAPI sharedAPI] isLogined] ? @"Main" : @"Start";

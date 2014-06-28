@@ -10,7 +10,7 @@
 #import "TopicCell.h"
 #import "RepliesViewController.h"
 #import "GatherAPI.h"
-#import "BackgroundImage.h"
+#import "ThemeManager.h"
 #import "PostViewController.h"
 #import "SettingsViewController.h"
 #import "ChangeThemeViewController.h"
@@ -143,7 +143,7 @@
     UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ChangeTheme"];
     if ([vc isKindOfClass:[ChangeThemeViewController class]]) {
         ChangeThemeViewController *ctv = (ChangeThemeViewController *)vc;
-        [self presentViewController:ctv animated:YES completion:nil];
+        [self presentViewController:ctv animated:NO completion:nil];
     }
 }
 

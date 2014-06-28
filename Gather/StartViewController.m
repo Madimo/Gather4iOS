@@ -7,7 +7,7 @@
 //
 
 #import "StartViewController.h"
-#import "BackgroundImage.h"
+#import "ThemeManager.h"
 #import "GatherAPI.h"
 #import "TopicViewController.h"
 
