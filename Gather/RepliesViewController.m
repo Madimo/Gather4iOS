@@ -20,6 +20,7 @@
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) Topic *topic;
 @property (strong, nonatomic) NSString *content;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation RepliesViewController
@@ -56,7 +57,10 @@
     self.titleLabel.textColor = [UIColor whiteColor];
     [self.contentScrollView addSubview:self.titleLabel];
 
-    [self.contentWebView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    [self.contentWebView.scrollView addObserver:self
+                                     forKeyPath:@"contentSize"
+                                        options:NSKeyValueObservingOptionNew
+                                        context:nil];
     
     [self refresh];
 }
@@ -73,6 +77,12 @@
     self.addReplyButton.alpha = 0.0;
     self.contentWebView.alpha = 0.0;
     
+    [self pullToRefresh];
+}
+
+- (void)pullToRefresh
+{
+    [self.refreshControl beginRefreshing];
     [[GatherAPI sharedAPI] getTopicById:self.topicId
                                 success:^(Topic *topic) {
                                     self.topic = topic;
@@ -85,10 +95,21 @@
                                         self.contentWebView.alpha = 1.0;
                                         self.addReplyButton.alpha = 1.0;
                                         [UIView commitAnimations];
+                                        
+                                        if (!self.refreshControl) {
+                                            self.refreshControl = [[UIRefreshControl alloc] init];
+                                            self.refreshControl.tintColor = [UIColor whiteColor];
+                                            [self.refreshControl addTarget:self
+                                                                    action:@selector(pullToRefresh)
+                                                          forControlEvents:UIControlEventValueChanged];
+                                            [self.contentScrollView addSubview:self.refreshControl];
+                                        }
+                                        
+                                        [self.refreshControl endRefreshing];
                                     });
                                 }
                                 failure:^(NSException *exception) {
-                                    
+                                    [self.refreshControl endRefreshing];
                                 }
      ];
 }
