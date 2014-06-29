@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class NodeChosenViewController;
+@class Node;
 
 @protocol NodeChosenViewControllerDelegate <NSObject>
 
 @optional
 - (void)nodeChosenViewController:(NodeChosenViewController *)controller
-            didSelectItemAtIndex:(NSInteger)index;
+                   didSelectNode:(Node *)node;
 
 @end
 
@@ -22,6 +23,6 @@
 
 @property (weak, nonatomic) id<NodeChosenViewControllerDelegate> delegate;
 @property (strong, nonatomic) NSArray *nodes;
-@property (nonatomic) NSInteger selectedItem;
+@property (strong, nonatomic) Node *selectedNode;
 
 @end

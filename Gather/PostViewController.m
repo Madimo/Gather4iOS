@@ -296,10 +296,10 @@
 
 #pragma mark - NodeChosenViewController delegate
 
-- (void)nodeChosenViewController:(NodeChosenViewController *)controller didSelectItemAtIndex:(NSInteger)index
+- (void)nodeChosenViewController:(NodeChosenViewController *)controller didSelectNode:(Node *)node
 {
-    self.nodeItem = index;
-    self.nodeLabel.text = [self.nodes[index] name];
+    self.nodeItem = [self.nodes indexOfObject:node];
+    self.nodeLabel.text = node.name;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -325,7 +325,9 @@
             NodeChosenViewController *ncvc = segue.destinationViewController;
             ncvc.nodes = self.nodes;
             ncvc.delegate = self;
-            ncvc.selectedItem = self.nodeItem;
+            if (self.nodeItem >= 0 && self.nodeItem < self.nodes.count) {
+                ncvc.selectedNode = self.nodes[self.nodeItem];
+            }
         }
     }
 }

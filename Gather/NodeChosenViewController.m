@@ -10,7 +10,7 @@
 #import "Node.h"
 
 @interface NodeChosenViewController ()
-
+@property (nonatomic) NSInteger selectedItem;
 @end
 
 @implementation NodeChosenViewController
@@ -19,7 +19,13 @@
 {
     [super viewDidLoad];
     
+    self.nodes = [self.nodes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *node1Name = ((Node *)obj1).name;
+        NSString *node2Name = ((Node *)obj2).name;
+        return [node1Name localizedCompare:node2Name];
+    }];
     [self.tableView reloadData];
+    self.selectedItem = [self.nodes indexOfObject:self.selectedNode];
     if (self.selectedItem >= 0 && self.selectedItem < self.nodes.count) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedItem inSection:0]
                               atScrollPosition:UITableViewScrollPositionMiddle
@@ -61,8 +67,8 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(nodeChosenViewController:didSelectItemAtIndex:)]) {
-        [self.delegate nodeChosenViewController:self didSelectItemAtIndex:indexPath.row];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(nodeChosenViewController:didSelectNode:)]) {
+        [self.delegate nodeChosenViewController:self didSelectNode:self.nodes[indexPath.row]];
     }
 }
 
