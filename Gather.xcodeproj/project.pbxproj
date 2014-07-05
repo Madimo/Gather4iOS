@@ -50,7 +50,6 @@
 		D8A47C2E1923B4FB00448690 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A47C101923B4FB00448690 /* UIKit.framework */; };
 		D8A47C361923B4FB00448690 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8A47C341923B4FB00448690 /* InfoPlist.strings */; };
 		D8A47C381923B4FB00448690 /* GatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C371923B4FB00448690 /* GatherTests.m */; };
-		D8A47C461923B61600448690 /* GatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C451923B61600448690 /* GatherAPI.m */; };
 		D8A47C491923BA4C00448690 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C481923BA4C00448690 /* Topic.m */; };
 		D8A47C501923BE4600448690 /* Reply.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C4F1923BE4600448690 /* Reply.m */; };
 		D8A47C531923C73900448690 /* TopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A47C521923C73900448690 /* TopicCell.m */; };
@@ -62,6 +61,7 @@
 		D8B228A8193B691100755032 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8B228A7193B691100755032 /* Start.storyboard */; };
 		D8DB7C331925174600096CBA /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C321925174600096CBA /* style.css */; };
 		D8DB7C35192518A800096CBA /* content.html in Resources */ = {isa = PBXBuildFile; fileRef = D8DB7C34192518A800096CBA /* content.html */; };
+		D8DE60E11967CB49002B1C98 /* GatherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DE60E01967CB49002B1C98 /* GatherClient.m */; };
 		D8F7B66D193C400300A9B9BA /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B66C193C400300A9B9BA /* ThemeManager.m */; };
 		D8F7B670193C446C00A9B9BA /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B66F193C446C00A9B9BA /* StartViewController.m */; };
 		E4EB49B9B0E341B1B4E4F8FD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 993D7F85A6C942C384DD6F39 /* libPods.a */; };
@@ -142,8 +142,6 @@
 		D8A47C331923B4FB00448690 /* GatherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GatherTests-Info.plist"; sourceTree = "<group>"; };
 		D8A47C351923B4FB00448690 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8A47C371923B4FB00448690 /* GatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GatherTests.m; sourceTree = "<group>"; };
-		D8A47C441923B61600448690 /* GatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatherAPI.h; sourceTree = "<group>"; };
-		D8A47C451923B61600448690 /* GatherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatherAPI.m; sourceTree = "<group>"; };
 		D8A47C471923BA4C00448690 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
 		D8A47C481923BA4C00448690 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
 		D8A47C4E1923BE4600448690 /* Reply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reply.h; sourceTree = "<group>"; };
@@ -163,6 +161,9 @@
 		D8B228A7193B691100755032 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		D8DB7C321925174600096CBA /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		D8DB7C34192518A800096CBA /* content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = content.html; sourceTree = "<group>"; };
+		D8DE60DE1967CA12002B1C98 /* GatherModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GatherModels.h; sourceTree = "<group>"; };
+		D8DE60DF1967CB49002B1C98 /* GatherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GatherClient.h; sourceTree = "<group>"; };
+		D8DE60E01967CB49002B1C98 /* GatherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GatherClient.m; sourceTree = "<group>"; };
 		D8F7B66B193C400300A9B9BA /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
 		D8F7B66C193C400300A9B9BA /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 		D8F7B66E193C446C00A9B9BA /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
@@ -197,14 +198,14 @@
 		D80DAB9C192FBCAB00B2B57C /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				D8A47C441923B61600448690 /* GatherAPI.h */,
-				D8A47C451923B61600448690 /* GatherAPI.m */,
 				D80DAB92192F96D600B2B57C /* ContentTranslator.h */,
 				D80DAB93192F96D600B2B57C /* ContentTranslator.m */,
 				D80DAC671931FAF900B2B57C /* TimeOpreator.h */,
 				D80DAC681931FAF900B2B57C /* TimeOpreator.m */,
 				D8F7B66B193C400300A9B9BA /* ThemeManager.h */,
 				D8F7B66C193C400300A9B9BA /* ThemeManager.m */,
+				D8DE60DF1967CB49002B1C98 /* GatherClient.h */,
+				D8DE60E01967CB49002B1C98 /* GatherClient.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -378,6 +379,7 @@
 		D8A47C4A1923BE1300448690 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D8DE60DE1967CA12002B1C98 /* GatherModels.h */,
 				D8A47C471923BA4C00448690 /* Topic.h */,
 				D8A47C481923BA4C00448690 /* Topic.m */,
 				D8A47C4E1923BE4600448690 /* Reply.h */,
@@ -595,6 +597,7 @@
 				D865BE3C195BAA6A00E39B38 /* EmoticonViewController.m in Sources */,
 				D8A47C1D1923B4FB00448690 /* AppDelegate.m in Sources */,
 				D80DAB97192F9D2700B2B57C /* RepliesViewController.m in Sources */,
+				D8DE60E11967CB49002B1C98 /* GatherClient.m in Sources */,
 				D865BE3F195BAC9500E39B38 /* EmoticonCell.m in Sources */,
 				D8A47C491923BA4C00448690 /* Topic.m in Sources */,
 				D8A47C561923C92900448690 /* TopicViewController.m in Sources */,
@@ -604,7 +607,6 @@
 				D8B2289A193B012A00755032 /* WebBrowserController.m in Sources */,
 				D80DAC691931FAF900B2B57C /* TimeOpreator.m in Sources */,
 				D8A47C191923B4FB00448690 /* main.m in Sources */,
-				D8A47C461923B61600448690 /* GatherAPI.m in Sources */,
 				D8F7B670193C446C00A9B9BA /* StartViewController.m in Sources */,
 				D8A47C531923C73900448690 /* TopicCell.m in Sources */,
 				D82B23CD1955E78400D2F2F0 /* NodeChosenViewController.m in Sources */,

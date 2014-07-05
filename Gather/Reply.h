@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+
+@class Reply;
+@class User;
 
 @interface Reply : NSObject
 
@@ -21,6 +23,8 @@
 @property (nonatomic, strong) NSDate *changed;
 
 @property (nonatomic, strong) User *author;
+
++ (instancetype)replyWithReplyDict:(NSDictionary *)dict;
 
 - (instancetype)initWithReplyDict:(NSDictionary *)dict;
 

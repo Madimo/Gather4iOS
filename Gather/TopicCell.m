@@ -8,7 +8,7 @@
 
 #import "TopicCell.h"
 #import "TimeOpreator.h"
-#import "Topic.h"
+#import "GatherModels.h"
 
 @interface TopicCell ()
 @property (weak, nonatomic) IBOutlet UILabel *replyCountLabel;
@@ -55,10 +55,10 @@
     NSString *avatarUrl = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=200", topic.author.emailMD5];
     [self.avatarView setImageWithURL:[NSURL URLWithString:avatarUrl]];
     self.nodeLabel.text = topic.node.name;
-    self.replyCountLabel.text = [NSString stringWithFormat:@"%@", @(topic.replyCount)];
+    self.replyCountLabel.text = [NSString stringWithFormat:@"%@", @(topic.replies.count)];
     self.createdLabel.text = [TimeOpreator convertStringFromDate:topic.created];
 
-    if (topic.changed) {
+    if (!topic.haveRead) {
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
         animation.fromValue = @0.5;
         animation.toValue = @0.0;
@@ -87,7 +87,7 @@
 
 - (void)prepareForReuse
 {
-    [self.replyCountLabel.layer removeAnimationForKey:@"UnreadNotifacition"];
+    [self.replyCountLabel.layer removeAllAnimations];
 }
 
 @end

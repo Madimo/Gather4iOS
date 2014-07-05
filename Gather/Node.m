@@ -10,23 +10,6 @@
 
 @implementation Node
 
-- (instancetype)initWithId:(NSInteger)nodeId
-                      name:(NSString *)name
-                      slug:(NSString *)slug
-               description:(NSString *)description
-                      icon:(NSString *)icon
-{
-    self = [super init];
-    if (self) {
-        self.nodeId = nodeId;
-        self.name = name;
-        self.slug = slug;
-        self.description = description;
-        self.icon = icon;
-    }
-    return self;
-}
-
 - (instancetype)initWithNodeDict:(NSDictionary *)dict
 {
     self = [super init];
@@ -38,6 +21,11 @@
         self.icon = dict[@"icon"];
     }
     return self;
+}
+
++ (instancetype)nodeWithNodeDict:(NSDictionary *)dict
+{
+    return [[Node alloc] initWithNodeDict:dict];
 }
 
 + (instancetype)unknownNode

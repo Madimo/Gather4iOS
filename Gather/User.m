@@ -7,8 +7,14 @@
 //
 
 #import "User.h"
+#import "TimeOpreator.h"
 
 @implementation User
+
+/*
+ 
+ @property (strong, nonatomic) NSString *emailMD5;
+ */
 
 - (instancetype)initWithUserDict:(NSDictionary *)dict
 {
@@ -18,10 +24,20 @@
         self.username = dict[@"username"];
         self.description = dict[@"description"];
         self.website = dict[@"website"];
-        self.emailMD5 = dict[@"email_md5"];
+        self.email = dict[@"email"];
+        self.emailMD5 = [self.email MD5Digest];
         self.role = dict[@"role"];
+        
+        if (dict[@"created"] != [NSNull null]) {
+            self.created = [TimeOpreator stringToDate:dict[@"created"]];
+        }
     }
     return self;
+}
+
++ (instancetype)userWithUserDict:(NSDictionary *)dict
+{
+    return [[User alloc] initWithUserDict:dict];
 }
 
 + (instancetype)unknownUser

@@ -14,9 +14,12 @@
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *description;
 @property (strong, nonatomic) NSString *website;
+@property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *emailMD5;
 @property (strong, nonatomic) NSString *role;
+@property (strong, nonatomic) NSDate *created;
 
++ (instancetype)userWithUserDict:(NSDictionary *)dict;
 + (instancetype)unknownUser;
 
 - (instancetype)initWithUserDict:(NSDictionary *)dict;

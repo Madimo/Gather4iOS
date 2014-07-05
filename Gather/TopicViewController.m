@@ -9,7 +9,7 @@
 #import "TopicViewController.h"
 #import "TopicCell.h"
 #import "RepliesViewController.h"
-#import "GatherAPI.h"
+#import "GatherClient.h"
 #import "ThemeManager.h"
 #import "PostViewController.h"
 #import "SettingsViewController.h"
@@ -50,32 +50,25 @@
     
     self.loading = YES;
     self.currentPage = 1;
-    GatherAPI *api = [GatherAPI sharedAPI];
-    [api getTopicsInPage:1
-                 success:^(NSArray *topics, NSInteger totalPage, NSInteger totalTopics) {
-                     self.totalPage = totalPage;
-                     self.topics = [topics mutableCopy];
-                     self.currentMaxDisplayedCell = -1;
-                     [self.tableView reloadData];
-                     [self.refreshControl endRefreshing];
-                     self.lodingIndicatorView.hidden = YES;
-                     
-                     if (!self.refreshControl) {
-                         self.refreshControl = [[UIRefreshControl alloc] init];
-                         self.refreshControl.tintColor = [UIColor whiteColor];
-                         [self.refreshControl addTarget:self
-                                                 action:@selector(refresh)
-                                       forControlEvents:UIControlEventValueChanged];
-                         [self.tableView addSubview:self.refreshControl];
-                     }
-                     self.loading = NO;
-                 }
-                 failure:^(NSException *exception) {
-                     [self.refreshControl endRefreshing];
-                     self.lodingIndicatorView.hidden = YES;
-                     self.loading = NO;
-                 }
-    ];
+    GatherClient *client = [GatherClient client];
+    [client getTopicsInPage:1
+                    orderBy:GatherTopicOrderByUpdatedDesc
+                    success:^(NSArray *topics, NSInteger totalPages, NSInteger totalTopics) {
+                        self.totalPage = totalPages;
+                        self.topics = [topics mutableCopy];
+                        self.currentMaxDisplayedCell = -1;
+                        [self.tableView reloadData];
+                        [self.refreshControl endRefreshing];
+                        self.lodingIndicatorView.hidden = YES;
+                        [self loadRefreshControl];
+                        self.loading = NO;
+                    }
+                    failure:^(NSError *error) {
+                        [self.refreshControl endRefreshing];
+                        self.lodingIndicatorView.hidden = YES;
+                        [self loadRefreshControl];
+                        self.loading = NO;
+                    }];
 }
 
 - (void)loadNext
@@ -92,26 +85,38 @@
     self.loading = YES;
     self.lodingIndicatorView.hidden = NO;
     
-    GatherAPI *api = [GatherAPI sharedAPI];
-    [api getTopicsInPage:self.currentPage + 1
-                 success:^(NSArray *topics, NSInteger totalPage, NSInteger totalTopics) {
-                     [self.topics addObjectsFromArray:topics];
-                     self.totalPage = totalPage;
-                     NSMutableArray *indexPaths = [NSMutableArray new];
-                     for (NSInteger i = self.topics.count - topics.count; i < self.topics.count; ++i) {
-                         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                         [indexPaths addObject:indexPath];
-                     }
-                     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-                     self.currentPage++;
-                     self.lodingIndicatorView.hidden = YES;
-                     self.loading = NO;
-                 }
-                 failure:^(NSException *exception) {
-                     self.lodingIndicatorView.hidden = YES;
-                     self.loading = NO;
-                 }
-    ];
+    GatherClient *client = [GatherClient client];
+    [client getTopicsInPage:self.currentPage + 1
+                    orderBy:GatherTopicOrderByUpdatedDesc
+                    success:^(NSArray *topics, NSInteger totalPages, NSInteger totalTopics) {
+                        [self.topics addObjectsFromArray:topics];
+                        self.totalPage = totalPages;
+                        NSMutableArray *indexPaths = [NSMutableArray new];
+                        for (NSInteger i = self.topics.count - topics.count; i < self.topics.count; ++i) {
+                            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                            [indexPaths addObject:indexPath];
+                        }
+                        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+                        self.currentPage++;
+                        self.lodingIndicatorView.hidden = YES;
+                        self.loading = NO;
+                    }
+                    failure:^(NSError *error) {
+                        self.lodingIndicatorView.hidden = YES;
+                        self.loading = NO;
+                    }];
+}
+
+- (void)loadRefreshControl
+{
+    if (!self.refreshControl) {
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        self.refreshControl.tintColor = [UIColor whiteColor];
+        [self.refreshControl addTarget:self
+                                action:@selector(refresh)
+                      forControlEvents:UIControlEventValueChanged];
+        [self.tableView addSubview:self.refreshControl];
+    }
 }
 
 #pragma mark - Menu button action
@@ -170,7 +175,7 @@
 
 - (void)logout
 {
-    [[GatherAPI sharedAPI] logout];
+    [[GatherClient client] logout];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Start" bundle:nil];
     self.view.window.rootViewController = storyboard.instantiateInitialViewController;
 }

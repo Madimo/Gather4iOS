@@ -7,26 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
-#import "Node.h"
+
+@class User;
+@class Node;
 
 @interface Topic : NSObject
 
 @property (nonatomic) NSInteger topicId;
-@property (nonatomic) NSInteger authorId;
-@property (nonatomic) NSInteger nodeId;
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *content;
+@property (nonatomic) BOOL haveRead;
+
+@property (strong, nonatomic) User *author;
+@property (strong, nonatomic) Node *node;
 @property (strong, nonatomic) NSArray *replies;
-@property (nonatomic) NSInteger replyCount;
 
 @property (strong, nonatomic) NSDate *created;
 @property (strong, nonatomic) NSDate *updated;
 @property (strong, nonatomic) NSDate *changed;
 
-@property (strong, nonatomic) User *author;
-@property (strong, nonatomic) Node *node;
++ (instancetype)topicWithTopicDict:(NSDictionary *)dict;
 
 - (id)initWithTopicDict:(NSDictionary *)dict;
 

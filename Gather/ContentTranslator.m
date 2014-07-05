@@ -7,8 +7,7 @@
 //
 
 #import "ContentTranslator.h"
-#import "Reply.h"
-#import "Topic.h"
+#import "GatherModels.h"
 #import "TimeOpreator.h"
 
 @interface ContentTranslator ()

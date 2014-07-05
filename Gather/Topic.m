@@ -8,6 +8,8 @@
 
 #import "Topic.h"
 #import "Reply.h"
+#import "User.h"
+#import "Node.h"
 #import "TimeOpreator.h"
 
 @implementation Topic
@@ -17,12 +19,13 @@
     self = [super init];
     if (self) {
         self.topicId = [dict[@"id"] integerValue];
-        self.authorId = [dict[@"author"] integerValue];
-        self.nodeId = [dict[@"node"] integerValue];
         
         self.title = dict[@"title"];
         self.content = dict[@"content"];
-        self.replyCount = [dict[@"repliy_count"] integerValue];
+        self.haveRead = [dict[@"have_read"] boolValue];
+        
+        self.author = [[User alloc] initWithUserDict:dict[@"author"]];
+        self.node = [[Node alloc] initWithNodeDict:dict[@"node"]];
         
         NSMutableArray *repliesArray = [NSMutableArray new];
         for (NSDictionary *replyDict in dict[@"replies"]) {
@@ -40,6 +43,11 @@
     }
     
     return self;
+}
+
++ (instancetype)topicWithTopicDict:(NSDictionary *)dict
+{
+    return [[Topic alloc] initWithTopicDict:dict];
 }
 
 @end

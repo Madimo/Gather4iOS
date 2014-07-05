@@ -7,7 +7,7 @@
 //
 
 #import "RepliesViewController.h"
-#import "GatherAPI.h"
+#import "GatherClient.h"
 #import "ContentTranslator.h"
 #import "WebBrowserController.h"
 #import "PostViewController.h"
@@ -83,35 +83,47 @@
 - (void)pullToRefresh
 {
     [self.refreshControl beginRefreshing];
-    [[GatherAPI sharedAPI] getTopicById:self.topicId
+    [[GatherClient client] getTopicById:self.topicId
                                 success:^(Topic *topic) {
                                     self.topic = topic;
-                                    NSString *repliesHTML = [[ContentTranslator sharedTranslator] convertToWebUsingTopic:topic];
-                                    [self.contentWebView loadHTMLString:repliesHTML baseURL:nil];
-                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                        [self.activityIndicator stopAnimating];
-                                        [UIView beginAnimations:nil context:nil];
-                                        [UIView setAnimationDelay:0.5];
-                                        self.contentWebView.alpha = 1.0;
-                                        self.addReplyButton.alpha = 1.0;
-                                        [UIView commitAnimations];
-                                        
-                                        if (!self.refreshControl) {
-                                            self.refreshControl = [[UIRefreshControl alloc] init];
-                                            self.refreshControl.tintColor = [UIColor whiteColor];
-                                            [self.refreshControl addTarget:self
-                                                                    action:@selector(pullToRefresh)
-                                                          forControlEvents:UIControlEventValueChanged];
-                                            [self.contentScrollView addSubview:self.refreshControl];
-                                        }
-                                        
-                                        [self.refreshControl endRefreshing];
-                                    });
+                                    
+                                    [[GatherClient client] getAllReplisInTopic:topic.topicId
+                                                                       success:^(NSArray *replies) {
+                                                                           self.topic.replies = replies;
+                                                                           
+                                                                           NSString *repliesHTML = [[ContentTranslator sharedTranslator] convertToWebUsingTopic:topic];
+                                                                           [self.contentWebView loadHTMLString:repliesHTML baseURL:nil];
+                                                                           [self.activityIndicator stopAnimating];
+                                                                           [UIView beginAnimations:nil context:nil];
+                                                                           [UIView setAnimationDelay:0.5];
+                                                                           self.contentWebView.alpha = 1.0;
+                                                                           self.addReplyButton.alpha = 1.0;
+                                                                           [UIView commitAnimations];
+                                                                           
+                                                                           [self loadRefreshControl];
+                                                                           [self.refreshControl endRefreshing];
+                                                                       }
+                                                                       failure:^(NSError *error) {
+                                                                           [self loadRefreshControl];
+                                                                           [self.refreshControl endRefreshing];
+                                                                       }];
                                 }
-                                failure:^(NSException *exception) {
+                                failure:^(NSError *error) {
+                                    [self loadRefreshControl];
                                     [self.refreshControl endRefreshing];
-                                }
-     ];
+                                }];
+}
+
+- (void)loadRefreshControl
+{
+    if (!self.refreshControl) {
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        self.refreshControl.tintColor = [UIColor whiteColor];
+        [self.refreshControl addTarget:self
+                                action:@selector(pullToRefresh)
+                      forControlEvents:UIControlEventValueChanged];
+        [self.contentScrollView addSubview:self.refreshControl];
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

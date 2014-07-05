@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "GatherAPI.h"
+#import "GatherClient.h"
 #import "ThemeManager.h"
 
 @interface AppDelegate () <UIAlertViewDelegate>
@@ -24,7 +24,7 @@
     [[ThemeManager manager] initTheme];
     
     NSString *storyboardName;
-    storyboardName = [[GatherAPI sharedAPI] isLogined] ? @"Main" : @"Start";
+    storyboardName = [[GatherClient client] isLogined] ? @"Main" : @"Start";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:nil];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

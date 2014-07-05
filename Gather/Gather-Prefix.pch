@@ -22,6 +22,7 @@
 #import <UIImageView+WebCache.h>
 #import <OpenInChromeController.h>
 #import <POP.h>
+#import <NSString+MD5.h>
 
 #ifdef DEBUG
 #define debugLog(...) NSLog(__VA_ARGS__)

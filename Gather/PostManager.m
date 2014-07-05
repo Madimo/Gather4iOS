@@ -7,7 +7,7 @@
 //
 
 #import "PostManager.h"
-#import "GatherAPI.h"
+#import "GatherClient.h"
 
 @implementation PostManager
 
@@ -25,44 +25,43 @@
                    content:(NSString *)content
                     images:(UIImage *)images
                    success:(void (^)(Topic *topic))success
-                   failure:(void (^)(NSException *exception))failure
+                   failure:(void (^)(NSError *error))failure
 {
-    GatherAPI *api = [GatherAPI sharedAPI];
-    [api createTopicWithTitle:title
-                      content:content
-                       nodeId:nodeId
-                      success:^(Topic *topic) {
-                          if (success) {
-                              success(topic);
-                          }
-                      }
-                      failure:^(NSException *exception) {
-                          if (failure) {
-                              failure(exception);
-                          }
-                      }];
-    
+    GatherClient *client = [GatherClient client];
+    [client createTopicWithTitle:title
+                         content:content
+                          nodeId:nodeId
+                         success:^(Topic *topic) {
+                             if (success) {
+                                 success(topic);
+                             }
+                         }
+                         failure:^(NSError *error) {
+                             if (failure) {
+                                 failure(error);
+                             }
+                         }];
 }
 
 - (void)postReplyWithTopicId:(NSInteger)topicId
                      content:(NSString *)content
                       images:(UIImage *)images
                      success:(void (^)(Reply *reply))success
-                     failure:(void (^)(NSException *exception))failure
+                     failure:(void (^)(NSError *error))failure
 {
-    GatherAPI *api = [GatherAPI sharedAPI];
-    [api createReplyWithTopicId:topicId
-                        content:content
-                        success:^(Reply *reply) {
-                            if (success) {
-                                success(reply);
-                            }
-                        }
-                        failure:^(NSException *exception) {
-                            if (failure) {
-                                failure(exception);
-                            }
-                        }];
+    GatherClient *client = [GatherClient client];
+    [client createReplyWithTopicId:topicId
+                           content:content
+                           success:^(Reply *reply) {
+                               if (success) {
+                                   success(reply);
+                               }
+                           }
+                           failure:^(NSError *error) {
+                               if (failure) {
+                                   failure(error);
+                               }
+                           }];
 }
 
 #pragma mark - Singleton

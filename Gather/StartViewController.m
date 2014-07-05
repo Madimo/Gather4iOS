@@ -8,7 +8,7 @@
 
 #import "StartViewController.h"
 #import "ThemeManager.h"
-#import "GatherAPI.h"
+#import "GatherClient.h"
 #import "TopicViewController.h"
 
 @interface StartViewController () <UITextFieldDelegate>
@@ -132,15 +132,15 @@
 
 - (void)login
 {
-    [[GatherAPI sharedAPI] loginWithUsername:self.usernameTextField.text
+    [[GatherClient client] loginWithUsername:self.usernameTextField.text
                                     password:self.passwordTextField.text
                                      success:^{
                                          UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                                          [self dismissViewControllerAnimated:NO completion:nil];
                                          [self presentViewController:storyboard.instantiateInitialViewController animated:NO completion:nil];
                                      }
-                                     failure:^(NSException *exception) {
-                                         NSLog(@"fail");
+                                     failure:^(NSError *error) {
+                                         // TODO: Login failed
                                      }];
 }
 

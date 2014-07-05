@@ -7,7 +7,7 @@
 //
 
 #import "PostViewController.h"
-#import "GatherAPI.h"
+#import "GatherClient.h"
 #import "NodeChosenViewController.h"
 #import "PostManager.h"
 #import "Node.h"
@@ -167,7 +167,7 @@
                                           if (self.delegate && [self.delegate respondsToSelector:@selector(postViewController:didPostWithPost:)]) {
                                               [self.delegate postViewController:self didPostWithPost:topic];
                                           }                                      }
-                                      failure:^(NSException *exception) {
+                                      failure:^(NSError *error) {
                                           
                                       }];
     
@@ -205,7 +205,7 @@
                                                 [self.delegate postViewController:self didPostWithPost:reply];
                                             }
                                         }
-                                        failure:^(NSException *exception) {
+                                        failure:^(NSError *error) {
                                             
                                         }];
     
@@ -260,14 +260,13 @@
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     
-    GatherAPI *api = [GatherAPI sharedAPI];
-    [api getAllNodesWithSuccess:^(NSArray *nodes) {
+    [[GatherClient client] getAllNodesWithSuccess:^(NSArray *nodes) {
         self.nodes = nodes;
         [self.activityIndicator stopAnimating];
         self.nodeLabel.hidden = NO;
         self.postButton.enabled = YES;
         self.isLoadingNodes = NO;
-    } failure:^(NSException *exception) {
+    } failure:^(NSError *error) {
         [self.activityIndicator stopAnimating];
         self.errorIcon.hidden = NO;
         self.isLoadingNodes = NO;
