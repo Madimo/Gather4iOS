@@ -11,11 +11,6 @@
 
 @implementation User
 
-/*
- 
- @property (strong, nonatomic) NSString *emailMD5;
- */
-
 - (instancetype)initWithUserDict:(NSDictionary *)dict
 {
     self = [super init];
@@ -38,18 +33,6 @@
 + (instancetype)userWithUserDict:(NSDictionary *)dict
 {
     return [[User alloc] initWithUserDict:dict];
-}
-
-+ (instancetype)unknownUser
-{
-    static User *user;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        user = [[User alloc] init];
-        user.userId = 0;
-        user.username = @"Unknown";
-    });
-    return user;
 }
 
 @end

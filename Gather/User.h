@@ -20,7 +20,6 @@
 @property (strong, nonatomic) NSDate *created;
 
 + (instancetype)userWithUserDict:(NSDictionary *)dict;
-+ (instancetype)unknownUser;
 
 - (instancetype)initWithUserDict:(NSDictionary *)dict;
 

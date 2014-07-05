@@ -28,16 +28,4 @@
     return [[Node alloc] initWithNodeDict:dict];
 }
 
-+ (instancetype)unknownNode
-{
-    static Node *node;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        node = [[Node alloc] init];
-        node.nodeId = 0;
-        node.name = @"Unknown";
-    });
-    return node;
-}
-
 @end

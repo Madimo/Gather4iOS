@@ -17,7 +17,6 @@
 @property (strong, nonatomic) NSString *icon;
 
 + (instancetype)nodeWithNodeDict:(NSDictionary *)dict;
-+ (instancetype)unknownNode;
 
 - (instancetype)initWithNodeDict:(NSDictionary *)dict;
 
