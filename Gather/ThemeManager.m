@@ -69,6 +69,7 @@
     _blurRadius = @(blurRadius);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_blurRadius forKey:UD_KEY_BLUR_RADIUS];
+    [defaults synchronize];
 }
 
 - (CGFloat)saturation
@@ -88,6 +89,7 @@
     _saturation = @(saturation);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_saturation forKey:UD_KEY_SATURATION];
+    [defaults synchronize];
 }
 
 - (UIImage *)blurImage

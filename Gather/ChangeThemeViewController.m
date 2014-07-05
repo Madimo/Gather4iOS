@@ -27,7 +27,7 @@
     self.blurRadiusSlider.value = [ThemeManager manager].blurRadius;
     self.saturationSlider.value = [ThemeManager manager].saturation;
     self.backgroundImageView.image = [ThemeManager manager].blurImage;
-    _backgroundImage = [ThemeManager manager].image;
+    self.backgroundImage = [ThemeManager manager].image;
     
     self.contentView.alpha = 0.0;
 }
