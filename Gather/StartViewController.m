@@ -140,7 +140,12 @@
                                          [self presentViewController:storyboard.instantiateInitialViewController animated:NO completion:nil];
                                      }
                                      failure:^(NSError *error) {
-                                         // TODO: Login failed
+                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Failed"
+                                                                                             message:error.localizedDescription
+                                                                                            delegate:nil
+                                                                                   cancelButtonTitle:@"OK"
+                                                                                   otherButtonTitles:nil];
+                                         [alertView show];
                                      }];
 }
 
