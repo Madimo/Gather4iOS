@@ -10,6 +10,7 @@
 #import "ThemeManager.h"
 #import "GatherClient.h"
 #import "TopicViewController.h"
+#import "WebBrowserController.h"
 
 @interface StartViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -217,6 +218,11 @@
 
 - (IBAction)sign:(id)sender
 {
+    WebBrowserController *wbc = [[WebBrowserController alloc] initWithURL:@"http://gather.whouz.com/account/register"];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:wbc];
+    [self presentViewController:nc animated:YES completion:nil];
+    return;
+    
     POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
     CGRect frame = self.signView.frame;
     frame.origin.y = CGRectGetMaxY(self.titleLabel.frame);
