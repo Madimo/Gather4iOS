@@ -23,7 +23,6 @@
 #import <OpenInChromeController.h>
 #import <POP.h>
 #import <NSString+MD5.h>
-#import <JSONKit.h>
 #import <MRProgress.h>
 
 #ifdef DEBUG

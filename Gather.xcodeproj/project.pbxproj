@@ -402,6 +402,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Madimo;
+				TargetAttributes = {
+					D8A47C081923B4FB00448690 = {
+						DevelopmentTeam = GKXU2E4SX7;
+					};
+				};
 			};
 			buildConfigurationList = D8A47C041923B4FB00448690 /* Build configuration list for PBXProject "Gather" */;
 			compatibilityVersion = "Xcode 3.2";
