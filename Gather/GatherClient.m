@@ -60,7 +60,6 @@
 {
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
     [serializer setValue:self.token forHTTPHeaderField:@"token"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = serializer;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -78,7 +77,23 @@
 {
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
     [serializer setValue:self.token forHTTPHeaderField:@"token"];
-    [serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = serializer;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSURLSessionDataTask *task = [manager POST:[NSString stringWithFormat:@"%@%@", kGatherAPIDomains, path]
+                                    parameters:parameters
+                                       success:success
+                                       failure:failure];
+    return task;
+}
+
+- (NSURLSessionDataTask *)postPath:(NSString *)path
+                    JSONParameters:(NSDictionary *)parameters
+                           success:(void(^)(NSURLSessionDataTask *task, NSDictionary *responseObject))success
+                           failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    AFHTTPRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+    [serializer setValue:self.token forHTTPHeaderField:@"token"];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = serializer;
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -403,10 +418,10 @@
 {
     NSDictionary *parameters = @{ @"title"   : title,
                                   @"content" : content,
-                                  @"node"    : @(nodeId) };
+                                  @"node_id" : @(nodeId) };
     
     return [self postPath:@"/topic"
-               parameters:parameters
+           JSONParameters:parameters
                   success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                       if (!success) {
                           return;
@@ -417,6 +432,7 @@
                   }
                   failure:^(NSURLSessionDataTask *task, NSError *error) {
                       if (failure) {
+                          NSLog(@"%@", error);
                           failure(error);
                       }
                   }];
@@ -431,7 +447,7 @@
                                   @"content" : content };
     
     return [self postPath:@"/reply"
-               parameters:parameters
+           JSONParameters:parameters
                   success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                       if (!success) {
                           return;
@@ -442,6 +458,7 @@
                   }
                   failure:^(NSURLSessionDataTask *task, NSError *error) {
                       if (failure) {
+                          NSLog(@"%@", error);
                           failure(error);
                       }
                   }];

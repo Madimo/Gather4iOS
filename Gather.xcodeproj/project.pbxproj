@@ -169,14 +169,14 @@
 		D80DAB9C192FBCAB00B2B57C /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				D8DE60DF1967CB49002B1C98 /* GatherClient.h */,
+				D8DE60E01967CB49002B1C98 /* GatherClient.m */,
 				D80DAB92192F96D600B2B57C /* ContentTranslator.h */,
 				D80DAB93192F96D600B2B57C /* ContentTranslator.m */,
 				D80DAC671931FAF900B2B57C /* TimeOpreator.h */,
 				D80DAC681931FAF900B2B57C /* TimeOpreator.m */,
 				D8F7B66B193C400300A9B9BA /* ThemeManager.h */,
 				D8F7B66C193C400300A9B9BA /* ThemeManager.m */,
-				D8DE60DF1967CB49002B1C98 /* GatherClient.h */,
-				D8DE60E01967CB49002B1C98 /* GatherClient.m */,
 			);
 			name = Library;
 			sourceTree = "<group>";

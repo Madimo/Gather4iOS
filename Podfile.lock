@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - JSONKit (1.5pre)
   - KeychainItemWrapper (1.2)
   - MD5Digest (0.1.0)
   - OpenInChrome (0.0.1)
@@ -31,6 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - JSONKit
   - KeychainItemWrapper
   - MD5Digest
   - OpenInChrome
@@ -40,6 +42,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  JSONKit: efef3bbd3372ff33f96b9c6f34cf4fe18e74ab69
   KeychainItemWrapper: 577e9e920185892873ded075b8ceb730bebdfd91
   MD5Digest: 058b7162b1fc8c30feddf10bfe66e0565797c45f
   OpenInChrome: b7c73ddf8fe0a1788dc0549c3c4c70e3c84da578
