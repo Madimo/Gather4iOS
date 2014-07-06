@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) NSString *url;
 
+- (instancetype)initWithURL:(NSString *)url;
+
 @end

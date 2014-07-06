@@ -25,6 +25,15 @@
 
 #pragma mark - Initialize
 
+- (instancetype)initWithURL:(NSString *)url
+{
+    self = [super init];
+    if (self) {
+        self.url = url;
+    }
+    return self;
+}
+
 - (void)initStatusBar
 {
     self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;

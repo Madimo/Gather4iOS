@@ -180,8 +180,7 @@
             NSLog(@"allow");
             return YES;
         } else {
-            WebBrowserController *webBrowser = [[WebBrowserController alloc] init];
-            webBrowser.url = requestString;
+            WebBrowserController *webBrowser = [[WebBrowserController alloc] initWithURL:requestString];
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:webBrowser];
             [self presentViewController:nc animated:YES completion:nil];
             return NO;
