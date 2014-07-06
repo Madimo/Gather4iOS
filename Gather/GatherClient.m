@@ -128,7 +128,7 @@
     NSDictionary *parameters = @{ @"username" : username,
                                   @"password" : password };
     
-    return [self postPath:@"/authorize/"
+    return [self postPath:@"/account/authorize/"
                parameters:parameters
                   success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                       NSInteger code = [responseObject[@"code"] integerValue];
@@ -149,6 +149,7 @@
                   }
                   failure:^(NSURLSessionDataTask *task, NSError *error) {
                       if (failure) {
+                          NSLog(@"%@", error);
                           failure(error);
                       }
                   }];
