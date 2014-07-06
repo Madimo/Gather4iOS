@@ -15,7 +15,9 @@
 #import "SettingsViewController.h"
 #import "ChangeThemeViewController.h"
 
-@interface TopicViewController () <TopicCellDelegate, UIAlertViewDelegate>
+#define kActionSheetTagLogout 1
+
+@interface TopicViewController () <TopicCellDelegate, UIActionSheetDelegate>
 @property (nonatomic, strong) NSMutableArray *topics;
 @property (nonatomic) NSInteger totalPage;
 @property (nonatomic) NSInteger currentPage;
@@ -165,12 +167,13 @@
 
 - (IBAction)gotoLogout:(id)sender
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Log out ?"
-                                                        message:@""
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Logout", nil];
-    [alertView show];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:@"Logout"
+                                                    otherButtonTitles:nil];
+    actionSheet.tag = kActionSheetTagLogout;
+    [actionSheet showInView:self.view];
 }
 
 - (void)logout
@@ -258,12 +261,21 @@
     [self presentViewController:rvc animated:YES completion:nil];
 }
 
-#pragma mark - UIAlertView delegate
+#pragma mark - UIActionSheetDelegate
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        [self logout];
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    switch (actionSheet.tag) {
+        case kActionSheetTagLogout:
+            [self logout];
+            break;
+            
+        default:
+            break;
     }
 }
 
