@@ -220,7 +220,7 @@
     UIFont *font = self.titleLabel.font;
     self.titleLabel.font = [font fontWithSize:fontSize];
     
-    if (scrollView.contentOffset.y > scrollView.contentSize.height * 2.0 / 3.0) {
+    if (scrollView.contentOffset.y + scrollView.frame.size.height > scrollView.contentSize.height - 200.0) {
         [self loadNext];
     }
 }
