@@ -48,6 +48,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.okButton.alpha = 0.0;
+    self.cancelButton.alpha = 0.0;
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self initViewAlpha];
@@ -70,8 +73,6 @@
     self.titleLabel.alpha = 0.0;
     self.loginView.alpha = 0.0;
     self.signView.alpha = 0.0;
-    self.okButton.alpha = 0.0;
-    self.cancelButton.alpha = 0.0;
 }
 
 - (void)initViewPosition
@@ -151,14 +152,21 @@
 
 - (void)login
 {
+    [MRProgressOverlayView showOverlayAddedTo:self.view.window
+                                        title:@"Loding..."
+                                         mode:MRProgressOverlayViewModeIndeterminateSmall
+                                     animated:YES];
+    
     [[GatherClient client] loginWithUsername:self.usernameTextField.text
                                     password:self.passwordTextField.text
                                      success:^{
+                                         [MRProgressOverlayView dismissOverlayForView:self.view.window animated:YES];
                                          UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                                          [self dismissViewControllerAnimated:NO completion:nil];
                                          [self presentViewController:storyboard.instantiateInitialViewController animated:NO completion:nil];
                                      }
                                      failure:^(NSError *error) {
+                                         [MRProgressOverlayView dismissOverlayForView:self.view.window animated:YES];
                                          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Failed"
                                                                                              message:error.localizedDescription
                                                                                             delegate:nil

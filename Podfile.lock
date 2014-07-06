@@ -23,6 +23,37 @@ PODS:
   - JSONKit (1.5pre)
   - KeychainItemWrapper (1.2)
   - MD5Digest (0.1.0)
+  - MRProgress (0.5.1):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+    - MRProgress/MessageInterceptor
+    - MRProgress/NavigationBarProgress
+    - MRProgress/Overlay
+    - MRProgress/Stopable
+    - MRProgress/WeakProxy
+  - MRProgress/ActivityIndicator (0.5.1):
+    - MRProgress/Stopable
+  - MRProgress/Blur (0.5.1):
+    - MRProgress/Helper
+  - MRProgress/Circular (0.5.1):
+    - MRProgress/Helper
+    - MRProgress/Stopable
+  - MRProgress/Helper (0.5.1)
+  - MRProgress/Icons (0.5.1)
+  - MRProgress/MessageInterceptor (0.5.1)
+  - MRProgress/NavigationBarProgress (0.5.1)
+  - MRProgress/Overlay (0.5.1):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+  - MRProgress/Stopable (0.5.1):
+    - MRProgress/Helper
+  - MRProgress/WeakProxy (0.5.1)
   - OpenInChrome (0.0.1)
   - pop (1.0.6)
   - SDWebImage (3.6):
@@ -35,6 +66,7 @@ DEPENDENCIES:
   - JSONKit
   - KeychainItemWrapper
   - MD5Digest
+  - MRProgress
   - OpenInChrome
   - pop
   - SDWebImage
@@ -45,6 +77,7 @@ SPEC CHECKSUMS:
   JSONKit: efef3bbd3372ff33f96b9c6f34cf4fe18e74ab69
   KeychainItemWrapper: 577e9e920185892873ded075b8ceb730bebdfd91
   MD5Digest: 058b7162b1fc8c30feddf10bfe66e0565797c45f
+  MRProgress: 7853c177e7d79b90e6f0910561967ebcf3289eb1
   OpenInChrome: b7c73ddf8fe0a1788dc0549c3c4c70e3c84da578
   pop: e518794da38942c05255eb64b36d894e70cb4f00
   SDWebImage: c6989652c1cdf27cbdf3f56957e2030f825af5bc
