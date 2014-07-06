@@ -35,7 +35,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self initViewPositionAndAlpha];
     [self initTextField];
     [self initGestureRecognizer];
     [self initNotification];
@@ -47,20 +46,39 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self initViewAlpha];
+    });
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self appearAnimation];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self initViewPosition];
+        [self appearAnimation];
+    });
 }
 
 #pragma mark - Initialize
 
-- (void)initViewPositionAndAlpha
+- (void)initViewAlpha
 {
-    self.titleLabel.center = CGPointMake(160, CGRectGetMidY([UIScreen mainScreen].bounds));
+    self.titleLabel.alpha = 0.0;
     self.loginView.alpha = 0.0;
     self.signView.alpha = 0.0;
     self.okButton.alpha = 0.0;
     self.cancelButton.alpha = 0.0;
+}
+
+- (void)initViewPosition
+{
+    CGRect frame = self.titleLabel.frame;
+    frame.origin.y = CGRectGetMidY([UIScreen mainScreen].bounds) - CGRectGetMidY(frame);
+    self.titleLabel.frame = frame;
 }
 
 - (void)initTextField
@@ -166,6 +184,7 @@
     CGPoint center = self.titleLabel.center;
     center.y = 100;
     self.titleLabel.center = center;
+    self.titleLabel.alpha = 1.0;
     [UIView commitAnimations];
     
     [UIView beginAnimations:nil context:nil];
