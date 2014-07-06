@@ -8,9 +8,10 @@
 
 #import "SettingsViewController.h"
 
-@interface SettingsViewController ()
-@property (weak, nonatomic) IBOutlet UITableViewCell *signatureCell;
+#define kActionSheetTagClearAllCaches 1
 
+@interface SettingsViewController () <UIActionSheetDelegate>
+@property (weak, nonatomic) IBOutlet UITableViewCell *signatureCell;
 @end
 
 @implementation SettingsViewController
@@ -26,6 +27,46 @@
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)clearAllCaches
+{
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                             destructiveButtonTitle:@"Clear All Caches"
+                                                  otherButtonTitles:nil];
+        sheet.tag = kActionSheetTagClearAllCaches;
+        [sheet showInView:self.view];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    switch (actionSheet.tag) {
+        case kActionSheetTagClearAllCaches:
+            [self clearAllCaches];
+            break;
+        default:
+            break;
+    }
 }
 
 /*
