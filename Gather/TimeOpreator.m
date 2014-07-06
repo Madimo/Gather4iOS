@@ -12,33 +12,49 @@
 
 + (NSDate *)stringToDate:(NSString *)date
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"E, dd LLL yyyy HH:mm:ss O"];
+    static NSDateFormatter *formatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.S"];
+        [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    });
+    
+    if (!date) {
+        return nil;
+    }
+    
     return [formatter dateFromString:date];
 }
 
 + (NSString *)convertStringFromDate:(NSDate *)date
 {
+    static NSDateFormatter *formatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"M-d H:mm"];
+        [formatter setTimeZone:[NSTimeZone localTimeZone]];
+    });
+    
+    if (!date) {
+        return nil;
+    }
+    
     NSTimeInterval interval = abs([date timeIntervalSinceNow]);
     int time;
     if (interval < 120) {
         return @"Just now";
-    }
-    if (interval < 3600) {
-        return  [NSString stringWithFormat:@"%d mins ago", (int)(interval / 60 + 0.5)];
-    }
-    if (interval < 3600 * 24) {
-        time = (int)(interval / 3600 + 0.5);
+    } else if (interval < 3600) {
+        return  [NSString stringWithFormat:@"%d mins ago", (int)(interval / 60)];
+    } else if (interval < 3600 * 24) {
+        time = (int)(interval / 3600);
         return  [NSString stringWithFormat:@"%d hour%@ ago", time, time > 1 ? @"s" : @""];
-    }
-    if (interval < 3600 * 24 * 7) {
-        time = (int)(interval / 3600 / 24 + 0.5);
+    } else if (interval < 3600 * 24 * 7) {
+        time = (int)(interval / 3600 / 24);
         return  [NSString stringWithFormat:@"%d day%@ ago", time, time > 1 ? @"s" : @""];
     }
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"M-d H:mm"];
-    [formatter setTimeZone:[NSTimeZone localTimeZone]];
+
     return [formatter stringFromDate:date];
 }
 
