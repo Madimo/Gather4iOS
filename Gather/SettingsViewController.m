@@ -7,11 +7,15 @@
 //
 
 #import "SettingsViewController.h"
+#import "GatherClient.h"
 
 #define kActionSheetTagClearAllCaches 1
+#define kActionSheetTagLogout         2
 
 @interface SettingsViewController () <UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITableViewCell *signatureCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *clearAllCachesCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *logoutCell;
 @end
 
 @implementation SettingsViewController
@@ -36,11 +40,20 @@
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
+- (void)logout
+{
+    [[GatherClient client] logout];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Start" bundle:nil];
+    self.view.window.rootViewController = storyboard.instantiateInitialViewController;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1 && indexPath.row == 0) {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell == self.clearAllCachesCell) {
         UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel"
@@ -49,6 +62,16 @@
         sheet.tag = kActionSheetTagClearAllCaches;
         [sheet showInView:self.view];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    } else if (cell == self.logoutCell) {
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                             destructiveButtonTitle:@"Log out"
+                                                  otherButtonTitles:nil];
+        sheet.tag = kActionSheetTagLogout;
+        [sheet showInView:self.view];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
     }
 }
 
@@ -63,6 +86,9 @@
     switch (actionSheet.tag) {
         case kActionSheetTagClearAllCaches:
             [self clearAllCaches];
+            break;
+        case kActionSheetTagLogout:
+            [self logout];
             break;
         default:
             break;

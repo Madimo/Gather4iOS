@@ -219,6 +219,27 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="ACCOUNT" id="SDi-xd-bOb">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="tvH-Pl-oRs" style="IBUITableViewCellStyleDefault" id="JiQ-cZ-Oph">
+                                        <rect key="frame" x="0.0" y="255" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JiQ-cZ-Oph" id="NfM-Xv-0pi">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Log out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tvH-Pl-oRs">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Chh-Sa-WNf" id="aFf-JS-b63"/>
@@ -233,7 +254,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="signatureCell" destination="rUZ-hw-gQe" id="ULW-EN-8D9"/>
+                        <outlet property="clearAllCachesCell" destination="ATC-Ea-qo8" id="FdN-1V-kGl"/>
+                        <outlet property="logoutCell" destination="JiQ-cZ-Oph" id="9xZ-gF-OUs"/>
+                        <outlet property="signatureCell" destination="rUZ-hw-gQe" id="LHX-sd-bQE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OCm-pQ-MsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
