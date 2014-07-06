@@ -53,7 +53,9 @@
     self.titleLabel.text = topic.title;
     self.authorLabel.text = topic.author.username;
     NSString *avatarUrl = [NSString stringWithFormat:@"http://gravatar.whouz.com/avatar/%@?s=200", topic.author.emailMD5];
-    [self.avatarView setImageWithURL:[NSURL URLWithString:avatarUrl]];
+    [self.avatarView setImageWithURL:[NSURL URLWithString:avatarUrl]
+                    placeholderImage:nil
+                             options:SDWebImageRefreshCached];
     self.nodeLabel.text = topic.node.name;
     self.replyCountLabel.text = [NSString stringWithFormat:@"%@", @(topic.replies.count)];
     self.createdLabel.text = [TimeOpreator convertStringFromDate:topic.created];

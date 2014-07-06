@@ -12,13 +12,16 @@
 
 - (void)setImage:(UIImage *)image
 {
-    [super setImage:image];
-    
-    self.alpha = 0.0;
+    if (!self.image) {
+        self.alpha = 0.0;
+        [super setImage:image];
         
-    [UIView beginAnimations:nil context:nil];
-    self.alpha = 1.0;
-    [UIView commitAnimations];
+        [UIView beginAnimations:nil context:nil];
+        self.alpha = 1.0;
+        [UIView commitAnimations];
+    } else {
+        [super setImage:image];
+    }
 }
 
 @end
